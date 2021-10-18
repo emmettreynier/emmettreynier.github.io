@@ -1,9 +1,11 @@
 name: "emmetts-website"
 output_dir: "."
 navbar:
-  title: "Emmett's Website"
+  title: "Emmett Saulnier"
   left:
-    - text: "Home"
-      href: index.html
-    - text: "About"
+    - text: "Research"
+      href: research.html
+    - text: "Teaching"
+      href: teaching.html
+    - text: "Biography"
       href: about.html
