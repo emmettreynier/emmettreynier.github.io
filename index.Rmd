@@ -2,5 +2,5 @@
 title: ""
 ---
 
-# Biography  
 I am a PhD student at the University of Oregon studying economics. My research interests fall at the intersection of environmental and human health through the food system and ecology.
+

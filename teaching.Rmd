@@ -4,7 +4,7 @@ title: ""
 
 # Instructor  
 
-- EC 320: Introduction to Econometrics --- Spring 2022  
+- [EC 320: Introduction to Econometrics --- Spring 2022](https://github.com/emmettsaulnier/EC320s22)    
 
 # Teaching Assistant  
 
