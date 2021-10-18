@@ -2,11 +2,16 @@
 title: "Research"
 ---
 
-# Working Papers  
+### Working Papers  
 
-"Vertical Migration Externalities" with Mark Colas
+**[Vertical Migration Externalities](files/ColasSaulnier.pdf)** with [Mark Colas](https://sites.google.com/site/markyaucolas/home)  
 
-# Works in Progress
+State income taxes affect federal income tax revenue by shifting the spatial distribution of households between high- and low-productivity states, thereby changing household incomes and tax payments. We derive an expression for these fiscal externalities of state taxes in terms of estimable statistics. An empirical quantification using American Community Survey data reveals that the externalities range from large and negative in some states, to large and positive in others. In California, an increase in the state income tax rate and the resulting change in the distribution of households across states lead to a decrease in federal income tax revenue of 39 cents for every dollar of California tax revenue raised. The externality amounts to a 0.27% decrease in total federal income tax revenue for a 1 pp increase in California’s state tax rate. Our results raise the possibility that state taxes may be set too high in high-productivity states, and set too low in low-productivity states.  
+
+
+
+
+### Works in Progress  
 
 - Agricultural Glyphosate use and Human Health  
 - Preemptive timber harvest and the NWFP  

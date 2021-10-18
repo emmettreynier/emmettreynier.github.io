@@ -9,3 +9,6 @@ navbar:
       href: teaching.html
     - text: "Biography"
       href: about.html
+output:
+  html_document:
+    theme: flatly

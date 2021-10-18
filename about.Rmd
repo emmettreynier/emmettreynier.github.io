@@ -1,5 +1,5 @@
 ---
-title: "About this website"
+title: ""
 ---
 
 More about this website
