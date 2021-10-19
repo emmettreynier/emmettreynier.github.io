@@ -1,12 +1,24 @@
 ---
-title: ""
+title: "Emmett Saulnier Teaching"
 ---
 
-# Instructor  
+Here are the classes that I have (or will be) teaching.
 
-- [EC 320: Introduction to Econometrics --- Spring 2022](https://github.com/emmettsaulnier/EC320s22)    
+### Instructor  
 
-# Teaching Assistant  
+- [EC 320: Introduction to Econometrics](https://github.com/emmettsaulnier/EC320s22)    
+  + University of Oregon  
+  + Spring 2022
 
-- EC 607: Core Microeconometrics II/III --- Winter/Spring 2021  
-- EC 525: Microeconomics --- Fall 2020  
+### Teaching Assistant  
+
+- EC 511: Microeconomic Theory 
+  + First course in Masters Micro Theory Sequence 
+  + Fall 2020  
+- EC 607: Core Microeconometrics II  
+  + Second course in Ph.D Micro Theory Sequence
+  + Winter 2021
+- EC 607: Core Microeconometrics III
+  + Third course in Ph.D Micro Theory Sequence
+  + Spring 2021
+

@@ -24,7 +24,6 @@ navbar:
       href: http://www.instagram.com/lil_em_runs
 output:
   html_document:
-    css: style.css
-    theme: flatly
+    css: theme/emmetts_theme.css
     includes:
       in_header: header.html
