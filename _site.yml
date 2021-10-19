@@ -1,5 +1,5 @@
 name: "emmetts-website"
-output_dir: "docs"
+output_dir: "."
 navbar:
   title: "Emmett Saulnier"
   left:
@@ -12,16 +12,19 @@ navbar:
     - text: "CV"
       href: cv.html
   right:
-    - icon: fa-envelope-o fa-lg  
+    - icon: fa-envelope-o fa-lg   
       href: mailto:emmetts@uoregon.edu
-    - icon: fa-github-square fa-lg
-      href: https://github.com/edrubin
+    - icon: fa-github fa-lg
+      href: https://github.com/emmettsaulnier
     - icon: fa-twitter fa-lg
       href: http://www.twitter.com/emmettsaulnier
-    - icon: fa-strava
+    - icon: fa-running fa-lg
       href: https://www.strava.com/athletes/11415315
     - icon: fa-instagram fa-lg
       href: http://www.instagram.com/lil_em_runs
 output:
   html_document:
+    css: style.css
     theme: flatly
+    includes:
+      in_header: header.html
