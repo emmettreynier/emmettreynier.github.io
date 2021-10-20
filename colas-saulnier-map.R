@@ -26,8 +26,8 @@ state_plot =
   states_sf |>
   ggplot() +
   geom_sf(aes(fill = r_b3_d1, color = r_b3_d1))  +
-  scale_fill_viridis_c(name = "VME") +  
-  scale_color_viridis_c(name = "VME") +
+  scale_fill_viridis_c(name = "VME", option = "magma", direction = -1, begin = 0.1) +  
+  scale_color_viridis_c(name = "VME", option = "magma", direction = -1, begin = 0.1) +
   coord_sf(crs = 2163) +
   labs(
     caption = "Vertical migration externalities as a fraction of increase in state tax revenue for all states. 
