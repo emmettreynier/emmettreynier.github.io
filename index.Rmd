@@ -4,7 +4,7 @@ title: "Emmett Saulnier"
 
 <img align="left" src="images/uo_econ_pic.jpg" width = "250" HSPACE = "50">
 
-I am in my 3rd year of an Economics Ph.D. program at the University of Oregon in Eugene, where I am researching key environmental challenges facing society today and hope to focus my career on climate justice and finding ways to rebalance anthropogenic impacts on the environment. Some of my current projects involve measuring the effect of herbicides on human health, quantifying how climate change has differentially impacted disadvantaged communities, and how state taxes impact migration.  
+I am in my 3rd year of an [Economics Ph.D. program at the University of Oregon](https://economics.uoregon.edu/profile/emmetts/) in Eugene, where I am researching key environmental challenges facing society today and hope to focus my career on climate justice and finding ways to rebalance anthropogenic impacts on the environment. Some of my current projects involve measuring the effect of herbicides on human health, quantifying how climate change has differentially impacted disadvantaged communities, and how state taxes impact migration.  
 
 The summer before I moved to Eugene, I hiked 2650 miles from the Mexican border to the Canadian border on the Pacific Crest Trail. Since then, I have done a lot of trail running, exploring some the many miles of trails in the Pacific Northwest. See my [bio](about.html) for more! 
 
