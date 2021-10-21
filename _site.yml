@@ -18,7 +18,7 @@ navbar:
       href: https://github.com/emmettsaulnier
     - icon: fa-twitter fa-lg
       href: http://www.twitter.com/emmettsaulnier
-    - icon: fa-running fa-lg
+    - text: "Strava"
       href: https://www.strava.com/athletes/11415315
     - icon: fa-instagram fa-lg
       href: http://www.instagram.com/lil_em_runs
