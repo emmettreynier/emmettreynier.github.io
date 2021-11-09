@@ -2,6 +2,5 @@
 title: ""
 ---
 
-- Agricultural Glyphosate use and Human Health  
-- Preemptive timber harvest and the NWFP  
-- Climate change and migration  
+- Agricultural Glyphosate use and Human Health (with [Ed Rubin](http://edrub.in/))  
+- Migration or Mitigation? Disentangling Climate Change Adaptation (with [John Morehouse](https://www.johnmmorehouse.com/))  
