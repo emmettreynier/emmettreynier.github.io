@@ -12,13 +12,16 @@ Here are the classes that I have (or will be) teaching.
 
 ### Teaching Assistant  
 
-- EC 511: Microeconomic Theory 
-  + First course in Masters Micro Theory Sequence 
-  + Fall 2020  
-- EC 607: Core Microeconometrics II  
-  + Second course in Ph.D Micro Theory Sequence
-  + Winter 2021
+- [EC 421: Introduction to Econometrics](https://github.com/emmettsaulnier/EC421-Lab-W22)  
+  + Upper level undergraduate econometrics course  
+  + Winter 2022  
 - EC 607: Core Microeconometrics III
   + Third course in Ph.D Micro Theory Sequence
   + Spring 2021
+- EC 607: Core Microeconometrics II  
+  + Second course in Ph.D Micro Theory Sequence
+  + Winter 2021
+- EC 511: Microeconomic Theory 
+  + First course in Masters Micro Theory Sequence 
+  + Fall 2020  
 
