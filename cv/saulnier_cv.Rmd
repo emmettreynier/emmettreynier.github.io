@@ -17,6 +17,23 @@ B.S. Commerce, University of Virginia, 2017
 
 ---
 
+## Working papers 
+
+**Vertical Migration Externalities**  
+Mark Colas and Emmett Saulnier  
+
+---
+
+## Research in Progress  
+
+**Direct and downstream health effects of pesticides: Evidence from the U.S. rollout of soybean glyphosate**  
+Edward Rubin and Emmett Saulnier  
+
+**The Distributional Impacts of Climate Change across U.S. Local Labor Markets**  
+John Morehouse and Emmett Saulnier  
+
+---
+
 ## Teaching  
 
 **EC 421: Introduction to Econometrics**, U.O. Winter 2022  
@@ -26,22 +43,35 @@ Led discussion section for 1st year PhD students covering topics in game theory 
 **EC 607: Core Microeconomics II**, U.O. Winter 2021  
 Led discussion section for 1st year PhD students covering topics in producer theory and partial equilibrium  
 **EC 511: Microeconomic Theory**, U.O. Fall 2020  
-Graded and held office hours for master's level microeconomics theory class  
+Graded and held office hours for masters level microeconomics theory class  
 
 
 ---
 
 ## Professional Experience  
 
-**Research Assistant, Dr. Meredith Fowlie and Dr. Ed Rubin** Eugene, OR 2021  
+**Research Assistant, Dr. Meredith Fowlie and Dr. Edward Rubin** Eugene, OR 2021  
+Built a machine learning model to predict air pollution levels using a chemical transport model and weather data.  
 **Senior Business Analyst, CarMax** Richmond, Va 2019  
+Built a machine learning model that informed operational strategy and analyzed experiments to prove its value.   
 **Business Analyst, CarMax** Richmond, Va 2017-2019  
+Worked on a multidisciplinary team of marketing strategists, software engineers, and data analysts to improve carmax.com's visibility in search engine results.  
 **Feeds and Search Engine Marketing Intern, Merkle** Charlottesville, Va 2016   
+Optimized product feeds for online retail clients to be sent to various search and comparison shopping engines
+
+---
+
+## Presentations  
+
+2022 AERE Summer Conference  
+2022 Western Economic Association International (WEAI) Annual Conference  
+2021 Berkeley/Sloan Summer School in Environmental and Energy Economics  
 
 ---  
 
 ## Honors and Awards  
 
+Kleinsorge Summer Research Fellowship 2022  
 Dale Underwood Outstanding Graduate Student Scholarship, 2020  
 Best 1st Year Econometrics Performance, 2020  
 First Year Fellowship, 2019-2020
@@ -61,7 +91,10 @@ First Year Fellowship, 2019-2020
 **Github:** [emmettsaulnier](https://github.com/emmettsaulnier)
 
 
-
-
+```{R generate pdfs, include = F, eval = T}
+#remotes::install_github('rstudio/pagedown')
+library(pagedown)
+pagedown::chrome_print("saulnier_cv.html", output = "saulnier_cv.pdf")
+```
 
 
