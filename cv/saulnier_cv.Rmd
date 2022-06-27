@@ -26,7 +26,7 @@ Mark Colas and Emmett Saulnier
 
 ## Research in Progress  
 
-**Direct and downstream health effects of pesticides: Evidence from the U.S. rollout of soybean glyphosate**  
+**Direct and downstream health effects of pesticides: Evidence from the U.S. rollout of genetically modified crops and glyphosate**  
 Edward Rubin and Emmett Saulnier  
 
 **The Distributional Impacts of Climate Change across U.S. Local Labor Markets**  
@@ -36,6 +36,8 @@ John Morehouse and Emmett Saulnier
 
 ## Teaching  
 
+**EC 320: Introduction to Econometrics**, U.O. Spring 2022  
+Instructor of record for first course in undergradute econometrics sequence  
 **EC 421: Introduction to Econometrics**, U.O. Winter 2022  
 Led lab section for upper level undergraduate econometrics class  
 **EC 607: Core Microeconomics III**, U.O. Spring 2021   
@@ -63,7 +65,6 @@ Optimized product feeds for online retail clients to be sent to various search a
 
 ## Presentations  
 
-2022 AERE Summer Conference  
 2022 Western Economic Association International (WEAI) Annual Conference  
 2021 Berkeley/Sloan Summer School in Environmental and Energy Economics  
 
