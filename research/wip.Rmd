@@ -3,4 +3,4 @@ title: ""
 ---
 
 - The Distributional Impacts of Climate Change across U.S. Local Labor Markets (with [John Morehouse](https://www.johnmmorehouse.com/))  
-- Optimal Solar Subsidies with [Mark Colas](https://sites.google.com/site/markyaucolas/home)
+- Optimal Solar Subsidies (with [Mark Colas](https://sites.google.com/site/markyaucolas/home))
