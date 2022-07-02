@@ -62,7 +62,8 @@ class: center, middle, inverse, title-slide
 
 ### Pairing with GM technology  
 - In the 1990's Monsanto introduced genetically modified (GM) crops that are .hi-pink[resistant to glyphosate]   
-- With GM seeds, farmers can spray their crops with glyphosate and kill all of the weeds, but not harm their crops 
+- With GM seeds, farmers can spray their crops with glyphosate and kill all of the weeds, but not harm their crops  
+- Glyphosate tolerance is not the only type of genetic modification  
     
 
 ???
@@ -122,7 +123,7 @@ Glyphosate use has increased by .hi-pink[over 16 times] since 1992.
 .pull-left-60[
 - IARC (part of UN) said glyphosate is "likely carcinogenic" in 2015 
 - EPA says it is "safe at relevant doses" 
-- US court just ruled EPA must revisit this designation   
+- US court just ruled last week that the EPA must revisit this designation   
 - Camacho and Mejia (JHE 2017) and Dias et al (2019) show adverse effects on health from glyphosate in environment   
 ]
 
@@ -166,23 +167,9 @@ Eastern, rural counties above median attainable yield for CSC are more likely to
 ---
 # Aggregating upstream CSC   
 
-Proportion of upstream counties that are CSC
+Proportion of upstream watersheds that are CSC
 
 &lt;img src="fig/ydiff-gmo-up-cnty.jpeg" width="90%" style="display: block; margin: auto;" /&gt;
-
-
----
-# Trends in glyphosate and births 
-
-.pull-left[
-### Glyphosate 
-&lt;img src="fig/ts-glyph.jpeg" width="2800" style="display: block; margin: auto;" /&gt;
-]
-
-.pull-right[
-### Median birth weight  
-&lt;img src="fig/ts-meanbw.jpeg" width="2800" style="display: block; margin: auto;" /&gt;
-]
 
 
 ---
@@ -196,10 +183,10 @@ class: inverse, middle
 
 How birth weights change in CSC after 1995 relative to non-CSC counties:  
 
-`$$BW_{ijt} =\sum_{\tau \neq 1995} \left( \gamma^l_\tau GM^{local}_{j\tau} + \gamma^u_\tau GM^{upstream}_{j\tau} \right)+ X^\prime_{ijt} \delta+ \alpha_j + \lambda_t  + \varepsilon_{ijt}$$`
+`$$BW_{ijt} =\sum_{\tau \neq 1995} \left( \gamma^l_\tau CSC^{local}_{j\tau} + \gamma^u_\tau CSC^{upstream}_{j\tau} \right)+ X^\prime_{ijt} \delta+ \alpha_j + \lambda_t  + \varepsilon_{ijt}$$`
 
-  - `\(GM^{local}_{j\tau}\)` is an indicator for whether county `\(j\)` is CSC 
-  - `\(GM^{upstream}_{j\tau}\)` is the proportion watersheds upstream that are CSC   
+  - `\(CSC^{local}_{j\tau}\)` is an indicator for whether county `\(j\)` is CSC 
+  - `\(CSC^{upstream}_{j\tau}\)` is the proportion watersheds upstream that are CSC   
 
 --
 
@@ -217,12 +204,9 @@ If GM crops had not been introduced, then the difference in mean birth weight be
 
 - The effect of GM on health comes through glyphosate, not GM itself  
 - We're worried about bias if we estimated with OLS   
-- Use CSC interacted with year as an instrument glyphosate, `\(G_{jt}\)`  
+- Use local and upstream CSC interacted with year as instruments for local glyphosate, `\(G^{local}_{jt}\)`, and upstream glyphosate `\(G^{upstream}_{jt}\)`   
 
-`\begin{align*}
-G_{ijt} &amp;=   \sum_{\tau \neq 1995} \theta_\tau GM^{local}_{j\tau} + X^\prime_{ijt} \delta+ \alpha_j + \lambda_t + u_{ijt}\\
-BW_{ijt} &amp;= \beta \hat{G}_{ijt} + X^\prime_{ijt} \eta + \alpha_j + \lambda_t + \epsilon_{ijt}
-\end{align*}`
+`$$BW_{ijt} = \beta^l \hat{G}^{local}_{ijt} +\beta^u \hat{G}^{upstream}_{ijt} + X^\prime_{ijt} \eta + \alpha_j + \lambda_t + \epsilon_{ijt}$$`
 
 --
 
@@ -230,6 +214,9 @@ BW_{ijt} &amp;= \beta \hat{G}_{ijt} + X^\prime_{ijt} \eta + \alpha_j + \lambda_t
 
 Our instruments, CSC dummy variable interacted with year, only affect birth weight through glyphosate, conditional on year and county fixed effects.    
   
+
+???
+`$$G^{local}_{ijt} &amp;=   \sum_{\tau \neq 1995} \theta_\tau CSC^{local}_{j\tau} + X^\prime_{ijt} \delta+ \alpha_j + \lambda_t + u_{ijt}\\$$`
 
 ---
 class: inverse, middle 
@@ -240,7 +227,7 @@ class: inverse, middle
 
 Going to plot the `\(\color{#EC7662}{\theta_\tau}\)` coefficients from  
 
-`$$G_{ijt} = \sum_{\tau \neq 1995} \color{#EC7662}{\theta_\tau} GM^{local}_{j\tau} + X^\prime_{ijt} \delta+ \alpha_j + \lambda_t + u_{ijt}$$`
+`$$G^{local}_{ijt} = \sum_{\tau \neq 1995} \color{#EC7662}{\theta_\tau} CSC^{local}_{j\tau} + X^\prime_{ijt} \delta+ \alpha_j + \lambda_t + u_{ijt}$$`
 
 ---
 # First stage effect of GM on glyphosate
@@ -257,7 +244,7 @@ CSC counties see .hi-pink[larger increase in glyphosate] than non-CSC counties
 
 Going to plot the `\(\color{#EC7662}{\gamma^l_\tau}\)` and `\(\color{#4682B4}{\gamma^u_\tau}\)` coefficients from  
 
-`$$BW_{ijt} =\sum_{\tau \neq 1995} \left( \color{#EC7662}{\gamma^l_\tau} GM^{local}_{j\tau} + \color{#4682B4}{\gamma^u_\tau} GM^{upstream}_{j\tau} \right)+ X^\prime_{jt} \delta+ \alpha_j + \lambda_t  + \varepsilon_{ijt}$$`
+`$$BW_{ijt} =\sum_{\tau \neq 1995} \left( \color{#EC7662}{\gamma^l_\tau} CSC^{local}_{j\tau} + \color{#4682B4}{\gamma^u_\tau} CSC^{upstream}_{j\tau} \right)+ X^\prime_{jt} \delta+ \alpha_j + \lambda_t  + \varepsilon_{ijt}$$`
 
 
 ---
@@ -283,7 +270,7 @@ Going to plot the `\(\color{#EC7662}{\gamma^l_\tau}\)` and `\(\color{#4682B4}{\g
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Glyph per sq-km &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Local Glyph per sq-km &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; -1000* &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; -1221** &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; -1303+ &lt;/td&gt;
@@ -354,6 +341,20 @@ Emmett Saulnier
 class: inverse, middle
 
 # Appendix  
+
+
+---
+# Trends in glyphosate and birth weight     
+
+.pull-left[
+### Glyphosate 
+&lt;img src="fig/ts-glyph.jpeg" width="2800" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+### Birth weight  
+&lt;img src="fig/ts-meanbw.jpeg" width="2800" style="display: block; margin: auto;" /&gt;
+]
 
 ---
 # Balance table  
