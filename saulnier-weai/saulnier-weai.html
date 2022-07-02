@@ -200,11 +200,11 @@ If GM crops had not been introduced, then the difference in mean birth weight be
 
 
 ---
-# Two-Stage Least Squares   
+# Instrumental Variables     
 
 - The effect of GM on health comes through glyphosate, not GM itself  
 - We're worried about bias if we estimated with OLS   
-- Use local and upstream CSC interacted with year as instruments for local glyphosate, `\(G^{local}_{jt}\)`, and upstream glyphosate `\(G^{upstream}_{jt}\)`   
+- Use local and upstream CSC interacted with year, as instruments for local glyphosate, `\(G^{local}_{jt}\)`, and upstream glyphosate `\(G^{upstream}_{jt}\)`   
 
 `$$BW_{ijt} = \beta^l \hat{G}^{local}_{ijt} +\beta^u \hat{G}^{upstream}_{ijt} + X^\prime_{ijt} \eta + \alpha_j + \lambda_t + \epsilon_{ijt}$$`
 
@@ -212,7 +212,7 @@ If GM crops had not been introduced, then the difference in mean birth weight be
 
 ### Exclusion restriction required for causality  
 
-Our instruments, CSC dummy variable interacted with year, only affect birth weight through glyphosate, conditional on year and county fixed effects.    
+Our instruments, CSC dummy variable interacted with year, only affect birth weight through glyphosate, conditional on  our controls.    
   
 
 ???
@@ -256,7 +256,7 @@ Going to plot the `\(\color{#EC7662}{\gamma^l_\tau}\)` and `\(\color{#4682B4}{\g
 - CSC counties upstream have .hi-blue[no significant effect] on birth weight  
 
 ---
-# Second Stage estimates  
+# Instrumental variables estimates
 
 &lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto; width: auto !important; margin-left: auto; margin-right: auto;" class="table table table-striped"&gt;
 &lt;caption&gt;Effect of Glyphosate on Birth Weight&lt;/caption&gt;
@@ -354,7 +354,7 @@ class: inverse, middle
 .pull-right[
 ### Birth weight  
 &lt;img src="fig/ts-meanbw.jpeg" width="2800" style="display: block; margin: auto;" /&gt;
-]
+] 
 
 ---
 # Balance table  
