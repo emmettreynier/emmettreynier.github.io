@@ -13,7 +13,7 @@
 
 <title>Emmett Saulnier Research</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.15/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -145,11 +145,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -275,21 +279,6 @@ $(document).ready(function () {
      
   </a>
 </li>
-<li>
-  <a href="http://www.twitter.com/emmettsaulnier">
-    <span class="fa fa-twitter fa-lg"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="https://www.strava.com/athletes/11415315">Strava</a>
-</li>
-<li>
-  <a href="http://www.instagram.com/lil_em_runs">
-    <span class="fa fa-instagram fa-lg"></span>
-     
-  </a>
-</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -336,12 +325,11 @@ Map shows the Vertical Migration Externality for each state
 </div>
 </div>
 <div
-id="direct-and-downstream-health-effects-of-pesticides-evidence-from-the-u.s.-rollout-of-gm-crops-with-ed-rubin-draft-available-by-request"
+id="direct-and-downstream-health-effects-of-pesticides-evidence-from-the-u.s.-rollout-of-gm-crops-with-ed-rubin"
 class="section level4">
 <h4><strong>Direct and downstream health effects of pesticides: Evidence
 from the U.S. rollout of GM crops</strong> with <a
-href="http://edrub.in/">Ed Rubin</a> <em>(Draft available by
-request)</em></h4>
+href="http://edrub.in/">Ed Rubin</a></h4>
 <p>The advent of genetically modified (GM) crops quickly led to the
 widespread use of glyphosate within U.S. agriculture. Since glyphosate’s
 introduction in 1974, policy-makers have debated its effects on human

@@ -16,12 +16,6 @@ navbar:
       href: mailto:emmetts@uoregon.edu
     - icon: fa-github fa-lg
       href: https://github.com/emmettsaulnier
-    - icon: fa-twitter fa-lg
-      href: http://www.twitter.com/emmettsaulnier
-    - text: "Strava"
-      href: https://www.strava.com/athletes/11415315
-    - icon: fa-instagram fa-lg
-      href: http://www.instagram.com/lil_em_runs
 output:
   html_document:
     css: theme/emmetts_theme.css

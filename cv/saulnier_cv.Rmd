@@ -4,7 +4,7 @@ output: rmdformats::html_docco
 ---
 
 ## About  
-I am a 3rd year PhD student at the University of Oregon studying economics. My research interests include environmental, urban, health, and climate economics.
+I am a 4th year PhD student at the University of Oregon studying economics. My research interests include environmental, urban, health, and climate economics.
 
 ---
 
@@ -65,7 +65,7 @@ Optimized product feeds for online retail clients to be sent to various search a
 
 ## Presentations  
 
-2022 Western Economic Association International (WEAI) Annual Conference  
+2022 Western Economic Association International (WEAI) Annual Conference, Seminar of Water and Environmental Economics Online (SWELL), The Workshop in Environmental Economics and Data Science (TWEEDS)  
 2021 Berkeley/Sloan Summer School in Environmental and Energy Economics  
 
 ---  
