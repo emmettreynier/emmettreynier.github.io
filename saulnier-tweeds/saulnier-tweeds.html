@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Direct and downstream health effects   of herbicides</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Edward Rubin and Emmett Saulnier" />
+    <meta name="date" content="2022-10-06" />
+    <script src="libs/header-attrs-2.14/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="my-css.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Direct and downstream health effects <br> of herbicides
+]
+.subtitle[
+## Evidence from the US rollout of GM crops
+]
+.author[
+### Edward Rubin and Emmett Saulnier
+]
+.institute[
+### University of Oregon
+]
+.date[
+### 2022-10-06
+]
+
+---
+
+
+&lt;style type="text/css"&gt;
+.pull-left-60 {
+  float: left;
+  width: 58%;
+}
+.pull-right-40 {
+  float: right;
+  width: 40%;
+}
+&lt;/style&gt;
+
+
+
+# Glyphosate use increased 16x in the US  
+
+.pull-left[
+&lt;center&gt; **Glyphosate in the US** &lt;/center&gt;
+&lt;img src="fig/ts-glyph-tot.jpeg" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+--
+
+.pull-right[
+&lt;img src="fig/nyt-doubt.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+
+
+]
+
+
+???
+
+Farms in the United States sprayed `\(128 \; \textit{million kg}\)` of glyphosate in 2017. 
+
+That's `\(13 \; kg/km^2\)` across the entire US (or `\(0.1 \;\textit{lb/acre}\)`). 
+
+Most of this comes from agricultural use on GM crops: corn, soy, and cotton  
+
+The main innovation of GM crops is resistance to glyphosate -- the crops can be sprayed with the herbicide and not die, while any weeds are killed  
+
+---
+# Overview  
+
+**Research Question** Has the use of glyphosate due to the adoption of GM crops led to adverse health effects from to environmental exposure? Are there downstream spillovers?       
+
+--
+
+**Methodology** Difference-in-differences comparing counties that are suitable for crops with GM varieties (corn, soy, and cotton), to those that are not; before and after the 1996 introduction of GM varieties.  
+
+--
+
+**Data** We obtain annual county-level herbicide use from the USGS, birth certificate data from the NCHS, and crop suitability from the UN-GAEZ.  
+
+--
+
+**Results** Corn-soy-cotton (CSC) counties show   
+  1) Large increases in local glyphosate use  
+  2) Decreases in birth weight relative to non-CSC counties  
+
+
+---
+# CSC Suitability 
+
+We use the GAEZ's attainable yield for corn, soy, and cotton as suitability.
+
+&lt;img src="fig/ydiff-gmo-cnty.jpeg" width="95%" style="display: block; margin: auto;" /&gt;
+
+
+---
+# CSC vs non-CSC Counties   
+  
+Split at median attainable yield for eastern, rural counties
+
+&lt;img src="fig/county-trt-e100-y-gmo-50-0.jpeg" width="90%" style="display: block; margin: auto;" /&gt;
+
+
+???
+
+- Limit to rural counties east of the 100th meridian  
+  - 80% of glyphosate is sprayed east of the 100th meridian 
+  - Don't expect local effects from spraying on urban populations  
+- Split counties above and below median high-low potential soy yield difference 
+  (Results robust to moving this cutoff around and adding a buffer)
+
+
+
+
+---
+# First stage effect of GM on glyphosate
+
+
+&lt;img src="fig/fs-event-local-gmo.jpeg" width="75%" style="display: block; margin: auto;" /&gt;
+
+CSC counties see .hi-pink[larger increase in glyphosate use] than non-CSC counties  
+
+
+---
+# Effect of GM on birth weight  
+
+
+&lt;img src="fig/rf-event-local-gmo.jpeg" width="75%" style="display: block; margin: auto;" /&gt;
+
+- Birth weight in CSC counties .hi-pink[decreases] relative to non-CSC counties    
+- If we use 1st stage as an instrument for glyphosate, we estimate that moving from the 50th to 90th percentile of glyphosate use causes a **40 gram decrease in birth weight**
+
+---
+# Ongoing work: Mechanism of exposure  
+
+.pull-left[
+- Exposure could be coming from **direct contact**, **air**, or **water**  
+- We can isolate water from air and direct by measuring upstream spraying    
+- Using ML to predict concentration of glyphosate in surface water based on upstream spraying, land characteristics, and precipitation 
+]
+
+.pull-right[
+&lt;img src="fig/downstream_example_map.jpeg" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+class: inverse, middle
+
+# Thank you    
+
+Emmett Saulnier  
+[emmetts@uoregon.edu](mailto:emmetts@uoregon.edu)  
+[https://www.emmettsaulnier.com/](https://www.emmettsaulnier.com/) 
+
+
+---
+class: inverse, middle
+
+# Appendix  
+
+
+---
+# Glyphosate and GM Crops  
+  
+  
+### Glyphosate     
+- Glyphosate (Roundup) is a weed killer developed by Monsanto in 1974 
+- It is .hi-pink[relatively less toxic] than other herbicides (DDT, paraquat, atrazine)  
+- Very water soluble  
+
+--
+
+### Pairing with GM technology  
+- In the 1990's Monsanto introduced genetically modified (GM) crops that are .hi-pink[resistant to glyphosate]   
+- With GM seeds, farmers can spray their crops with glyphosate and kill all of the weeds, but not harm their crops  
+- Glyphosate tolerance is not the only type of genetic modification  
+    
+
+???
+A common refrain is that it has a lower toxicity than table salt
+
+The problem with chemical herbicides is that they also can kill the crops the farmers are trying to grow
+
+* Monsanto created a very easy and simple weed management system—all farmers have to do is liberally spary their fields with glyphosate, and they can take care of their weeds 
+
+---
+# Glyphosate use in the US, 1992  
+![](fig/glyph-km-1992.jpeg)
+---
+# Glyphosate use in the US, 1992-2017  
+
+![](fig/glyph-km.gif)
+
+---
+# Glyphosate use in the US, 2017  
+
+![](fig/glyph-km-2017.jpeg)
+
+???
+Glyphosate use has increased by .hi-pink[over 16 times] since 1992.
+
+---
+# Glyphosate found in surface water    
+
+&lt;img src="fig/month_gly_ampa_concentrations.jpeg" width="85%" style="display: block; margin: auto;" /&gt;
+
+.smallest[Samples come from 49 surface water sites across the eastern US between 2015 and 2017]
+
+
+---
+# Glyphosate and Health  
+
+&lt;!-- TODO: Update with more studies about health effects of glyphosate --&gt;
+
+.pull-left-60[
+- IARC (part of UN) said glyphosate is "likely carcinogenic" in 2015 
+- EPA says it is "safe at relevant doses" 
+- US court just ruled earlier this summer that the EPA must revisit this designation   
+- Camacho and Mejia (JHE 2017) and Dias et al (2019) show adverse effects on health from glyphosate in environment   
+]
+
+.pull-right-40[
+&lt;img src="fig/nyt-doubt.png" style="display: block; margin: auto;" /&gt;
+]
+
+--
+
+**We'll focus on infant health, specifically birth weights** 
+
+
+---
+# Estimating upstream exposure 
+
+  1.  Create watershed level soil erodibility and slope (USGS), precipitation (PRISM), glyphosate and CSC from HydroBASINS watershed shapes  
+  2. Define 'high' erodibility and precipitation, take the interaction  
+
+--
+
+&lt;img src="fig/soil-trt-1996.jpeg" width="75%" style="display: block; margin: auto;" /&gt;
+
+
+---
+# Estimating upstream exposure 
+
+  1.  Create watershed level soil erodibility and slope (USGS), precipitation (PRISM), glyphosate and CSC from HydroBASINS watershed shapes  
+  2. Define 'high' erodibility and precipitation, take the interaction  
+  3. Link upstream (+downstream) watersheds and calculate distances    
+  4. Take averages over 50km distance bins 
+  5. Aggregate back up to county level using population weights  
+
+
+---
+class: inverse, middle
+
+# Methodology  
+
+
+---
+# RF effect of GM on birth weight  
+
+&lt;!-- TODO: Update formula for upstream distance bins --&gt;
+
+How birth weights change in CSC after 1995 relative to non-CSC counties:  
+
+`$$BW_{ijt} =\sum_{\tau \neq 1995} \left( \gamma^l_\tau CSC^{local}_{j\tau} + \sum_d  \gamma^d_\tau CSC^{d}_{j\tau} \right)+ X^\prime_{ijt} \delta+ \alpha_j + \lambda_t  + \varepsilon_{ijt}$$`
+
+  - `\(CSC^{local}_{j\tau}\)` is an indicator for whether county `\(j\)` is CSC 
+  - `\(CSC^{d}_{j\tau}\)` is the proportion watersheds in upstream distance bin `\(d\)` that are high soil erodibility, high rainfall, and CSC   
+
+--
+
+**Important**: Effect is calculated .pink[*relative*] to whatever was going on in the  
+pre-period (supposedly more toxic chemicals, more tilling).
+
+
+
+---
+# RF effect of GM on birth weight  
+
+&lt;!-- TODO: Update formula for upstream distance bins --&gt;
+
+How birth weights change in CSC after 1995 relative to non-CSC counties:  
+
+`$$BW_{ijt} =\sum_{\tau \neq 1995} \left( \gamma^l_\tau CSC^{local}_{j\tau} + \sum_d  \gamma^d_\tau CSC^{d}_{j\tau} \right)+ X^\prime_{ijt} \delta+ \alpha_j + \lambda_t  + \varepsilon_{ijt}$$`
+
+### Parallel trends required for causality   
+If GM crops had not been introduced, then the difference in mean birth weight between CSC and non-CSC counties would have remained constant. 
+
+
+---
+# Instrumental Variables     
+
+A simple linear model for the effect of glyphosate on birth weight...
+
+`$$BW_{ijt} = \beta^l \hat{G}^{local}_{ijt} + \sum_d\beta^d \hat{G}^{d}_{ijt} + X^\prime_{ijt} \eta + \alpha_j + \lambda_t + \epsilon_{ijt}$$`
+
+- The effect of GM on health comes through glyphosate, not GM itself  
+- We're worried about bias if we estimated with OLS   
+- Use local and upstream CSC interacted with year, as instruments for local glyphosate, `\(G^{local}_{jt}\)`, and upstream glyphosate `\(G^{d}_{jt}\)`   
+
+---
+# Instrumental Variables     
+
+A simple linear model for the effect of glyphosate on birth weight...
+
+`$$BW_{ijt} = \beta^l \hat{G}^{local}_{ijt} + \sum_d\beta^d \hat{G}^{d}_{ijt} + X^\prime_{ijt} \eta + \alpha_j + \lambda_t + \epsilon_{ijt}$$`
+
+### Exclusion restriction required for causality  
+
+Our instruments, CSC dummy variable interacted with year, only affect birth weight through glyphosate, conditional on  our controls.    
+
+.footnote[We also assume monotonicity, which is not a major concern here.]
+
+
+---
+class: inverse, middle 
+# Results 
+
+---
+# First stage effect of GM on glyphosate
+
+Going to plot the `\(\color{#EC7662}{\theta_\tau}\)` coefficients from  
+
+`$$G^{local}_{ijt} = \sum_{\tau \neq 1995} \color{#EC7662}{\theta_\tau} CSC^{local}_{j\tau} + X^\prime_{ijt} \delta+ \alpha_j + \lambda_t + u_{ijt}$$`
+
+---
+# First stage effect of GM on glyphosate
+
+For water samples from 2015-2017, we can see how having more upstream (and downstream) CSC counties affects measured concentrations of glyphosate and AMPA
+
+`$$W_{it} = \sum_d \kappa_dCSC_{idt} + \alpha_i + \lambda_y + \pi_m + \varepsilon_{it}$$`
+- `\(W_{it}\)` is the concentration of glyphosate or AMPA at surface water site `\(i\)` on date `\(t\)` 
+- `\(CSC_{idt}\)` is the interaction of high soil erodibility, rainfall, and CSC for a watershed in distance bin `\(d\)` upstream/downstream from site `\(i\)`  
+- `\(\alpha_i, \, \lambda_y, \, \pi_m\)` are site, year, and month fixed effects  
+
+
+---
+# First stage effect of GM on glyphosate
+
+&lt;img src="fig/upstream_pred_p.jpeg" width="85%" style="display: block; margin: auto;" /&gt;
+
+Surface water with a higher proportion of high erodibility, high rainfall, CSC watersheds upstream have **higher measurements of** .hi-lime-green[glyphosate] **and** .hi-dark-purple[AMPA].
+
+
+---
+# Effect of GM on birth weight
+
+Going to plot the `\(\color{#EC7662}{\gamma^l_\tau}\)` and `\(\color{#4682B4}{\gamma^d_\tau}\)` coefficients from  
+
+`$$BW_{ijt} =\sum_{\tau \neq 1995} \left( \color{#EC7662}{\gamma^l_\tau} CSC^{local}_{j\tau} + \sum_d\color{#4682B4}{\gamma^d_\tau} CSC^{d}_{j\tau} \right)+ X^\prime_{jt} \delta+ \alpha_j + \lambda_t  + \varepsilon_{ijt}$$`
+
+---
+# Effect of GM on birth weight: Upstream 
+
+&lt;img src="fig/rf-event-distance-gmo.jpeg" width="90%" style="display: block; margin: auto;" /&gt;
+
+CSC counties upstream have .hi-blue[no significant effect] on birth weight  
+
+---
+# Instrumental variables estimates
+
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto; width: auto !important; margin-left: auto; margin-right: auto;" class="table table table-striped"&gt;
+&lt;caption&gt;Effect of Glyphosate on Birth Weight&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 1 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 2 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 3 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Local Glyph per sq-km &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −1000** &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −1221*** &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −1303* &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (388) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (394) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (601) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Mother Demographic Controls &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; X &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Other Herbicide Controls &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; X &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1st Stage F-Stat &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 37150 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 34871 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 23641 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; * p &amp;lt; 0.1, ** p &amp;lt; 0.05, *** p &amp;lt; 0.01&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+
+
+
+- Moving from the 50th to 90th percentile of glyphosate use causes a **37.4 to 48.7 gram decrease in birth weight**  (1.3 to 1.7 ounce)     
+- Similar to estimates for both the effect of air pollution and of proximity to fracking on birth weight .smallest[(Chay and Greenstone 2003, Currie et. al. 2017)]
+
+
+???
+
+- Janet Currie + Greenstone report 39g decrease in BW from being within 1km of fracking well (SA 2017)  
+- Chay and Greenstone QJE 2003 0.006 elasticity of BW wrt air pollution, implied elasticity here is 0.004-0.006
+
+
+---
+# Heterogeneity by month 
+
+&lt;img src="fig/rf-did-month-gmo.jpeg" width="80%" style="display: block; margin: auto;" /&gt;
+
+Effects are largest in April, May, and June--when the majority of glyphosate is sprayed. 
+
+
+
+
+
+---
+# Trends in glyphosate and birth weight     
+
+.pull-left[
+### Glyphosate 
+&lt;img src="fig/ts-glyph.jpeg" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+### Birth weight  
+&lt;img src="fig/ts-meanbw.jpeg" style="display: block; margin: auto;" /&gt;
+] 
+
+---
+# Balance table  
+
+&lt;img src="fig/balance-table.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+
+---
+class: inverse, middle 
+# Robustness
+
+
+---
+# Robustness: Different splits
+
+&lt;img src="fig/fs-event-local-gmo-splits.jpeg" width="55%" style="display: block; margin: auto;" /&gt;&lt;img src="fig/rf-event-local-gmo-splits.jpeg" width="55%" style="display: block; margin: auto;" /&gt;
+
+
+---
+# Robustness: Soy Attainable Yield
+&lt;img src="fig/fs-event-local-soy-splits.jpeg" width="55%" style="display: block; margin: auto;" /&gt;&lt;img src="fig/rf-event-local-soy-splits.jpeg" width="55%" style="display: block; margin: auto;" /&gt;
+
+---
+# Robustness: Entire country
+
+&lt;img src="fig/fs-event-local-gmo-all.jpeg" width="55%" style="display: block; margin: auto;" /&gt;&lt;img src="fig/rf-event-local-gmo-all.jpeg" width="55%" style="display: block; margin: auto;" /&gt;
+
+
+---
+class: inverse, middle 
+
+# Upstream Glyphosate Estimation  
+
+---
+# Glyphosate by watershed  
+
+&lt;img src="fig/glyphosate_awt_2006.jpeg" width="90%" style="display: block; margin: auto;" /&gt;
+
+---
+# Soil erodibility by watershed
+
+&lt;img src="fig/kls-watershed-map.jpeg" width="90%" style="display: block; margin: auto;" /&gt;
+
+
+---
+# Precipitation by watershed in 1996  
+
+&lt;img src="fig/ppt-1996-watershed-map.jpeg" width="90%" style="display: block; margin: auto;" /&gt;
+
+---
+# Upstream and downstream   
+
+&lt;img src="fig/downstream_example_map.jpeg" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+# Distance bins 
+
+&lt;img src="fig/distance_bin_example_map.jpeg" width="80%" style="display: block; margin: auto;" /&gt;
+
+
+---
+# Adding population weights
+
+## Example: [Washington County, IL](https://www.google.com/maps/place/Washington+County,+IL/@38.4617302,-89.7591997,9.07z/data=!4m5!3m4!1s0x88768a8d689900b3:0xb49bcc523239591b!8m2!3d38.3988869!4d-89.3226954)
+&lt;img src="fig/washington_county_example.jpeg" width="90%" style="display: block; margin: auto;" /&gt;
+
+
+---
+# Aggregating to county level  
+&lt;img src="fig/county_exposure_map_up.jpeg" width="90%" style="display: block; margin: auto;" /&gt;
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"slideNumberFormat": ""
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
