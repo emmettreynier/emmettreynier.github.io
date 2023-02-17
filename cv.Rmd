@@ -2,7 +2,5 @@
 title: "Emmett Saulnier"
 ---
 
-Click [here](cv/saulnier_cv.pdf) for a pdf version of my CV.
-
 ``` {r child = 'cv/saulnier_cv.rmd'}
 ```

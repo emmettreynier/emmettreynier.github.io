@@ -6,6 +6,10 @@ Here are the classes that I have (or will be) teaching.
 
 ### Instructor  
 
+- [EC 434/534: Environmental Economics](papers/ec434-534-syllabus.pdf)    
+  + University of Oregon  
+  + Winter 2023, Spring 2023
+
 - [EC 320: Introduction to Econometrics](https://github.com/emmettsaulnier/EC320s22)    
   + University of Oregon  
   + Spring 2022

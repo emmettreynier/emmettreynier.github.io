@@ -22,11 +22,15 @@ B.S. Commerce, University of Virginia, 2017
 **Vertical Migration Externalities**  
 Mark Colas and Emmett Saulnier  
 
+
 ---
 
 ## Research in Progress  
 
-**Direct and downstream health effects of pesticides: Evidence from the U.S. rollout of genetically modified crops and glyphosate**  
+**Optimal Solar Subsidies**  
+Mark Colas and Emmett Saulnier  
+
+**Perinatal health effects of herbicides: Glyphosate, Roundup, and the rollout of GM crops**  
 Edward Rubin and Emmett Saulnier  
 
 **The Distributional Impacts of Climate Change across U.S. Local Labor Markets**  
@@ -36,6 +40,9 @@ John Morehouse and Emmett Saulnier
 
 ## Teaching  
 
+
+**EC 434/534: Environmental Economics**, U.O. Winter 2023  
+Instructor of record for upper level undergraduate/masters environmental economics course     
 **EC 320: Introduction to Econometrics**, U.O. Spring 2022  
 Instructor of record for first course in undergradute econometrics sequence  
 **EC 421: Introduction to Econometrics**, U.O. Winter 2022  
@@ -44,8 +51,6 @@ Led lab section for upper level undergraduate econometrics class
 Led discussion section for 1st year PhD students covering topics in game theory and general equilibrium  
 **EC 607: Core Microeconomics II**, U.O. Winter 2021  
 Led discussion section for 1st year PhD students covering topics in producer theory and partial equilibrium  
-**EC 511: Microeconomic Theory**, U.O. Fall 2020  
-Graded and held office hours for masters level microeconomics theory class  
 
 
 ---
@@ -65,8 +70,10 @@ Optimized product feeds for online retail clients to be sent to various search a
 
 ## Presentations  
 
-2022 Western Economic Association International (WEAI) Annual Conference, Seminar of Water and Environmental Economics Online (SWELL), The Workshop in Environmental Economics and Data Science (TWEEDS)  
-2021 Berkeley/Sloan Summer School in Environmental and Energy Economics  
+**2023** *(including scheduled)* Freddie Mac, Western Economic Association International (WEAI) Annual Conference  
+**2022** Western Economic Association International (WEAI) Annual Conference, Seminar of Water and Environmental Economics Online (SWELL), The Workshop in Environmental Economics and Data Science (TWEEDS)  
+
+**2021** Berkeley/Sloan Summer School in Environmental and Energy Economics  
 
 ---  
 
