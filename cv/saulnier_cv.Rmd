@@ -99,7 +99,7 @@ First Year Fellowship, 2019-2020
 **Github:** [emmettsaulnier](https://github.com/emmettsaulnier)
 
 
-```{R generate pdfs, include = F, eval = T}
+```{R generate pdfs, include = F, eval = F}
 #remotes::install_github('rstudio/pagedown')
 library(pagedown)
 pagedown::chrome_print("saulnier_cv.html", output = "saulnier_cv.pdf")
