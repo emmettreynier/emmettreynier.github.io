@@ -10,7 +10,7 @@ I am a 4th year PhD student at the University of Oregon studying economics. My r
 
 ## Education
 
-Ph.D. Economics, University of Oregon, *expected 2024*  
+Ph.D. Economics, University of Oregon, *expected 2025*  
 M.S. Economics, University of Oregon, 2020  
 B.A. Economics, University of Virginia, 2017  
 B.S. Commerce, University of Virginia, 2017
@@ -19,16 +19,17 @@ B.S. Commerce, University of Virginia, 2017
 
 ## Working papers 
 
-**Vertical Migration Externalities**  
-Mark Colas and Emmett Saulnier  
+**Vertical Migration Externalities**   
+*Revise and Resubmit at Regional Science and Urban Economics*  
+Mark Colas and Emmett Saulnier    
 
+**Optimal Solar Subsidies**  
+Mark Colas and Emmett Saulnier  
 
 ---
 
 ## Research in Progress  
 
-**Optimal Solar Subsidies**  
-Mark Colas and Emmett Saulnier  
 
 **Perinatal health effects of herbicides: Glyphosate, Roundup, and the rollout of GM crops**  
 Edward Rubin and Emmett Saulnier  
@@ -41,7 +42,7 @@ John Morehouse and Emmett Saulnier
 ## Teaching  
 
 
-**EC 434/534: Environmental Economics**, U.O. Winter 2023  
+**EC 434/534: Environmental Economics**, U.O. Winter and Spring 2023  
 Instructor of record for upper level undergraduate/masters environmental economics course     
 **EC 320: Introduction to Econometrics**, U.O. Spring 2022  
 Instructor of record for first course in undergradute econometrics sequence  
