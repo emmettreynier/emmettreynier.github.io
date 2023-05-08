@@ -4,6 +4,12 @@ title: "Emmett Saulnier Research"
 
 Below are some of the projects that I am working on currently.  
 
+## Publications 
+
+``` {r child = 'research/publications.rmd'}
+```
+
+
 ## Working Papers   
 
 ``` {r child = 'research/working-papers.rmd'}
