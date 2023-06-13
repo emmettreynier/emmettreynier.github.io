@@ -4,14 +4,14 @@ output: rmdformats::html_docco
 ---
 
 ## About  
-I am a 4th year PhD student at the University of Oregon studying economics. My research interests include environmental, urban, health, and climate economics.
+I am a 4th year PhD Candidate at the University of Oregon studying economics. My research interests include environmental, urban, health, and climate economics.
 
 ---
 
 ## Education
 
 Ph.D. Economics, University of Oregon, *expected 2025*  
-M.S. Economics, University of Oregon, 2020  
+M.S. Economics, University of Oregon, 2021   
 B.A. Economics, University of Virginia, 2017  
 B.S. Commerce, University of Virginia, 2017
 
@@ -20,15 +20,15 @@ B.S. Commerce, University of Virginia, 2017
 ## Publications 
 
 **Vertical Migration Externalities**   
-*Accepted, Regional Science and Urban Economics*  
-Mark Colas and Emmett Saulnier    
+Mark Colas and Emmett Saulnier. *Regional Science and Urban Economics, 2023.*  
+    
 
 ---
 
 ## Working papers 
 
 **Optimal Solar Subsidies**  
-Mark Colas and Emmett Saulnier  
+Mark Colas and Emmett Saulnier. *CESifo working paper 10446.*  
 
 ---
 
@@ -75,9 +75,8 @@ Optimized product feeds for online retail clients to be sent to various search a
 
 ## Presentations  
 
-**2023** *(including scheduled)* Freddie Mac, Western Economic Association International (WEAI) Annual Conference  
+**2023** *(including scheduled)* Freddie Mac, Western Economic Association International (WEAI) Annual Conference, Camp Resources  
 **2022** Western Economic Association International (WEAI) Annual Conference, Seminar of Water and Environmental Economics Online (SWELL), The Workshop in Environmental Economics and Data Science (TWEEDS)  
-
 **2021** Berkeley/Sloan Summer School in Environmental and Energy Economics  
 
 ---  
@@ -107,7 +106,11 @@ First Year Fellowship, 2019-2020
 ```{R generate pdfs, include = F, eval = F}
 #remotes::install_github('rstudio/pagedown')
 library(pagedown)
-pagedown::chrome_print("saulnier_cv.html", output = "saulnier_cv.pdf")
+pagedown::chrome_print(
+  "saulnier_cv.html", 
+  output = "saulnier_cv.pdf",
+  scale = .65
+)
 ```
 
 
