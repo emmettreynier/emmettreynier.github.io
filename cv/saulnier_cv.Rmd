@@ -4,7 +4,7 @@ output: rmdformats::html_docco
 ---
 
 ## About  
-I am a 4th year PhD Candidate at the University of Oregon studying economics. My research interests include environmental, urban, health, and climate economics.
+I am an ORISE research fellow with the EPA's Office of Water and a PhD Candidate at the University of Oregon studying economics. My research interests include environmental, urban, health, and climate economics.
 
 ---
 
@@ -27,7 +27,7 @@ Mark Colas and Emmett Saulnier. *Regional Science and Urban Economics, 2023.*
 
 ## Working papers 
 
-**Optimal Solar Subsidies**  
+**Optimal Subsidies for Residential Solar**  
 Mark Colas and Emmett Saulnier. *CESifo working paper 10446.*  
 
 ---
@@ -62,6 +62,7 @@ Led discussion section for 1st year PhD students covering topics in producer the
 
 ## Professional Experience  
 
+**ORISE Research Fellow, EPA Office of Water** Washington, DC 2023-2024  
 **Research Assistant, Dr. Meredith Fowlie and Dr. Edward Rubin** Eugene, OR 2021  
 Built a machine learning model to predict air pollution levels using a chemical transport model and weather data.  
 **Senior Business Analyst, CarMax** Richmond, Va 2019  
@@ -75,7 +76,7 @@ Optimized product feeds for online retail clients to be sent to various search a
 
 ## Presentations  
 
-**2023** *(including scheduled)* Freddie Mac, Western Economic Association International (WEAI) Annual Conference, Camp Resources  
+**2023** *(including scheduled)* Freddie Mac, WEAI Annual Conference, Camp Resources, TWEEDS, AERE\@OSWEET  
 **2022** Western Economic Association International (WEAI) Annual Conference, Seminar of Water and Environmental Economics Online (SWELL), The Workshop in Environmental Economics and Data Science (TWEEDS)  
 **2021** Berkeley/Sloan Summer School in Environmental and Energy Economics  
 

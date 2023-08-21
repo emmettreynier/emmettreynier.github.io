@@ -13,7 +13,7 @@
 
 <title>Emmett Saulnier Teaching</title>
 
-<script src="site_libs/header-attrs-2.15/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -32,8 +32,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
   <link rel="icon" type="image/png" href="favicon.ico"/>
 
 <style type="text/css">
@@ -182,8 +182,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -191,16 +191,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -297,13 +290,15 @@ $(document).ready(function () {
 <div id="instructor" class="section level3">
 <h3>Instructor</h3>
 <ul>
-<li><a href="papers/ec434-534-syllabus.pdf">EC 434/534: Environmental Economics</a>
+<li><a href="papers/ec434-534-syllabus.pdf">EC 434/534: Environmental
+Economics</a>
 <ul>
 <li>University of Oregon<br />
 </li>
 <li>Winter 2023, Spring 2023</li>
 </ul></li>
-<li><a href="https://github.com/emmettsaulnier/EC320s22">EC 320: Introduction to Econometrics</a>
+<li><a href="https://github.com/emmettsaulnier/EC320s22">EC 320:
+Introduction to Econometrics</a>
 <ul>
 <li>University of Oregon<br />
 </li>
@@ -314,7 +309,8 @@ $(document).ready(function () {
 <div id="teaching-assistant" class="section level3">
 <h3>Teaching Assistant</h3>
 <ul>
-<li><a href="https://github.com/emmettsaulnier/EC421-Lab-W22">EC 421: Introduction to Econometrics</a>
+<li><a href="https://github.com/emmettsaulnier/EC421-Lab-W22">EC 421:
+Introduction to Econometrics</a>
 <ul>
 <li>Upper level undergraduate econometrics course<br />
 </li>

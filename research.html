@@ -13,7 +13,7 @@
 
 <title>Emmett Saulnier Research</title>
 
-<script src="site_libs/header-attrs-2.15/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -32,8 +32,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
   <link rel="icon" type="image/png" href="favicon.ico"/>
 
 <style type="text/css">
@@ -182,8 +182,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -191,16 +191,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -296,29 +289,106 @@ $(document).ready(function () {
 <p>Below are some of the projects that I am working on currently.</p>
 <div id="publications" class="section level2">
 <h2>Publications</h2>
-<div id="vertical-migration-externalities-with-mark-colas" class="section level4">
-<h4><strong><a href="https://authors.elsevier.com/c/1h97ObmIc8sCW">Vertical Migration Externalities</a></strong> with <a href="https://sites.google.com/site/markyaucolas/home">Mark Colas</a></h4>
+<div id="vertical-migration-externalities-with-mark-colas"
+class="section level4">
+<h4><strong><a
+href="https://authors.elsevier.com/c/1h97ObmIc8sCW">Vertical Migration
+Externalities</a></strong> with <a
+href="https://sites.google.com/site/markyaucolas/home">Mark
+Colas</a></h4>
 <p><strong>Regional Science and Urban Economics, 2023</strong></p>
-<p>State income taxes affect federal income tax revenue by shifting the spatial distribution of households between high- and low-productivity states, thereby changing household incomes and tax payments. We derive an expression for these fiscal externalities of state taxes in terms of estimable statistics. An empirical quantification using American Community Survey data reveals that the externalities range from large and negative in some states, to large and positive in others. In California, an increase in the state income tax rate and the resulting change in the distribution of households across states lead to a decrease in federal income tax revenue of 39 cents for every dollar of California tax revenue raised. The externality amounts to a 0.27% decrease in total federal income tax revenue for a 1 pp increase in California’s state tax rate. Our results raise the possibility that state taxes may be set too high in high-productivity states, and set too low in low-productivity states.</p>
+<p>State income taxes affect federal income tax revenue by shifting the
+spatial distribution of households between high- and low-productivity
+states, thereby changing household incomes and tax payments. We derive
+an expression for these fiscal externalities of state taxes in terms of
+estimable statistics. An empirical quantification using American
+Community Survey data reveals that the externalities range from large
+and negative in some states, to large and positive in others. In
+California, an increase in the state income tax rate and the resulting
+change in the distribution of households across states lead to a
+decrease in federal income tax revenue of 39 cents for every dollar of
+California tax revenue raised. The externality amounts to a 0.27%
+decrease in total federal income tax revenue for a 1 pp increase in
+California’s state tax rate. Our results raise the possibility that
+state taxes may be set too high in high-productivity states, and set too
+low in low-productivity states.</p>
 </div>
 </div>
 <div id="working-papers" class="section level2">
 <h2>Working Papers</h2>
-<div id="optimal-solar-subsidies-with-mark-colas" class="section level4">
-<h4><strong><a href="papers/colas-saulnier-optimal-solar.pdf">Optimal Solar Subsidies</a></strong> with <a href="https://sites.google.com/site/markyaucolas/home">Mark Colas</a></h4>
-<p>We study the spatial misallocation resulting from subsidies for residential solar panels in the US and quantify the associated environmental costs. We build a structural model of solar panel demand and electricity production across the country and estimate the model by combining 1) remotely sensed data on residential solar panels, 2) power-plant-level data on hourly production and emissions, and 3) a state-of-the-art air pollution model. The current subsidies lead to severe spatial misallocation. The optimal cost-neutral reform generates environmental benefits equal to those of a 6-11% increase in the productivity of residential solar panels nationally.</p>
-<p><em><a href="https://www.cesifo.org/node/75957">CESifo Working Paper 10446</a></em></p>
-<p><img src="research_files/figure-html/fig-1.png" width="50%" /><img src="research_files/figure-html/fig-2.png" width="50%" /></p>
+<style type="text/css">
+.caption {
+  margin: auto;
+  text-align: center;
+}
+</style>
+<div id="optimal-subsidies-for-residential-solar-with-mark-colas"
+class="section level4">
+<h4><strong><a href="papers/colas-saulnier-optimal-solar.pdf">Optimal
+Subsidies for Residential Solar</a></strong> with <a
+href="https://sites.google.com/site/markyaucolas/home">Mark
+Colas</a></h4>
+<p>We study the optimal design of spatially differentiated subsidies for
+residential solar panels. We build a structural model of solar panel
+demand and electricity production across the US and estimate the model
+by combining 1) remotely sensed data on residential solar panels, 2)
+power-plant-level data on hourly production and emissions, and 3) a
+state-of-the-art air pollution model. The current subsidies lead to
+severe spatial misallocation. The optimal cost-neutral reform generates
+a 6-11% increase in the environmental benefits of residential solar
+panels. National funding for subsidies under the current system exceeds
+the unconstrained optimum by over ten-fold.</p>
+<p><em><a href="https://www.cesifo.org/node/75957">CESifo Working Paper
+10446</a>. This paper was previously titled, “Optimal Solar
+Subsidies”</em></p>
+<div class="figure">
+<img src="images/state-subsidy-opt-cost-neutral-welfare-max.jpeg" alt="**Left:** Optimal solar subsidies. **Right:** Installations as a percent of optimal." width="50%" /><img src="images/install-ratio-cost-neutral-welfare-max.jpeg" alt="**Left:** Optimal solar subsidies. **Right:** Installations as a percent of optimal." width="50%" />
+<p class="caption">
+<strong>Left:</strong> Optimal solar subsidies. <strong>Right:</strong>
+Installations as a percent of optimal.
+</p>
+</div>
 </div>
 </div>
 <div id="works-in-progress" class="section level2">
 <h2>Works in Progress</h2>
-<div id="perinatal-health-effects-of-herbicides-glyphosate-roundup-and-the-rollout-of-gm-crops-with-ed-rubin" class="section level4">
-<h4><strong>Perinatal health effects of herbicides: Glyphosate, Roundup, and the rollout of GM crops</strong> with <a href="http://edrub.in/">Ed Rubin</a></h4>
-<p>The advent of genetically modified (GM) crops quickly led to the widespread use of glyphosate within U.S. agriculture. Since glyphosate’s introduction in 1974, policy-makers have debated its effects on human health. However, the scientific literature offers few generalizable studies on this significant technological innovation. Prior research has focused on lab studies on animals or epidemiologic studies of groups with high occupational exposure. Instead, we focus on the population at large. The general population could face exposure to glyphosate through water (runoff) or air (drift). To identify the causal effect of glyphosate exposure on health, we leverage (1) county-level variation in glyphosate use driven by (2) the timing of the release of GM technology for different crops and (3) differential suitability for these crops. Our results for runoff-driven exposure offer an additional dimension—comparing the effects of upstream pesticide applications to the placebo of downstream applications. Our early results suggest that glyphosate has a significant, negative effect on birth weight (in the same county and year), while upstream glyphosate does not affect birth weights. These estimates are likely lower bounds of the actual health consequences of glyphosate, as they are net of health benefits from reduced exposure to other pesticides (and decreased tillage). In addition to estimating the causal effects of glyphosate exposure on the general population, we contribute to a broader discussion on the efficiency and equity of environmental regulation and the challenges of evaluating these regulations.</p>
+<div
+id="perinatal-health-effects-of-herbicides-glyphosate-roundup-and-the-rollout-of-gm-crops-with-ed-rubin"
+class="section level4">
+<h4><strong>Perinatal health effects of herbicides: Glyphosate, Roundup,
+and the rollout of GM crops</strong> with <a href="http://edrub.in/">Ed
+Rubin</a></h4>
+<p>The advent of genetically modified (GM) crops quickly led to the
+widespread use of glyphosate within U.S. agriculture. Since glyphosate’s
+introduction in 1974, policy-makers have debated its effects on human
+health. However, the scientific literature offers few generalizable
+studies on this significant technological innovation. Prior research has
+focused on lab studies on animals or epidemiologic studies of groups
+with high occupational exposure. Instead, we focus on the population at
+large. The general population could face exposure to glyphosate through
+water (runoff) or air (drift). To identify the causal effect of
+glyphosate exposure on health, we leverage (1) county-level variation in
+glyphosate use driven by (2) the timing of the release of GM technology
+for different crops and (3) differential suitability for these crops.
+Our results for runoff-driven exposure offer an additional
+dimension—comparing the effects of upstream pesticide applications to
+the placebo of downstream applications. Our early results suggest that
+glyphosate has a significant, negative effect on birth weight (in the
+same county and year), while upstream glyphosate does not affect birth
+weights. These estimates are likely lower bounds of the actual health
+consequences of glyphosate, as they are net of health benefits from
+reduced exposure to other pesticides (and decreased tillage). In
+addition to estimating the causal effects of glyphosate exposure on the
+general population, we contribute to a broader discussion on the
+efficiency and equity of environmental regulation and the challenges of
+evaluating these regulations.</p>
 </div>
-<div id="the-distributional-impacts-of-climate-change-across-u.s.-local-labor-markets-with-john-morehouse" class="section level4">
-<h4><strong>The Distributional Impacts of Climate Change across U.S. Local Labor Markets</strong> with <a href="https://www.johnmmorehouse.com/">John Morehouse</a></h4>
+<div
+id="the-distributional-impacts-of-climate-change-across-u.s.-local-labor-markets-with-john-morehouse"
+class="section level4">
+<h4><strong>The Distributional Impacts of Climate Change across U.S.
+Local Labor Markets</strong> with <a
+href="https://www.johnmmorehouse.com/">John Morehouse</a></h4>
 </div>
 </div>
 
