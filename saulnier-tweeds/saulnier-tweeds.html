@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Optimal Subsidies for Residential Solar</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="TWEEDS .footnote[Presentation Link]" />
+    <script src="saulnier-tweeds_files/header-attrs/header-attrs.js"></script>
+    <link href="saulnier-tweeds_files/remark-css/default.css" rel="stylesheet" />
+    <link href="saulnier-tweeds_files/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="saulnier-tweeds_files/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <script src="saulnier-tweeds_files/kePrint/kePrint.js"></script>
+    <link href="saulnier-tweeds_files/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="my-css.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Optimal Subsidies for Residential Solar
+]
+.subtitle[
+## Emmett Saulnier (Joint with Mark Colas)
+]
+.author[
+### TWEEDS .footnote[<a href="https://www.emmettsaulnier.com/saulnier-tweeds/saulnier-tweeds.html">Presentation Link</a>]
+]
+.date[
+### September 15th, 2023
+]
+
+---
+
+
+
+
+
+
+# Residential Solar Panels
+
+Solar panel .hi-pink[subsidies] and .hi-pink[installation rates] vary significantly across states.
+
+--
+
+&lt;img src="figures/maps/descriptive/expected-subsidy.jpeg" width="75%" style="display: block; margin: auto;" /&gt;
+
+&lt;center&gt;Expected Subsidy&lt;/center&gt;
+
+
+`$$\newcommand{\NERC}{\mathcal{R}}
+\newcommand{\HC}{\ell}
+\newcommand{\hours}{\tilde{\ell}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\supply}{\mathcal{S}}
+\newcommand{\amen}{\Gamma}
+\newcommand{\DamOffSetExt}{\overrightarrow{\Delta D}^{\theta, \text{ext}}_j }
+\newcommand{\DamOffSetInt}{\overrightarrow{\Delta D}^{\theta, \text{int}}_j}
+\newcommand{\DamOffSetInd}{{\Delta D}_i}
+\newcommand{\monetary}{\mu}
+\newcommand{\nbar}{\bar{N}}
+\newcommand{\subtype}{\theta}
+\newcommand{\dmdstheta}{\mathbbm{1}^{\subtype_j}_{\rightarrow m_i }}
+\newcommand{\dmdskWh}{\mathbbm{1}_{o_i \rightarrow m_i |s^{\text{KWh}}_j}}
+\newcommand{\dmdscost}{\mathbbm{1}_{o_i \rightarrow m_i |s^{\text{Cost}}_j}}
+\newcommand{\dmdsunit}{\mathbbm{1}_{o_i \rightarrow m_i |s^{\text{Unit}}_j}}
+\newcommand{\dmndstheta}{\left(\dmdstheta N^{\star}_i + m_i^{\star} \frac{\partial N_i}{\partial s^{\subtype}_j}\right)}
+\newcommand{\dmndskWh}{\left(\dmdskWh N^{\star}_i + m_i^{\star} \frac{\partial N_i}{\partial s^{\text{KWh}}_j}\right)}
+\newcommand{\dmndscost}{\left(\dmdscost N^{\star}_i + m_i^{\star} \frac{\partial N_i}{\partial s^{\text{Cost}}_j}\right)}
+\newcommand{\dmndsunit}{\left(\dmdsunit N^{\star}_i + m_i^{\star} \frac{\partial N_i}{\partial s^{\text{Unit}}_j}\right)}
+\newcommand{\DRPrime}{D_R^{\prime} }
+\newcommand{\DjPrime}{D_j^{\prime} }
+\newcommand{\DjRPrime}{D_{jR}^{\prime} }
+\newcommand{\DjRiPrime}{D_{jR(i)}^{\prime} }
+\newcommand{\DA}{\mathit{A D^{\prime}}}
+\newcommand{\RR}{\text{Solar} }
+\newcommand{\CR}{\text{NonD} }
+\newcommand{\CN}{\text{Disp} }
+\newcommand{\FB}{\text{FB} }
+\newcommand{\SB}{\text{SB} }
+\newcommand{\shift}{\lambda }
+\newcommand{\ExcessLoad}{\text{ELoad} }
+\newcommand{\poll}{g}
+\newcommand{\Poll}{G}
+\newcommand{\margD}{\delta}
+\newcommand{\damagesfunc}{d}
+\newcommand{\Interconnection}{\mathbf{R}}$$`
+
+---
+count: false
+# Residential Solar Panels
+
+Solar panel .hi-pink[subsidies] and .hi-pink[installation rates] vary significantly across states.
+
+&lt;img src="figures/maps/descriptive/solar-systems-per-capita.jpeg" width="75%" style="display: block; margin: auto;" /&gt;
+
+&lt;center&gt;Installations per 1000 HHs&lt;/center&gt;
+
+---
+count: false
+# Residential Solar Panels
+
+Solar panel .hi-pink[subsidies] and .hi-pink[installation rates] vary significantly across states.  
+
+
+The .hi-green[environmental benefits] also vary geographically.  
+
+--
+
+  - Variation in sunlight ☀  
+  - Variation in the marginal damage of electricity production 🏭  
+
+&lt;img src="figures/maps/descriptive/daily-solar-radiation.jpeg" width="50%" style="display: block; margin: auto;" /&gt;
+
+&lt;center&gt; .smaller[Daily Solar Radiation] &lt;/center&gt;
+
+---
+count: false
+# Residential Solar Panels
+
+Solar panel .hi-pink[subsidies] and .hi-pink[installation rates] vary significantly across states.  
+
+
+
+The .hi-green[environmental benefits] also vary geographically.  
+
+
+  - Variation in sunlight ☀  
+  - Variation in the marginal damage of electricity production 🏭  
+
+&lt;br&gt; 
+
+
+1. How should residential solar subsidies **optimally vary across states**?  
+2. To what extent has the current system of subsidies led to a **spatial misallocation** of solar panels?
+
+
+
+---
+# Our approach 
+
+### A structural model
+- Heterogeneous .hi-pink[households] choose whether to install solar panels
+--
+
+- Households can also purchase electricity from the grid, which is produced by a set of heterogeneous .hi-pink[power plants]
+--
+
+- Installation of solar panels generates .hi-green[positive externalities] by offseting production from fossil-fuel power plants  
+
+
+---
+# Results preview   
+
+
+&lt;br&gt;
+
+.bigger[**1.** Current subsidies lead to severe .hi-pink[spatial misallocation] of solar panel installations in the U.S.]  
+
+--
+&lt;br&gt;
+
+.bigger[**2.** Optimal cost-neutral reform increases environmental benefits by .hi-pink[6-11%]]  
+
+--
+&lt;br&gt;
+
+.bigger[**3.** National funding for subsidies under the
+current system exceeds the unconstrained optimum by over .hi-pink[ten-fold.]]  
+
+
+---
+class: inverse, middle
+
+# A brief model overview  
+
+
+---
+# Households  
+
+
+### Households live in a state    
+
+- Face a set of electricity prices, installation prices, and menu of subsidies. Prices are all fixed over time and exogenous.  
+- Heterogeneity: 
+  - Solar technology (sunlight)  
+  - Space for solar panels (rooftop space)  
+  - Preferences for solar installation   
+
+--
+- Make once-and-for-all decision of how many panels to install, taking into account **lifetime costs and benefits**     
+
+
+---
+# Electricity production  
+ 
+ 
+### Nondispatchable power plants (e.g. wind, solar)  
+- Output driven by exogenous factors   
+- Don't respond to demand for electricity  
+- Don't lead to environmental damages  
+
+--
+
+### Dispatchable power plants  (e.g. coal, natural gas)  
+- Fill residual demand after nondispatchable plants and residential solar   
+- Heterogeneity:  
+  - Environmental damages  
+  - Production capacity  
+  - Location   
+- Specify plant-specific policy functions mapping excess electricity demand across grid ➡ plant-level electricity production   
+
+---
+# Government 
+
+
+### Menu of subsidies at each state  
+1. Production-based subsidies (e.g. renewable energy certificates)  
+1. Cost-based subsidies (e.g. federal investment tax credit)  
+1. Unit-based subsidies  
+
+--
+
+&lt;br&gt;
+
+⬆ subsidy ⏩  ⬆   solar installations ⏩  ⬇ dispatchable production ⏩  
+⬇ damages
+
+&lt;br&gt;
+
+--
+
+Choose the system of state subsidies to **maximize objective** subject to the **government's budget constraint**  
+
+---
+class: inverse, middle
+
+# Data and Estimation 
+
+---
+name: data-est-intro
+# Data  
+
+- **Residential solar installations** from Deepsolar, a remotely-sensed dataset on universe of US residential solar installations by census tract
+
+--
+- **Rooftop sizes** from Google Project Sunroof, a remotely-sensed dataset on solar irradiance and rooftop space suitable for solar by census tract
+
+--
+- **Current subsidies** from Database of State Incentives for Renewables &amp; Efficiency (DSIRE) assembled by Sexton et. al. (2021)  
+
+--
+- **Power plant production and emissions:** from Open Grid Emissions (OGE), .purple[presented at 2022 TWEEDS by Greg Miller!]
+  - Hourly electricity generation and emissions for over 10,000 power plants across the U.S. in 2019   
+  - Pollutants are `\(NO_x\)`, `\(SO_2\)`, `\(PM2.5\)`, and `\(CO_2e\)`  
+  - Gives us over 40 million plant-hour observations  
+
+--
+- **Environmental Damages:** from AP3, a state-of-the-art integrated assessment model, and the Social Cost of Carbon   
+
+
+???
+
+.smallest[ [GPS overview](#gps-example) ]
+.smallest[ [DS overview](#deepsolar-overview) ] 
+
+
+---
+name:estimation-intro
+# Estimation overview
+
+- **Households**
+  - GMM using Deepsolar and Google Project Sunroof data  
+  - Target installation rate and size across all census tracts    
+  - Identification from cross-sectional variation in returns to installation across tracts (sunlight, subsidies and prices)   
+
+--
+- **Power Plants**    
+  - Production estimated with MLE (Tobit) using OGE data  
+  - Emissions estimated as (power-plant specific) spline in production   
+  - Use AP3 to convert emissions to damages  
+
+--
+
+### Validation  
+- Replicate three quasi experimental estimates of the impact of subsidies on solar panel installations 
+- Replicate power plant production over the course of the year  
+
+.footnote[.smallest[[Model fit plots](#estimates-fit)]]
+
+
+???
+
+
+### Our estimated model is consistent with    
+- Distribution of installation rates  
+- Causally identified, quasi-experimental estimates on the effect of subsidies on solar panel installations  
+- Power plant production over the course of the year    
+
+### Use the model to find optimal subsidies    
+- Choose set of state level subsidies to maximize the gov't objective  
+- **Quantify:** How severe is misallocation caused by current system of subsidies? What would be the environmental benefits of switching to the optimal system of subsidies?  
+
+
+
+---
+class: inverse, middle
+
+# Results 
+
+---
+# Cost-neutral optimal subsidies  
+
+
+&lt;img src="figures/maps/results/state-subsidy-opt-cost-neutral-welfare-max.jpeg" width="80%" style="display: block; margin: auto;" /&gt;
+
+&lt;center&gt;Welfare Maximizing Subsidies&lt;/center&gt;
+
+
+
+
+---
+# Spatial misallocation of installations     
+
+
+&lt;img src="figures/maps/results/install-ratio-cost-neutral-welfare-max.jpeg" width="80%" style="display: block; margin: auto;" /&gt;
+
+&lt;center&gt;Baseline installations as a percent of optimal&lt;/center&gt;
+
+
+---
+# Unconstrained reforms
+
+Optimal subsidy levels drop significantly without cost-neutral constraint. 
+
+--
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="empty-cells: hide;border-bottom:hidden;" colspan="1"&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;SCC = $51&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;SCC = $185&lt;/div&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th style="empty-cells: hide;border-bottom:hidden;" colspan="1"&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt; Baseline &lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt; Optimal &lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt; Baseline &lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt; Optimal &lt;/div&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #EC7662 !important;color: black !important;"&gt; Damages Offset ($Millions) &lt;/td&gt;
+   &lt;td style="text-align:center;color: #EC7662 !important;"&gt; 141.7 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #EC7662 !important;"&gt; 42.3 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #EC7662 !important;color: black !important;"&gt; 325.1 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #EC7662 !important;color: black !important;"&gt; 207.3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #6A5ACD !important;color: black !important;"&gt; Fiscal Cost ($Millions) &lt;/td&gt;
+   &lt;td style="text-align:center;color: #6A5ACD !important;"&gt; 495.1 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #6A5ACD !important;"&gt; 42.3 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #6A5ACD !important;color: black !important;"&gt; 495.1 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #6A5ACD !important;color: black !important;"&gt; 207.1 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+- We can achieve .pink[30%] of the benefits at .purple[~10%] of the cost  
+
+---
+# Unconstrained reforms
+
+Optimal subsidy levels drop significantly without cost-neutral constraint. 
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="empty-cells: hide;border-bottom:hidden;" colspan="1"&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;SCC = $51&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;SCC = $185&lt;/div&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th style="empty-cells: hide;border-bottom:hidden;" colspan="1"&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt; Baseline &lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt; Optimal &lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt; Baseline &lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt; Optimal &lt;/div&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #EC7662 !important;color: black !important;"&gt; Damages Offset ($Millions) &lt;/td&gt;
+   &lt;td style="text-align:center;color: #EC7662 !important;color: black !important;"&gt; 141.7 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #EC7662 !important;color: black !important;"&gt; 42.3 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #EC7662 !important;"&gt; 325.1 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #EC7662 !important;"&gt; 207.3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #6A5ACD !important;color: black !important;"&gt; Fiscal Cost ($Millions) &lt;/td&gt;
+   &lt;td style="text-align:center;color: #6A5ACD !important;color: black !important;"&gt; 495.1 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #6A5ACD !important;color: black !important;"&gt; 42.3 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #6A5ACD !important;"&gt; 495.1 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #6A5ACD !important;"&gt; 207.1 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+- We can achieve 30% of the benefits at ~10% of the cost  
+- However...  
+  - Sensitive to choice of SCC   
+  - Get .pink[64%] of benefits at .purple[42%] of cost under higher SCC   
+  - Does not include all potential benefits of residential solar 
+
+
+---
+name:results-summary
+# Much more in the paper! 
+
+### We also show results for 
+- Damage minimizing subsidies  
+- Benefits of marginal subsidy increases around current levels  
+- Compare tract and state-level subsidies  
+
+--
+
+### Robustness checks    
+
+Our results hold across various alterations/extensions...    
+
+- Alternative household utility functions   
+- Accounting for line losses  
+- Improved storage technology (i.e. batteries)  
+- Cleaner grid        
+
+
+---
+# Conclusion  
+
+
+We use novel datasets on solar panel installations and power plant emissions to quantify the spatial misallocation in solar installations caused by current subsidies.  
+
+--
+
+- Current subsidies **over-subsidize** clean states (Washington) and **under-subsidize** dirty states (Pennsylvania)  
+- Optimal cost-neutral reform increases environmental benefits by **6-11%**  
+- Subsidy levels are currently an order of magnitude higher than is justified by damages from emissions alone  
+
+
+---
+class: inverse, middle 
+# Thank you!  
+
+.hi-pink[Emmett Saulnier]  
+.pink[
+  PhD Candidate, University of Oregon  
+  ORISE Research Fellow, US EPA Office of Water  
+  emmetts@uoregon.edu  
+  https://www.emmettsaulnier.com  
+]
+
+---
+count: false
+class: inverse, middle
+# Appendix 
+
+
+---
+class: inverse, middle
+# Model
+
+---
+# Household setup 
+
+### Household `\(i\)` in state `\(j\)`      
+-  Choose whether to install solar panels `\(m_i \in \left\{0,1 \right\}\)`   
+- Number of panels conditional on installation `\(N_i \in \left(0, \nbar_i\right]\)`  
+- Each panel  produces stream of electricity `\(\left\{ A_{it} \right\}_{t=0}^T\)` throughout the life of the panel (25 years).  
+
+--
+- Choose path of electricity consumption each period `\(\left\{ e_{it} \right\}_{t=0}^T\)`  
+- Assume electricity bought and sold at `\(p_j\)`
+- `\({e_i}=\sum_{t=0}^T \frac{e_{it}}{\left(1+r\right)^t}\)` discounted sum of electricity consumed
+-  `\({A_i}=\sum_{t=0}^T \frac{A_{it}}{\left(1+r\right)^t}\)` discounted sum of electricity produced 
+
+
+---
+# Net present value budget constraint  
+
+Net present value budget constraint:
+
+`$$c_i+ \underbrace{ p_j \left( e_i - m_i N_i  {A_i}  \right) }_{\text{Net cost of electricity}} + \underbrace{  m_i\left(1-{s_j^{\text{Cost}}}\right) {p^{\text{Ins}}_{j}\left(N_i \right)}}_{\text{Net cost of installation}}= \\
+ y_i + \underbrace{ m_i N_i A_i {s^{\text{KWh}}_j}}_{\text{KWh Subsidy}}+  \underbrace{ m_i N_i  {s^{\text{Unit}}_j}}_{\text{Unit Subsidy}}.$$`
+
+- `\({c_i}\)`: Consumption of numeraire good  
+- `\({p^{\text{Ins}}_{j}\left(N_i \right)}\)`: Cost of installing `\(N_i\)` panels   
+- `\({y_i}\)`: Income (exogenous)  
+- `\({s_j^{\text{Cost}}}\)`: Per dollar installation subsidy  
+- `\({s^{\text{KWh}}_j}\)`: Per KWh subsidy  
+- `\({s^{\text{Unit}}_j}\)`: Per panel subsidy  
+
+
+---
+count: false
+# Net present value budget constraint  
+
+Net present value budget constraint:
+
+`$$c_i+ \color{#EC7662}{\underbrace{ p_j \left( e_i - m_i N_i  {A_i}  \right) }_{\text{Net cost of electricity}}} + \underbrace{  m_i\left(1-{s_j^{\text{Cost}}}\right) {p^{\text{Ins}}_{j}\left(N_i \right)}}_{\text{Net cost of installation}}= \\
+ y_i + \underbrace{ m_i N_i A_i {s^{\text{KWh}}_j}}_{\text{KWh Subsidy}}+  \underbrace{ m_i N_i  {s^{\text{Unit}}_j}}_{\text{Unit Subsidy}}.$$`
+
+- `\({c_i}\)`: Consumption of numeraire good  
+- `\({p^{\text{Ins}}_{j}\left(N_i \right)}\)`: Cost of installing `\(N_i\)` panels   
+- `\({y_i}\)`: Income (exogenous)  
+- `\({s_j^{\text{Cost}}}\)`: Per dollar installation subsidy  
+- `\({s^{\text{KWh}}_j}\)`: Per KWh subsidy  
+- `\({s^{\text{Unit}}_j}\)`: Per panel subsidy  
+
+---
+count: false
+# Net present value budget constraint  
+
+Net present value budget constraint:
+
+`$$c_i+ \underbrace{ p_j \left( e_i - m_i N_i  {A_i}  \right) }_{\text{Net cost of electricity}} + \color{#EC7662}{\underbrace{  m_i\left(1-{s_j^{\text{Cost}}}\right) {p^{\text{Ins}}_{j}\left(N_i \right)}}_{\text{Net cost of installation}}}= \\
+ y_i + \underbrace{ m_i N_i A_i {s^{\text{KWh}}_j}}_{\text{KWh Subsidy}}+  \underbrace{ m_i N_i  {s^{\text{Unit}}_j}}_{\text{Unit Subsidy}}.$$`
+
+- `\({c_i}\)`: Consumption of numeraire good  
+- `\({p^{\text{Ins}}_{j}\left(N_i \right)}\)`: Cost of installing `\(N_i\)` panels   
+- `\({y_i}\)`: Income (exogenous)  
+- `\({s_j^{\text{Cost}}}\)`: Per dollar installation subsidy  
+- `\({s^{\text{KWh}}_j}\)`: Per KWh subsidy  
+- `\({s^{\text{Unit}}_j}\)`: Per panel subsidy  
+
+---
+count: false
+# Net present value budget constraint  
+
+Net present value budget constraint:
+
+`$$c_i+ \underbrace{ p_j \left( e_i - m_i N_i  {A_i}  \right) }_{\text{Net cost of electricity}} + \underbrace{  m_i\left(1-{s_j^{\text{Cost}}}\right) {p^{\text{Ins}}_{j}\left(N_i \right)}}_{\text{Net cost of installation}}= \\
+ y_i + \color{#EC7662}{\underbrace{ m_i N_i A_i {s^{\text{KWh}}_j}}_{\text{KWh Subsidy}}+  \underbrace{ m_i N_i  {s^{\text{Unit}}_j}}_{\text{Unit Subsidy}}}.$$`
+
+- `\({c_i}\)`: Consumption of numeraire good  
+- `\({p^{\text{Ins}}_{j}\left(N_i \right)}\)`: Cost of installing `\(N_i\)` panels   
+- `\({y_i}\)`: Income (exogenous)  
+- `\({s_j^{\text{Cost}}}\)`: Per dollar installation subsidy  
+- `\({s^{\text{KWh}}_j}\)`: Per KWh subsidy  
+- `\({s^{\text{Unit}}_j}\)`: Per panel subsidy  
+
+---
+# Utility Function   
+
+
+Quasilinear utility function
+
+`$$c_i+ \nu_i\left( \left\{ e_{it} \right\}_{t=0}^T \right) + m_i \gamma_i \left(N_i\right)$$`
+     
+
+- `\(\nu_i\left(\cdot \right)\)`: Lifetime utility from electricity use  
+- `\(\gamma_i \left(N_i\right)\)`: Nonpecuniary benefit of adding `\(N_i\)` solar panels  
+
+---
+count: false
+# Utility Function   
+
+
+Quasilinear utility function
+
+`$$c_i+ \color{#EC7662}{\nu_i\left( \left\{ e_{it} \right\}_{t=0}^T \right)} + m_i \gamma_i \left(N_i\right)$$`
+     
+
+- `\(\color{#EC7662}{\nu_i\left(\cdot \right)}\)`: Lifetime utility from electricity use  
+- `\(\gamma_i \left(N_i\right)\)`: Nonpecuniary benefit of adding `\(N_i\)` solar  panels  
+
+
+---
+count: false
+# Utility Function   
+
+
+Quasilinear utility function
+
+`$$c_i+ \nu_i\left( \left\{ e_{it} \right\}_{t=0}^T \right) + \color{#EC7662}{m_i \gamma_i \left(N_i\right)}$$`
+     
+
+- `\(\nu_i\left(\cdot \right)\)`: Lifetime utility from electricity use  
+- `\(\color{#EC7662}{\gamma_i \left(N_i\right)}\)`: Nonpecuniary benefit of adding `\(N_i\)` solar  panels  
+
+
+---
+count: false 
+# Utility Function   
+
+
+Quasilinear utility function
+
+`$$c_i+ \nu_i\left( \left\{ e_{it} \right\}_{t=0}^T \right) + m_i \gamma_i \left(N_i\right)$$`
+     
+
+- `\(\nu_i\left(\cdot \right)\)`: Lifetime utility from electricity use  
+- `\(\gamma_i \left(N_i\right)\)`: Nonpecuniary benefit of adding `\(N_i\)` solar panels  
+- Note that the choice of electricity consumption `\(\left\{ e_{it} \right\}_{t=0}^T\)` is seperable from installation decision: choice of consumption does not affect installation decisions  
+    
+---
+# Utility Function  
+
+#### Households are solving a two step problem  
+1. Choose stream of electricity usage  
+1. Make installation decision and number of panels to install  
+
+--
+
+`$$V_i=\max_{N_i, m_i \in \left\{0,1 \right\}} m_i 
+\left[ \underbrace{\monetary_{ij}\left(N^{}_i\right)}_{\text{Monetary}} + \underbrace{\gamma_i\left(N^{}_i\right)}_{\text{Nonpecuniary}} \right]$$`
+
+---
+count: false
+# Utility Function  
+
+#### Households are solving a two step problem  
+1. Choose stream of electricity usage  
+1. Make installation decision and number of panels to install  
+
+
+`$$V_i=\max_{N_i, m_i \in \left\{0,1 \right\}} m_i 
+\left[ \color{#EC7662}{\underbrace{\monetary_{ij}\left(N^{}_i\right)}_{\text{Monetary}}} + \underbrace{\gamma_i\left(N^{}_i\right)}_{\text{Nonpecuniary}} \right]$$`
+
+
+where the monetary value is given by 
+
+`\(\color{#EC7662}{\monetary_{ij}\left(N^{}_i\right)= \underbrace{N^{}_i  A_i  \left(p_j+ s_j^{\text{KWh}} \right)}_{\text{electricity value}} - \underbrace{\left(1-s_j^{\text{Cost}}\right)p^{\text{Ins}}_{j}\left(N^{}_i \right)}_{\text{installation cost}}+\underbrace{ N^{}_i s^{\text{Unit}}_j}_{\text{unit subsidy}}}\)` 
+
+
+
+
+
+---
+# Electricity overview 
+
+### Three sources of electricity  
+1. Residential solar   
+1. Commercial nondispatchable (e.g. wind and solar)   
+1. Commercial dispatchable (e.g. coal and natural gas)   
+
+--
+
+.hi-pink[Excess load:] Electricity demand that is not satisfied by residential solar or commercial nondispatchable sources.
+
+---
+name:dispatchable-production
+# Dispatchable Production   
+
+### Production by dispatchable plant `\(k\)` in time `\(t\)`:   
+`$$y^{\CN}_{kt} = \begin{cases}
+  0  &amp; \text{if } f^{}_{k}\left(\ExcessLoad_t, \varepsilon_{kt}\right) \leq 0 \\
+  f^{}_{k}\left(\ExcessLoad_t, \varepsilon_{kt}\right) &amp; \text{if } 0 &lt; f^{}_{k}\left(\ExcessLoad_t, \varepsilon_{kt}\right) &lt; \bar{y}^{}_{k} \\
+  \bar{y}^{}_{k}  &amp; \text{if } f^{}_{k}\left(\ExcessLoad_t, \varepsilon_{kt}\right) \geq \bar{y}^{}_{k} 
+\end{cases}$$`
+
+- `\(f_k\)` is a flexible power-plant specific production function  
+- `\(\ExcessLoad_t\)` is a vector of excess loads across [geographic regions](#nerc-map) in time `\(t\)`  
+- `\(\bar{y}^{}_{k}\)` is production capacity of plant  
+  
+--
+
+### Damages  
+
+- `\(\damagesfunc_{k}\left(y^{\text{Disp}}_{kt} \right)\)`: environmental damages by plant `\(k\)`  
+- `\(D\left(\ExcessLoad \right)=\sum_{t=0}^T \frac{\sum_k \damagesfunc_{kt} \left(y^{\text{Disp}}_{kt}\right)}{\left(1+r\right)^t}\)`: PDV of aggregate damages
+
+
+
+---
+# Optimal Subsidies  
+Government maximizes sum of utility less environmental damages:
+`$$\underbrace{\int_i  V_i h(i) di}_{\text{Utility}} - \underbrace{D\left(\ExcessLoad \right)}_{\text{Damages}}$$`
+
+subject to budget constraint
+
+`$$\underbrace{\sum_j \int_{i \in I_j} s_{ij} m^{\star}_i h(i) di}_{\text{Government Cost}} \leq G$$`
+
+--
+
+- `\(h(i)\)`: density of household type `\(i\)`  
+- `\(I_j\)`: set of households in state `\(j\)`  
+- `\(s_{ij}=  s^{\text{Unit}}_j N_i^{\star}+s^{\text{kWh}}_j A_i N_i^{\star} + s^{\text{Cost}}_j p^{\text{Ins}}_{j}\left(N_i^{\star} \right)\)`: total subsidy paid to HH `\(i\)` 
+- Planner chooses `\(s^{\subtype}_j\)` for each type of subsidy `\(\subtype\)` and each state `\(j\)`.  
+
+
+---
+# Planner's FOC  
+
+Optimal subsidies must satisfy 
+
+`$$\small \underbrace{\frac{\partial M^{\text{}}_j}{\partial s^{\subtype}_j}  \times \left(\DamOffSetExt - \lambda \overrightarrow{s_{}}^{\theta,\text{ext}}_j \right)}_{\text{Extensive Margin}} + \underbrace{\frac{\partial N^{\text{}}_j}{\partial s^{\subtype}_j} \Bigg|_{M^{\text{st}}_j} \times \left(\DamOffSetInt - \lambda \overrightarrow{\frac{\partial s}{\partial N}}^{\theta,\text{int}}_j \right)}_{\text{Intensive Margin}} + \underbrace{ \left(1-\lambda \right) M_j \overline{\frac{\partial s_{ij}}{\partial s^{\subtype}_j  }} }_{\text{Mechanical Effect}} =0.$$`
+
+
+- `\(\small\frac{\partial M^{\text{}}_j}{\partial s^{\subtype}_j}\)` is number of marginal installers  
+- `\(\small\DamOffSetExt\)` is the average damages offset of switchers  
+- `\(\small\overrightarrow{s_{}}^{\theta,\text{ext}}_j\)` is the average subsidy received by switchers  
+- `\(\small\lambda\)` is the marginal value of public funds  
+- `\(\small\frac{\partial N^{\text{}}_j}{\partial s^{\subtype}_j} \Big|_{M^{\text{st}}_j}\)` is the number of marginal panels  
+- `\(\small\DamOffSetInt\)` and `\(\small\overrightarrow{\frac{\partial s}{\partial N}}^{\theta,\text{int}}_j\)` avg damages offset/subsidy paid to marginal panel  
+- `\(\small\overline{\frac{\partial s_{ij}}{\partial s^{\subtype}_j  }}\)` is the increase in subsidy paid to inframarginal households 
+
+---
+count: false 
+# Planner's FOC  
+
+Optimal subsidies must satisfy 
+
+`$$\small \color{#EC7662}{\underbrace{\frac{\partial M^{\text{}}_j}{\partial s^{\subtype}_j}  \times \left(\DamOffSetExt - \lambda \overrightarrow{s_{}}^{\theta,\text{ext}}_j \right)}_{\text{Extensive Margin}}} + \underbrace{\frac{\partial N^{\text{}}_j}{\partial s^{\subtype}_j} \Bigg|_{M^{\text{st}}_j} \times \left(\DamOffSetInt - \lambda \overrightarrow{\frac{\partial s}{\partial N}}^{\theta,\text{int}}_j \right)}_{\text{Intensive Margin}} + \underbrace{ \left(1-\lambda \right) M_j \overline{\frac{\partial s_{ij}}{\partial s^{\subtype}_j  }} }_{\text{Mechanical Effect}} =0.$$`
+
+
+- `\(\small\color{#EC7662}{\frac{\partial M^{\text{}}_j}{\partial s^{\subtype}_j}}\)` is number of marginal installers  
+- `\(\small\color{#EC7662}{\DamOffSetExt}\)` is the average damages offset of switchers  
+- `\(\small\color{#EC7662}{\overrightarrow{s_{}}^{\theta,\text{ext}}_j}\)` is the average subsidy received by switchers  
+- `\(\small\lambda\)` is the marginal value of public funds  
+- `\(\small\frac{\partial N^{\text{}}_j}{\partial s^{\subtype}_j} \Big|_{M^{\text{st}}_j}\)` is the number of marginal panels  
+- `\(\small\DamOffSetInt\)` and `\(\small\overrightarrow{\frac{\partial s}{\partial N}}^{\theta,\text{int}}_j\)` avg damages offset/subsidy paid to marginal panel  
+- `\(\small\overline{\frac{\partial s_{ij}}{\partial s^{\subtype}_j  }}\)` is the increase in subsidy paid to inframarginal households 
+
+---
+count: false
+# Planner's FOC  
+
+Optimal subsidies must satisfy 
+
+`$$\small \underbrace{\frac{\partial M^{\text{}}_j}{\partial s^{\subtype}_j}  \times \left(\DamOffSetExt - \lambda \overrightarrow{s_{}}^{\theta,\text{ext}}_j \right)}_{\text{Extensive Margin}} + \color{#EC7662}{\underbrace{\frac{\partial N^{\text{}}_j}{\partial s^{\subtype}_j} \Bigg|_{M^{\text{st}}_j} \times \left(\DamOffSetInt - \lambda \overrightarrow{\frac{\partial s}{\partial N}}^{\theta,\text{int}}_j \right)}_{\text{Intensive Margin}}} + \underbrace{ \left(1-\lambda \right) M_j \overline{\frac{\partial s_{ij}}{\partial s^{\subtype}_j  }} }_{\text{Mechanical Effect}} =0.$$`
+
+
+- `\(\small\frac{\partial M^{\text{}}_j}{\partial s^{\subtype}_j}\)` is number of marginal installers  
+- `\(\small\DamOffSetExt\)` is the average damages offset of switchers  
+- `\(\small\overrightarrow{s_{}}^{\theta,\text{ext}}_j\)` is the average subsidy received by switchers  
+- `\(\small\lambda\)` is the marginal value of public funds  
+- `\(\small\color{#EC7662}{\frac{\partial N^{\text{}}_j}{\partial s^{\subtype}_j} \Big|_{M^{\text{st}}_j}}\)` is the number of marginal panels  
+- `\(\small\color{#EC7662}{\DamOffSetInt}\)` and `\(\small\color{#EC7662}{\overrightarrow{\frac{\partial s}{\partial N}}^{\theta,\text{int}}_j}\)` avg damages offset/subsidy paid to marginal panel  
+- `\(\small\overline{\frac{\partial s_{ij}}{\partial s^{\subtype}_j  }}\)` is the increase in subsidy paid to inframarginal households 
+
+
+---
+count: false
+# Planner's FOC  
+
+Optimal subsidies must satisfy 
+
+`$$\small \underbrace{\frac{\partial M^{\text{}}_j}{\partial s^{\subtype}_j}  \times \left(\DamOffSetExt - \lambda \overrightarrow{s_{}}^{\theta,\text{ext}}_j \right)}_{\text{Extensive Margin}} + \underbrace{\frac{\partial N^{\text{}}_j}{\partial s^{\subtype}_j} \Bigg|_{M^{\text{st}}_j} \times \left(\DamOffSetInt - \lambda \overrightarrow{\frac{\partial s}{\partial N}}^{\theta,\text{int}}_j \right)}_{\text{Intensive Margin}} + \color{#EC7662}{\underbrace{ \left(1-\lambda \right) M_j \overline{\frac{\partial s_{ij}}{\partial s^{\subtype}_j  }} }_{\text{Mechanical Effect}}} =0.$$`
+
+
+- `\(\small\frac{\partial M^{\text{}}_j}{\partial s^{\subtype}_j}\)` is number of marginal installers  
+- `\(\small\DamOffSetExt\)` is the average damages offset of switchers  
+- `\(\small\overrightarrow{s_{}}^{\theta,\text{ext}}_j\)` is the average subsidy received by switchers  
+- `\(\small\lambda\)` is the marginal value of public funds  
+- `\(\small\frac{\partial N^{\text{}}_j}{\partial s^{\subtype}_j} \Big|_{M^{\text{st}}_j}\)` is the number of marginal panels  
+- `\(\small\DamOffSetInt\)` and `\(\small\overrightarrow{\frac{\partial s}{\partial N}}^{\theta,\text{int}}_j\)` avg damages offset/subsidy paid to marginal panel  
+- `\(\small\color{#EC7662}{\overline{\frac{\partial s_{ij}}{\partial s^{\subtype}_j  }}}\)` is the increase in subsidy paid to inframarginal households 
+
+
+???
+Formally \hyperlink{FormalDefs}{\beamergotobutton{Formally}}
+
+
+
+---
+class: inverse, middle
+# Quantitative Model 
+
+
+
+---
+# Households 
+
+Household installation decision:
+
+`$$V_i=\max_{N_i, m_i \in \left\{0,1 \right\}}  m_i \left[ \monetary_{ij}\left(N_i^{} \right) + \gamma_i \left(N_i^{} \right) \right].$$`
+
+---
+count: false
+# Households 
+
+Household installation decision:
+
+`$$V_i=\max_{N_i, m_i \in \left\{0,1 \right\}}  m_i \left[ \monetary_{ij}\left(N_i^{} \right) + \color{#EC7662}{\gamma_i \left(N_i^{} \right)} \right].$$`
+
+Parameterize non-pecuniary value of installation as
+
+`$$\color{#EC7662}{\gamma_i\left(N_i \right)=\underbrace{\gamma_0 +\gamma_{1N} N_i +   \gamma_{2N} N^2_i}_{\text{Polynomial in } N_i} + \underbrace{\gamma_{dem} X_{\ell} }_{\text{Local Demographics}} + \underbrace{\sigma \varepsilon_i}_{\text{Idiosyncratic}}}$$`
+
+
+- `\(X_{\ell}\)`: vector of demographics at household's census tract, `\(\ell\)`  
+
+--
+- `\(\varepsilon_i\)`: logit idiosyncratic term   
+
+---
+# Household choices  
+
+
+### Optimal number of panels  
+Conditional on installation, households will choose `\(N^{\star}\)` panels  
+
+`$$N^{\star}_i=\min \left[ \nbar_i ,-\left(\frac{ \frac{\partial \mu_{ij}}{\partial N_i} + \gamma_{1N}}{ 2 \gamma_{2N}}\right) \right]$$`
+
+--
+
+### Probability of installation  
+
+`$$\pi_i=\frac{ \exp\left(\frac{  \mu_i + \gamma_0 + \gamma X_{\ell}  + \left(\gamma_{1N} N^{\star}_i +   \gamma_{2N} N^{\star  2}_i \right) }{\sigma}\right)}{1+ \exp\left(\frac{ \mu_i+ \gamma_0 + \gamma X_{\ell}  + \left(\gamma_{1N} N^{\star}_i +   \gamma_{2N} N^{\star 2}_i \right) }{\sigma}\right)}.$$`
+
+
+---
+# Dispatchable power plant production  
+
+### Power plant policy functions  
+Production by these dispatchable plants `\(k\)` in time `\(t\)` is 
+
+`$$y^{\CN}_{kt} = \begin{cases} 0  &amp; \text{if } f^{}_{k}\left(\ExcessLoad_t, \varepsilon_{kt}\right) \leq 0 \\ f^{}_{k}\left(\ExcessLoad_t, \varepsilon_{kt}\right) &amp; \text{if } 0 &lt; f^{}_{k}\left(\ExcessLoad_t, \varepsilon_{kt}\right) &lt; \bar{y}^{}_{k} \\ \bar{y}^{}_{k}  &amp; \text{if } f^{}_{k}\left(\ExcessLoad_t, \varepsilon_{kt}\right) \geq \bar{y}^{}_{k} \end{cases}$$`
+
+
+---
+count: false
+# Dispatchable power plant production  
+
+### Power plant policy functions  
+Production by these dispatchable plants `\(k\)` in time `\(t\)` is 
+
+`$$y^{\CN}_{kt} = \begin{cases} 0  &amp; \text{if } f^{}_{k}\left(\ExcessLoad_t, \varepsilon_{kt}\right) \leq 0 \\ \color{#EC7662}{f^{}_{k}\left(\ExcessLoad_t, \varepsilon_{kt}\right)} &amp; \text{if } 0 &lt; f^{}_{k}\left(\ExcessLoad_t, \varepsilon_{kt}\right) &lt; \bar{y}^{}_{k} \\ \bar{y}^{}_{k}  &amp; \text{if } f^{}_{k}\left(\ExcessLoad_t, \varepsilon_{kt}\right) \geq \bar{y}^{}_{k} \end{cases}$$`
+
+We specify that  
+
+
+`$$\color{#EC7662}{f^{}_{k}\left(\ExcessLoad_t , \varepsilon_{kt}\right)=\lambda^0_k + \sum_{R \in \Interconnection_k} \left( \lambda^1_{Rk}\ExcessLoad_{Rt}  + \lambda^2_{Rk}\ExcessLoad_{Rt}^2 \right)+ \varepsilon_{kt}}$$`
+
+
+- `\(\Interconnection_k\)` is the set of NERC regions within the interconnection which contains plant `\(k\)`  
+- `\(\varepsilon_{kt}\)` is a normally distributed shifter  
+
+---
+class: inverse, middle
+# Data and Estimation
+
+
+
+---
+name: data-overview
+# Data overview
+
+
+- **Solar panel installations:** Deepsolar database (Yu et al. 2018). [Overview](#deepsolar-overview)  
+  - Tract-level number of residential solar systems  
+  - Tract-level total installed panel area  
+
+--
+- **Rooftop sizes:** Google Project Sunroof (GPS) has area suitable for solar panels within census tracts (analog of `\(\bar{N}_i\)`). [Example](#gps-example)  
+
+--
+- **Solar irradiance:** Combination of GPS for annual values, and the System Advisor Model (SAM), for [time profile](#time-profile) of each hour of the year
+
+--
+- **Current subsidies:** Database of State Incentives for Renewables &amp; Efficiency
+(DSIRE) assembled by Sexton et. al. (2021)  
+
+--
+- **Electricity prices:** average retail price by state from EIA. [Map](#descr-electricity-prices)
+- **Installation price function:** Estimated regionally using installation data from Tracking the Sun. [Regression results](#install-price-reg)
+
+
+---
+# Data overview pt. 2
+
+- **Power plant production and emissions:** 
+  - Open Grid Emissions (OGE) has hourly electricity generation and emissions for over 10,000 power plants across the U.S. in 2019   
+  - Pollutants are `\(NO_x\)`, `\(SO_2\)`, `\(PM2.5\)`, and `\(CO_2e\)`  
+  - Gives us over 40 million plant-hour observations  
+
+--
+- **Damages:** 
+  - AP3 is a state-of-the-art integrated assessment model  
+  - Accounts only for human health damages 
+  - Use a $51/ton social cost of carbon 
+
+---
+name: deepsolar-overview
+# Deepsolar overview
+
+&lt;img src="figures/deepsolar-overview.jpeg" width="60%" style="display: block; margin: auto;" /&gt;
+
+
+.footnote[ [Intro](#data-est-intro) [Data](#data-overview)]
+
+---
+name: gps-example
+# Google Project Sunroof Example
+
+&lt;img src="figures/gps-screenshot.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+.footnote[ [Intro](#data-est-intro) [Data](#data-overview)]
+
+---
+name: nerc-map
+# NERC Region Map 
+
+&lt;img src="figures/maps/nerc-adj-map.jpeg" width="90%" style="display: block; margin: auto;" /&gt;
+
+.footnote[ [Model](#dispatchable-production)]
+
+
+---
+# Estimation overview
+
+### Households  
+
+- GMM using Deepsolar and GPS data  
+- **Target:** installation rate and size of installations across all census tracts    
+- **Identification:** cross-sectional variation in returns to installation across tracts (sunlight, subsidies and prices)   
+
+--
+
+### Power Plants  
+- MLE (Tobit) using OGE data  
+- Emissions estimated as (power-plant specific) spline in production   
+- Use AP3 to convert emissions to damages  
+
+---
+name: estimates-fit
+# Estimates and fit   
+
+#### Despite being sparsely parameterized, both the household and power plant models fit the data very well. 
+
+- Household parameter estimates: [Details](#parameter-estimates) 
+- Installations across households: [Details](#demographic-fit)   
+- Installations across states: [Details](#state-fit)   
+- Quasi-experimental studies on installations: [Details](#quasi-experimental)    
+- Why do installation rates vary across states? [Details](#decomposition) 
+- Power plant production: [Details](#ic-hour-season-fit)   
+- Marginal Damages: [Details](#marginal-damages)   
+- Mix of plant fuel type: [Details](#fuel-mix)   
+
+.footnote[.smallest[[Estimation Overview](#estimation-intro)]]
+
+---
+name: descr-electricity-prices
+# Electricity Prices  
+
+&lt;img src="figures/maps/descriptive/electricity-prices.jpeg" width="90%" style="display: block; margin: auto;" /&gt;
+
+.footnote[ [Data](#data-overview)]
+
+---
+name: descr-expected-monetary-benefit
+# Expected Monetary Benefit 
+
+&lt;img src="figures/maps/descriptive/expected-monetary-benefit.jpeg" width="90%" style="display: block; margin: auto;" /&gt;
+
+.footnote[ [Data](#data-overview)]
+
+---
+name: time-profile
+# SAM hourly profiles  
+
+&lt;img src="figures/example-state-profiles.jpeg" width="90%" style="display: block; margin: auto;" /&gt;
+
+.footnote[ [Data](#data-overview)]
+
+---
+name: install-price-reg
+# Installation price estimation  
+
+&lt;img src="figures/panels-price-region.jpeg" width="90%" style="display: block; margin: auto;" /&gt;
+
+
+.footnote[ [Data](#data-overview)]
+
+---
+name: parameter-estimates 
+# Parameter Estimates  
+
+|     | | Estimate | Standard Error |
+|:---|:--:|:----:|:---:|
+| Dispersion of Idiosyncratic Utility | `\(\sigma\)` | 8.55 | 0.08 |
+| Percent College | `\(\gamma_{Coll}\)` | 5.71 | 0.36 |
+| Percent Democrat | `\(\gamma_{Pol}\)` | 10.44 | 0.50 |
+| Constant | `\(\gamma_{0}\)` | -1357.03 | 411.27 |
+| Number of Panels | `\(\gamma_{1N}\)` | 177.70 | 55.65 |
+| Number of Panels Squared | `\(\gamma_{2N}\)` | -6.00 | 1.88 |
+
+.footnote[ [Fit](#estimates-fit)]
+
+---
+name: demographic-fit
+# Fit by demographic 
+
+.pull-left[
+&lt;img src="figures/lpoly_fit_CollPerc_t.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="figures/lpoly_fit_Pol_t.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+&lt;img src="figures/lpoly_fit_tot_ben.png" width="45%" style="display: block; margin: auto;" /&gt;
+
+.footnote[ [Fit](#estimates-fit)]
+
+---
+name: state-fit
+# Fit by State 
+
+&lt;img src="figures/scatterW_logsim_logdata_state.png" width="75%" style="display: block; margin: auto;" /&gt;
+
+Simulated vs actual log installations by state (sized by population)  
+
+.footnote[ [Fit](#estimates-fit)]
+
+---
+name: quasi-experimental
+# Quasi-Experimental Evidence
+
+### Hughes and Podolefsky, 2015
+
+- Examine the introduction of a solar rebate in California  
+- **Results:** $400 to $500 increase in total rebate leads to a .hi-pink[7 to 15%] increase in installations.
+- **Model:** $500 increase in subsidies leads to a .hi-pink[6%] increase in installations.  
+
+--
+
+### Crago and Chernyakhovskiy, 2017  
+
+- County-level panel data from 12 states in the US Northeast  
+- **Results:** Increasing rebates by $1 per watt increases solar panel installations by .hi-green[47%].  
+- **Model:** increasing rebates by $1 per watt in these same 12 states increases installations by .hi-green[51%].  
+
+
+.footnote[ [Fit](#estimates-fit)]
+
+---
+name: decomposition
+# Decomposition 
+
+|  | SD Installs |
+|:--|:-:|
+| Baseline | 1 |
+| Harmonize Subsidies | 0.48 |
+| Harmonize Electricity Prices | 0.25 |
+| Harmonize Installation Prices | 0.23 |
+| Equalize Sunlight | 0.09 |
+| Harmonize Demographics | 0.08 |
+
+
+
+ Standard Deviation in Installation Rates Across States: Decomposition. All are relative to baseline.
+
+.footnote[ [Fit](#estimates-fit)]
+
+---
+name: ic-hour-season-fit
+# Electricity Production Fit  
+
+&lt;img src="figures/electricity-generation/model-fit-ic-hour-season.jpeg" width="90%" style="display: block; margin: auto;" /&gt;
+
+.footnote[ [Fit](#estimates-fit)]
+
+---
+name: marginal-damages 
+# Marginal Damage of electricity 
+
+&lt;img src="figures/electricity-generation/eload-sim-region-md-mwh-own-demand.jpeg" width="100%" style="display: block; margin: auto;" /&gt;
+
+Estimated marginal damage of electricity produced in each region over different levels of demand in each interconnection.  
+
+.footnote[ [Fit](#estimates-fit)]
+
+---
+name: fuel-mix 
+# Fuel mix  
+
+&lt;img src="figures/electricity-generation/model-fit-ic-fuel-mix.jpeg" width="100%" style="display: block; margin: auto;" /&gt;
+
+
+.footnote[ [Fit](#estimates-fit)]
+
+
+---
+class: inverse, middle
+name:results-appendix
+# Results Appendix
+
+.footnote[.smallest[[Results Summary](#results-summary)]]
+
+---
+# Marginal subsidy increases     
+
+
+&lt;img src="figures/maps/results/marg-subsidy-kwh.jpeg" width="80%" style="display: block; margin: auto;" /&gt;
+
+&lt;center&gt;Damages offset by a one dollar increase in subsidies&lt;/center&gt;
+
+
+
+---
+# Damage minimizing subsidies  
+
+&lt;img src="figures/maps/results/state-subsidy-opt-cost-neutral-damage-min.jpeg" width="80%" style="display: block; margin: auto;" /&gt;
+
+&lt;center&gt;Damage Minimizing Subsidies&lt;/center&gt;
+
+---
+# Damage min spatial misallocation
+
+
+&lt;img src="figures/maps/results/install-ratio-cost-neutral-damage-min.jpeg" width="80%" style="display: block; margin: auto;" /&gt;
+
+&lt;center&gt;Baseline installations as a percent of damage minimizing installations&lt;/center&gt;
+
+---
+# Total damages offset (Millions of $)  
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="empty-cells: hide;border-bottom:hidden;" colspan="2"&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Welfare Maximizing&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Damage Minimizing&lt;/div&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th style="empty-cells: hide;border-bottom:hidden;" colspan="1"&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Baseline&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;State&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Tract&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;State&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Tract&lt;/div&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; CO2e &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 69.8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 75.9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 75.9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 72.6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 72.5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NOx &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 19.3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 19.3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; PM2.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16.7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16.9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16.9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; SO2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 37.0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 38.3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 38.8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 48.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 49.4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;"&gt; Total &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;"&gt; 141.5 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;"&gt; 150.5 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;"&gt; 150.9 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;"&gt; 157.5 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;"&gt; 158.2 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+count: false 
+# Total damages offset (Millions of $)  
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="empty-cells: hide;border-bottom:hidden;" colspan="2"&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Welfare Maximizing&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Damage Minimizing&lt;/div&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th style="empty-cells: hide;border-bottom:hidden;" colspan="1"&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Baseline&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;State&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Tract&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;State&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Tract&lt;/div&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #EC7662 !important;"&gt; CO2e &lt;/td&gt;
+   &lt;td style="text-align:center;color: #EC7662 !important;"&gt; 69.8 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #EC7662 !important;"&gt; 75.9 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #EC7662 !important;"&gt; 75.9 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #EC7662 !important;"&gt; 72.6 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #EC7662 !important;"&gt; 72.5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NOx &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 19.3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 19.3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; PM2.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16.7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16.9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16.9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; SO2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 37.0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 38.3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 38.8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 48.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 49.4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;"&gt; Total &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;"&gt; 141.5 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;"&gt; 150.5 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;"&gt; 150.9 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;"&gt; 157.5 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;"&gt; 158.2 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+- Most of the offset damages are from `\(\color{#EC7662}{CO_2}\)` .hi-pink[emissions]  
+
+
+---
+count: false 
+# Total damages offset (Millions of $)  
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="empty-cells: hide;border-bottom:hidden;" colspan="2"&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Welfare Maximizing&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Damage Minimizing&lt;/div&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th style="empty-cells: hide;border-bottom:hidden;" colspan="1"&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Baseline&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;State&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Tract&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;State&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Tract&lt;/div&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; CO2e &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 69.8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 75.9 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #EC7662 !important;"&gt; 75.9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 72.6 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #EC7662 !important;"&gt; 72.5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NOx &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 19.3 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #EC7662 !important;"&gt; 19.3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.3 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #EC7662 !important;"&gt; 18.2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; PM2.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16.7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16.9 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #EC7662 !important;"&gt; 16.9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.1 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #EC7662 !important;"&gt; 18.1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; SO2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 37.0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 38.3 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #EC7662 !important;"&gt; 38.8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 48.5 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #EC7662 !important;"&gt; 49.4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;"&gt; Total &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;"&gt; 141.5 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;"&gt; 150.5 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: #EC7662 !important;"&gt; 150.9 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;"&gt; 157.5 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: #EC7662 !important;"&gt; 158.2 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+- Most of the offset damages are from `\(CO_2\)` emissions  
+- .hi-pink[Tract-level] subsidies only slightly better than state-level subsidies  
+
+
+---
+# Subsidy types 
+
+#### Optimal choice involves almost entirely KWh subsidies rather than current dependence on cost based subsidies
+
+&lt;br&gt;
+
+&lt;center&gt;Percent of Subsidy Dollars&lt;/center&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Baseline &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Welfare Max &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Unit Subsidies &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Cost Subsidies &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 81.6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; KWh Subsides &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 98.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;"&gt; Total &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;"&gt; 100.0 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;"&gt; 100.0 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+???
+
+Percent of subsidy dollars from each subsidy type.  Average PDV of each subsidy type for 15 panel. Population-weighted over all tracts.
+
+
+---
+exclude: true
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
