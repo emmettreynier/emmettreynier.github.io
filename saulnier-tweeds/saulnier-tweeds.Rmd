@@ -1,7 +1,7 @@
 ---
 title: "Optimal Subsidies for Residential Solar"
 subtitle: "Emmett Saulnier (Joint with Mark Colas)"
-author: "TWEEDS .footnote[[Presentation Link](https://www.emmettsaulnier.com/saulnier-tweeds/saulnier-tweeds.html)]"
+author: "TWEEDS .footnote[.smallest[[HTML version](https://www.emmettsaulnier.com/saulnier-tweeds/saulnier-tweeds.html)]]"
 date: "September 15th, 2023"
 output: 
   xaringan::moon_reader:
@@ -170,7 +170,7 @@ The .hi-green[environmental benefits] also vary geographically.
 <br> 
 
 
-1. How should residential solar subsidies **optimally vary across states**?  
+1. How should residential solar subsidies **optimally vary across space**?  
 2. To what extent has the current system of subsidies led to a **spatial misallocation** of solar panels?
 
 
@@ -199,7 +199,7 @@ The .hi-green[environmental benefits] also vary geographically.
 --
 <br>
 
-.bigger[**2.** Optimal cost-neutral reform increases environmental benefits by .hi-pink[6-11%]]  
+.bigger[**2.** Optimal cost-neutral reform increases aggregate environmental benefits by .hi-pink[6-11%]]  
 
 --
 <br>
@@ -256,7 +256,7 @@ class: inverse, middle
 ### Menu of subsidies at each state  
 1. Production-based subsidies (e.g. renewable energy certificates)  
 1. Cost-based subsidies (e.g. federal investment tax credit)  
-1. Unit-based subsidies  
+1. Per-panel subsidies  
 
 --
 
@@ -269,7 +269,7 @@ class: inverse, middle
 
 --
 
-Choose the system of state subsidies to **maximize objective** subject to the **government's budget constraint**  
+Choose the system of state subsidies to **maximize objective** subject to the governemnt's **budget constraint**  
 
 ---
 class: inverse, middle
@@ -413,7 +413,7 @@ subs_dt[order(match_order),12:13] |>
 ```
 
 
-- We can achieve .pink[30%] of the benefits at .purple[~10%] of the cost  
+- We can achieve .hi-pink[30%] of the benefits at .hi-purple[~10%] of the cost  
 
 ---
 # Unconstrained reforms
@@ -435,10 +435,10 @@ subs_dt[order(match_order),12:13] |>
 ```
 
 
-- We can achieve 30% of the benefits at ~10% of the cost  
+- We can achieve **30%** of the benefits at **~10%** of the cost  
 - However...  
   - Sensitive to choice of SCC   
-  - Get .pink[64%] of benefits at .purple[42%] of cost under higher SCC   
+  - Get .hi-pink[64%] of benefits at .hi-purple[42%] of cost under higher SCC   
   - Does not include all potential benefits of residential solar 
 
 
@@ -471,7 +471,7 @@ We use novel datasets on solar panel installations and power plant emissions to 
 
 --
 
-- Current subsidies **over-subsidize** clean states (Washington) and **under-subsidize** dirty states (Pennsylvania)  
+- Currently the US **over-subsidizes** clean states (Washington) and **under-subsidizes** dirty states (Pennsylvania)  
 - Optimal cost-neutral reform increases environmental benefits by **6-11%**  
 - Subsidy levels are currently an order of magnitude higher than is justified by damages from emissions alone  
 
@@ -480,10 +480,13 @@ We use novel datasets on solar panel installations and power plant emissions to 
 class: inverse, middle 
 # Thank you!  
 
-.hi-pink[Emmett Saulnier]  
+.hi-pink[Emmett Saulnier]
 .pink[
   PhD Candidate, University of Oregon  
   ORISE Research Fellow, US EPA Office of Water  
+]
+
+.pink[
   emmetts@uoregon.edu  
   https://www.emmettsaulnier.com  
 ]
@@ -1363,7 +1366,7 @@ Percent of subsidy dollars from each subsidy type.  Average PDV of each subsidy 
 
 ---
 exclude: true
-```{R generate pdfs, include = F, eval = F}
+```{R generate pdfs, include = F, eval = T}
 #remotes::install_github('rstudio/pagedown')
 library(pagedown)
 pagedown::chrome_print("saulnier-tweeds.html", output = "saulnier-tweeds.pdf")

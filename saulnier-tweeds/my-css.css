@@ -2,7 +2,9 @@
 a {
   color: #EC7662;
 }
-
+.right[
+  text-align: right;
+]
 /* Create a highlighted class called 'hi'  */
 .hi {
   font-weight: 600;
