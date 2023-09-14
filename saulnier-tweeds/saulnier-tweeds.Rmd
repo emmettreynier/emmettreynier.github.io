@@ -188,6 +188,39 @@ The .hi-green[environmental benefits] also vary geographically.
 - Installation of solar panels generates .hi-green[positive externalities] by offseting production from fossil-fuel power plants  
 
 
+
+---
+# Data and Estimation
+
+Structurally estimate the model using data on  
+1. **Residential solar installations**  
+  - Deepsolar database, a remotely-sensed dataset on universe of US residential solar installations  
+  - Google Project Sunroof, a remotely-sensed dataset on solar irradiance and rooftops suitable for solar  
+
+--
+2. **Power plant production and emissions:** from Open Grid Emissions (OGE), .purple[presented at 2022 TWEEDS by Greg Miller!]
+  - Hourly electricity generation and emissions for over 10,000 power plants across the U.S. in 2019   
+  - Pollutants are $NO_x$, $SO_2$, $PM2.5$, and $CO_2e$  
+  - Gives us over 40 million plant-hour observations  
+
+--
+3. **Environmental damages** from AP3, a state-of-the-art air pollution model, and the social cost of carbon    
+
+
+---
+# Estimation  
+
+### Our estimated model is consistent with    
+- Distribution of installation rates  
+- Causally identified, quasi-experimental estimates on the effect of subsidies on solar panel installations  
+- Power plant production over the course of the year    
+
+--
+
+### Use the model to find optimal subsidies    
+- Choose set of state level subsidies to maximize the gov't objective  
+- **Quantify:** How severe is misallocation caused by current system of subsidies? What would be the environmental benefits of switching to the optimal system of subsidies?  
+
 ---
 # Results preview   
 
@@ -269,76 +302,7 @@ class: inverse, middle
 
 --
 
-Choose the system of state subsidies to **maximize objective** subject to the governemnt's **budget constraint**  
-
----
-class: inverse, middle
-
-# Data and Estimation 
-
----
-name: data-est-intro
-# Data  
-
-- **Residential solar installations** from Deepsolar, a remotely-sensed dataset on universe of US residential solar installations by census tract
-
---
-- **Rooftop sizes** from Google Project Sunroof, a remotely-sensed dataset on solar irradiance and rooftop space suitable for solar by census tract
-
---
-- **Current subsidies** from Database of State Incentives for Renewables & Efficiency (DSIRE) assembled by Sexton et. al. (2021)  
-
---
-- **Power plant production and emissions:** from Open Grid Emissions (OGE), .purple[presented at 2022 TWEEDS by Greg Miller!]
-  - Hourly electricity generation and emissions for over 10,000 power plants across the U.S. in 2019   
-  - Pollutants are $NO_x$, $SO_2$, $PM2.5$, and $CO_2e$  
-  - Gives us over 40 million plant-hour observations  
-
---
-- **Environmental Damages:** from AP3, a state-of-the-art integrated assessment model, and the Social Cost of Carbon   
-
-
-???
-
-.smallest[ [GPS overview](#gps-example) ]
-.smallest[ [DS overview](#deepsolar-overview) ] 
-
-
----
-name:estimation-intro
-# Estimation overview
-
-- **Households**
-  - GMM using Deepsolar and Google Project Sunroof data  
-  - Target installation rate and size across all census tracts    
-  - Identification from cross-sectional variation in returns to installation across tracts (sunlight, subsidies and prices)   
-
---
-- **Power Plants**    
-  - Production estimated with MLE (Tobit) using OGE data  
-  - Emissions estimated as (power-plant specific) spline in production   
-  - Use AP3 to convert emissions to damages  
-
---
-
-### Validation  
-- Replicate three quasi experimental estimates of the impact of subsidies on solar panel installations 
-- Replicate power plant production over the course of the year  
-
-.footnote[.smallest[[Model fit plots](#estimates-fit)]]
-
-
-???
-
-
-### Our estimated model is consistent with    
-- Distribution of installation rates  
-- Causally identified, quasi-experimental estimates on the effect of subsidies on solar panel installations  
-- Power plant production over the course of the year    
-
-### Use the model to find optimal subsidies    
-- Choose set of state level subsidies to maximize the gov't objective  
-- **Quantify:** How severe is misallocation caused by current system of subsidies? What would be the environmental benefits of switching to the optimal system of subsidies?  
+Choose the system of state subsidies to **maximize objective** subject to the government's **budget constraint**  
 
 
 
@@ -396,19 +360,20 @@ subs_dt = data.table(
   South = c(6.8,3.2,6.8,6.8),
   West = c(13.2, 4.7,13.2,8.6),
   National = c(11.4,3.6,11.4,7.4),
-  `Damages Offset ($Millions)` = c(141.7,42.3,325.1,207.3),
-  `Fiscal Cost ($Millions)` = c(495.1,42.3,495.1,207.1)
+  `Damages Offset ($Millions)` = c(141.7,42.3, ' ', ' '),#325.1,207.3),
+  `Fiscal Cost ($Millions)` = c(495.1,42.3, ' ', ' ')#495.1,207.1)
 )
 
 subs_dt[order(match_order),12:13] |>
   t() |>
   kbl(align = 'ccccc') |>
-  add_header_above(c('',' Baseline ',' Optimal ',' Baseline ',' Optimal ')) |>
-  add_header_above(c(' '=1, 'SCC = $51' = 2, 'SCC = $185' = 2))  |>
+  add_header_above(c('','Baseline','Optimal', 'Baseline','Optimal')) |>
+  add_header_above(c(' '=1, 'SCC = $51' = 2, ' ' = 2))  |>
   #row_spec(5, bold = TRUE) |>
   row_spec(1, color =  red_pink) |>
   row_spec(2, color =  purple) |>
-  column_spec(c(1,4,5), color = 'black')
+  column_spec(c(1,4,5), color = 'black') |>
+  column_spec(c(2,3), bold = TRUE)
 
 ```
 
@@ -422,6 +387,22 @@ Optimal subsidy levels drop significantly without cost-neutral constraint.
 
 ```{r unconstr2}
 
+subs_dt = data.table(
+  row = c('baseline','optimal','baseline','optimal'),
+  match_order = c(1,2,3,4),
+  Midwest = c(11.3, 5.4,11.3,11.5),
+  Northeast = c(18.2,6.5,18.2,13.6),
+  South = c(10.4,4.5,10.4,10.9),
+  West = c(12.0,3.0,12.0,8.2),
+  Midwest = c(4.1,1.8,4.1,3.7),
+  Northeast = c(29.8,5.0,29.8,11.5),
+  South = c(6.8,3.2,6.8,6.8),
+  West = c(13.2, 4.7,13.2,8.6),
+  National = c(11.4,3.6,11.4,7.4),
+  `Damages Offset ($Millions)` = c(141.7,42.3,325.1,207.3),
+  `Fiscal Cost ($Millions)` = c(495.1,42.3,495.1,207.1)
+)
+
 subs_dt[order(match_order),12:13] |>
   t() |>
   kbl(align = 'ccccc') |>
@@ -430,7 +411,8 @@ subs_dt[order(match_order),12:13] |>
   #row_spec(5, bold = TRUE) |>
   row_spec(1, color =  red_pink) |>
   row_spec(2, color =  purple) |>
-  column_spec(c(1, 2,3), color = 'black')
+  column_spec(c(1, 2, 3), color = 'black') |>
+  column_spec(c(4,5), bold = TRUE)
 
 ```
 
@@ -439,7 +421,7 @@ subs_dt[order(match_order),12:13] |>
 - However...  
   - Sensitive to choice of SCC   
   - Get .hi-pink[64%] of benefits at .hi-purple[42%] of cost under higher SCC   
-  - Does not include all potential benefits of residential solar 
+  - Some potential benefits of residential solar are not included   
 
 
 ---
@@ -467,11 +449,11 @@ Our results hold across various alterations/extensions...
 # Conclusion  
 
 
-We use novel datasets on solar panel installations and power plant emissions to quantify the spatial misallocation in solar installations caused by current subsidies.  
+We use a structural model estimated with novel datasets on solar panel installations and power plant emissions to quantify the spatial misallocation in solar installations caused by current subsidies.  
 
 --
 
-- Currently the US **over-subsidizes** clean states (Washington) and **under-subsidizes** dirty states (Pennsylvania)  
+- Current subsidies cause a spatial misallocation of solar installations   
 - Optimal cost-neutral reform increases environmental benefits by **6-11%**  
 - Subsidy levels are currently an order of magnitude higher than is justified by damages from emissions alone  
 
@@ -487,7 +469,7 @@ class: inverse, middle
 ]
 
 .pink[
-  emmetts@uoregon.edu  
+  emmetts@uoregon.edu  // saulnier.emmett@epa.gov  
   https://www.emmettsaulnier.com  
 ]
 
@@ -951,20 +933,30 @@ knitr::include_graphics('figures/maps/nerc-adj-map.jpeg')
 
 
 ---
+name:estimation-intro
 # Estimation overview
 
-### Households  
+- **Households**
+  - GMM using Deepsolar and Google Project Sunroof data  
+  - Target installation rate and size across all census tracts    
+  - Identification from cross-sectional variation in returns to installation across tracts (sunlight, subsidies and prices)   
 
-- GMM using Deepsolar and GPS data  
-- **Target:** installation rate and size of installations across all census tracts    
-- **Identification:** cross-sectional variation in returns to installation across tracts (sunlight, subsidies and prices)   
+--
+- **Power Plants**    
+  - Production estimated with MLE (Tobit) using OGE data  
+  - Emissions estimated as (power-plant specific) spline in production   
+  - Use AP3 to convert emissions to damages  
 
 --
 
-### Power Plants  
-- MLE (Tobit) using OGE data  
-- Emissions estimated as (power-plant specific) spline in production   
-- Use AP3 to convert emissions to damages  
+### Validation  
+- Replicate three quasi experimental estimates of the impact of subsidies on solar panel installations 
+- Replicate power plant production over the course of the year  
+
+.footnote[.smallest[[Model fit plots](#estimates-fit)]]
+
+
+???
 
 ---
 name: estimates-fit
@@ -1366,7 +1358,7 @@ Percent of subsidy dollars from each subsidy type.  Average PDV of each subsidy 
 
 ---
 exclude: true
-```{R generate pdfs, include = F, eval = T}
+```{R generate pdfs, include = F, eval = F}
 #remotes::install_github('rstudio/pagedown')
 library(pagedown)
 pagedown::chrome_print("saulnier-tweeds.html", output = "saulnier-tweeds.pdf")
