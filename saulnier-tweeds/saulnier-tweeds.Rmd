@@ -188,7 +188,6 @@ The .hi-green[environmental benefits] also vary geographically.
 - Installation of solar panels generates .hi-green[positive externalities] by offseting production from fossil-fuel power plants  
 
 
-
 ---
 # Data and Estimation
 
@@ -198,17 +197,32 @@ Structurally estimate the model using data on
   - Google Project Sunroof, a remotely-sensed dataset on solar irradiance and rooftops suitable for solar  
 
 --
+
+```{r gps1, out.width = "60%", echo = FALSE}
+
+knitr::include_graphics('figures/gps-screenshot.png')
+
+```
+
+---
+count: false
+# Data and Estimation
+
+Structurally estimate the model using data on  
+1. **Residential solar installations**  
+  - Deepsolar database, a remotely-sensed dataset on universe of US residential solar installations  
+  - Google Project Sunroof, a remotely-sensed dataset on solar irradiance and rooftops suitable for solar  
 2. **Power plant production and emissions:** from Open Grid Emissions (OGE), .purple[presented at 2022 TWEEDS by Greg Miller!]
   - Hourly electricity generation and emissions for over 10,000 power plants across the U.S. in 2019   
-  - Pollutants are $NO_x$, $SO_2$, $PM2.5$, and $CO_2e$  
   - Gives us over 40 million plant-hour observations  
+  - Pollutants are $NO_x$, $SO_2$, $PM2.5$, $CO_2$, $NH_4$, and $N_2O$  
 
 --
 3. **Environmental damages** from AP3, a state-of-the-art air pollution model, and the social cost of carbon    
 
 
 ---
-# Estimation  
+# Data and Estimation  
 
 ### Our estimated model is consistent with    
 - Distribution of installation rates  
@@ -255,9 +269,9 @@ class: inverse, middle
 
 - Face a set of electricity prices, installation prices, and menu of subsidies. Prices are all fixed over time and exogenous.  
 - Heterogeneity: 
-  - Solar technology (sunlight)  
-  - Space for solar panels (rooftop space)  
-  - Preferences for solar installation   
+  - Sunlight 
+  - Rooftop space for solar panels  
+  - Preferences for solar installation     
 
 --
 - Make once-and-for-all decision of how many panels to install, taking into account **lifetime costs and benefits**     
@@ -373,12 +387,12 @@ subs_dt[order(match_order),12:13] |>
   row_spec(1, color =  red_pink) |>
   row_spec(2, color =  purple) |>
   column_spec(c(1,4,5), color = 'black') |>
-  column_spec(c(2,3), bold = TRUE)
+  column_spec(c(2,3), bold = TRUE) 
 
 ```
 
 
-- We can achieve .hi-pink[30%] of the benefits at .hi-purple[~10%] of the cost  
+- We can achieve .hi-pink[30%] of the benefits at .hi-purple[<10%] of the cost  
 
 ---
 # Unconstrained reforms
@@ -417,7 +431,7 @@ subs_dt[order(match_order),12:13] |>
 ```
 
 
-- We can achieve **30%** of the benefits at **~10%** of the cost  
+- We can achieve **30%** of the benefits at **<10%** of the cost  
 - However...  
   - Sensitive to choice of SCC   
   - Get .hi-pink[64%] of benefits at .hi-purple[42%] of cost under higher SCC   
@@ -462,16 +476,14 @@ We use a structural model estimated with novel datasets on solar panel installat
 class: inverse, middle 
 # Thank you!  
 
-.hi-pink[Emmett Saulnier]
-.pink[
-  PhD Candidate, University of Oregon  
-  ORISE Research Fellow, US EPA Office of Water  
-]
+Emmett Saulnier  
 
-.pink[
-  emmetts@uoregon.edu  // saulnier.emmett@epa.gov  
-  https://www.emmettsaulnier.com  
-]
+PhD Candidate, University of Oregon  
+ORISE Research Fellow, US EPA Office of Water   
+
+[emmetts@uoregon.edu](mailto:emmetts@uoregon.edu)  // [saulnier.emmett@epa.gov](mailto:saulnier.emmett@epa.gov)  
+[https://www.emmettsaulnier.com](https://www.emmettsaulnier.com)  
+
 
 ---
 count: false
@@ -885,7 +897,7 @@ name: data-overview
 
 - **Power plant production and emissions:** 
   - Open Grid Emissions (OGE) has hourly electricity generation and emissions for over 10,000 power plants across the U.S. in 2019   
-  - Pollutants are $NO_x$, $SO_2$, $PM2.5$, and $CO_2e$  
+  - Pollutants are $NO_x$, $SO_2$, $PM2.5$, $CO_2$, $NH_4$, $N_2 O$   
   - Gives us over 40 million plant-hour observations  
 
 --
@@ -1358,7 +1370,7 @@ Percent of subsidy dollars from each subsidy type.  Average PDV of each subsidy 
 
 ---
 exclude: true
-```{R generate pdfs, include = F, eval = F}
+```{R generate pdfs, include = F, eval = T}
 #remotes::install_github('rstudio/pagedown')
 library(pagedown)
 pagedown::chrome_print("saulnier-tweeds.html", output = "saulnier-tweeds.pdf")
