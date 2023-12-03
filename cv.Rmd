@@ -2,5 +2,40 @@
 title: "Emmett Saulnier"
 ---
 
-``` {r child = 'cv/saulnier_cv.rmd'}
+[Click for PDF version.](cv/saulnier-cv.pdf)
+
+``` {r child = 'cv/saulnier-cv.rmd'}
+```
+
+```{r, echo = FALSE, include = FALSE}
+# Thanks @edrubin for this code chunk...
+pacman::p_load(stringr, magrittr, rmarkdown, here)
+# Page break before experience section
+cv <- readLines(here("cv/saulnier-cv.Rmd"))
+cv[grep("## Professional Experience", cv) - 2] <- "\\pagebreak"
+# Create the new rmd file
+con <- file(here("tmp.Rmd"))
+writeLines(cv, con)
+close(con)
+# Render to pdf
+render(here("tmp.Rmd"),
+  pdf_document(
+    latex_engine = "xelatex",
+    toc = F,
+    number_sections = F,
+    highlight = "pygments",
+    pandoc_args = c(
+       pandoc_variable_arg("mainfont", "Charter"),
+      # pandoc_variable_arg("mainfont", "Georgia"),
+      # pandoc_variable_arg("mainfont", "Avenir"),
+      #pandoc_variable_arg("monofont", "Hack"),
+      pandoc_variable_arg("fontsize", "10pt"),
+      pandoc_variable_arg("linestretch", "0.9")
+      )
+    ),
+  output_file = here("cv/saulnier-cv.pdf")
+)
+
+# Clean up temporary files
+file.remove(here("tmp.Rmd"))
 ```

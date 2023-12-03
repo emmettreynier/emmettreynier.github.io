@@ -1,0 +1,117 @@
+---
+title: "Emmett Saulnier"
+urlcolor: orange
+linkcolor: orange
+---
+
+## About  
+I am an ORISE research fellow with the US EPA's Office of Water and a PhD Candidate at the University of Oregon studying economics. My research interests include environmental and public economics, with a focus on environmental justice.
+
+
+## Education and Appointments 
+
+**ORISE Research Fellow**, US EPA Office of Water 2023-2024  
+**Ph.D. Economics**, University of Oregon, *Expected 2025*  
+**M.S. Economics**, University of Oregon, 2021  
+**B.A. Economics**, University of Virginia, 2017  
+**B.S. Commerce**, University of Virginia, 2017  
+
+
+## Publications 
+
+**Vertical Migration Externalities**   
+Mark Colas and Emmett Saulnier. *Regional Science and Urban Economics, 2023.* [[Paper]](https://www.emmettsaulnier.com/papers/colas-saulnier-vme.pdf)
+    
+
+
+## Working papers 
+
+**Optimal Subsidies for Residential Solar**  
+Mark Colas and Emmett Saulnier. *CESifo working paper 10446.*  [[Paper]](https://www.emmettsaulnier.com/papers/colas-saulnier-optimal-solar.pdf)
+
+
+## Research in Progress  
+
+**The Distributional Impacts of Climate Change across U.S. Local Labor Markets**  
+John Morehouse and Emmett Saulnier  
+
+**Perinatal health effects of herbicides: Glyphosate, Roundup, and the rollout of GM crops**  
+Edward Rubin and Emmett Saulnier  
+
+**Means Tested Solar Subsidies**  
+Mark Colas and Emmett Saulnier 
+
+
+## Teaching  
+
+
+**EC 434/534: Environmental Economics**, UO Winter and Spring 2023  
+Instructor of record for upper level undergraduate/masters environmental economics course     
+**EC 320: Introduction to Econometrics**, UO Spring 2022  
+Instructor of record for first course in undergradute econometrics sequence  
+**EC 421: Introduction to Econometrics**, UO Winter 2022  
+Led lab section for upper level undergraduate econometrics class  
+**EC 607: Core Microeconomics III**, UO Spring 2021   
+Led discussion section for 1st year PhD students covering topics in game theory and general equilibrium  
+**EC 607: Core Microeconomics II**, UO Winter 2021  
+Led discussion section for 1st year PhD students covering topics in producer theory and partial equilibrium  
+
+
+
+## Professional Experience  
+
+**Research Assistant, Dr. Meredith Fowlie and Dr. Edward Rubin** Eugene, OR 2021  
+Built a machine learning model to predict air pollution using a chemical transport model and weather data.  
+**Senior Business Analyst, CarMax** Richmond, Va 2019  
+Built a machine learning model to inform operational strategy and analyzed experiments to prove its value.   
+**Business Analyst, CarMax** Richmond, Va 2017-2019  
+Worked on a multidisciplinary team of marketing strategists, software engineers, and data analysts to improve carmax.com's visibility in search engine results.  
+**Feeds and Search Engine Marketing Intern, Merkle** Charlottesville, Va 2016   
+Optimized product feeds for online retail clients to be sent to various search and comparison shopping engines
+
+
+## Presentations  
+
+**2023** Freddie Mac, WEAI Annual Conference, Camp Resources XXIX, TWEEDS, AERE\@OSWEET  
+**2022** WEAI Annual Conference, SWELL, TWEEDS  
+**2021** Berkeley/Sloan Summer School in Environmental and Energy Economics  
+  
+
+## Honors and Awards  
+
+Kleinsorge Summer Research Fellowship 2022  
+Dale Underwood Outstanding Graduate Student Scholarship, 2020  
+Best 1st Year Econometrics Performance, 2020  
+First Year Fellowship, 2019-2020
+   
+
+## Skills 
+**Computing:** R, SQL, Julia, git  
+**Visual:** Markdown, LaTeX, Tableau  
+**Languages:** English, Spanish (intermediate)  
+  
+
+## Contact  
+**Email:** emmetts@uoregon.edu  
+**Website:** https://www.emmettsaulnier.com  
+**Github:** [emmettsaulnier](https://github.com/emmettsaulnier)
+
+
+## References 
+
+**Dr. Mark Colas**   
+Assistant Professor  
+University of Oregon  
+[mcolas@uoregon.edu](mailto:mcolas@uoregon.edu)  
+
+**Dr. Edward Rubin**   
+Assistant Professor  
+University of Oregon    
+[edwardr@uoregon.edu](mailto:edwardr@uoregon.edu)  
+
+**Dr. Eric Zou**  
+Assistant Professor  
+University of Michigan  
+[ericzou@umich.edu](mailto:ericzou@umich.edu) 
+
+
