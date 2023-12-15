@@ -7,7 +7,7 @@ knitr::include_graphics("images/emmett-caborder.jpeg")
 ```
 
 
-<img align="left" src="images/emmett-canyons.jpg" width = "250" HSPACE = "50" VSPACE = "10">
+<img align="left" src="images/emmett-canyons.jpg" width = "250" HSPACE = "30" VSPACE = "10">
 
 I grew up in Cincinnati, OH, before heading to the University of Virginia to study Economics and Commerce as an undergraduate. I went through college thinking I would work in business and eventually go back and get an MBA, but my economics classes fascinated me, so I took econ on as a second major. After graduating, I spent two years as a data scientist in Richmond, Va, for CarMax. I soon found myself wanting the tools necessary to do my own research, so I moved west and started a Ph.D. at the University of Oregon in Eugene.
 
