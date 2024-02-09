@@ -1,0 +1,2628 @@
+---
+title: "The Distributional Impacts of Climate Change across US Local Labor Markets"
+subtitle: "Emmett Saulnier (joint with John Morehouse)"
+author: "California Polytechnic State University, San Luis Obispo"
+date: "February 9th, 2024"
+output: 
+  xaringan::moon_reader:
+    css: ['default', 'metropolis', 'metropolis-fonts', 'my-css.css']
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      slideNumberFormat: ""
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE, 
+  cache = TRUE, 
+  fig.align='center',
+  warning = FALSE
+)
+
+pacman::p_load(
+  tidyverse, shiny, magrittr,latex2exp, here, data.table, fst,
+  fixest, qs, kableExtra
+)
+
+setFixest_etable(
+  markdown = TRUE
+)
+
+```
+
+
+# Differential exposure to climate change 
+
+
+<center>.bold[Change in .hi-pink[hot] days, 1990 to 2019]</center> 
+
+.pull-left[
+```{r, out.width = "100%"}
+
+knitr::include_graphics(
+  path = "figures/climate/prism-grid-hot-days-1990-2019.jpeg"
+)
+
+```
+]
+
+.pull-right[
+```{r, out.width = "100%"}
+
+knitr::include_graphics(
+  path = "figures/climate-change-vs-1990/perc-nonwhite-hot.jpeg"
+)
+
+```
+]
+
+--
+
+Disadvantaged HH's are more exposed. 
+- The avg non-white household experienced **5% more CDDs** in 1990  
+- CDDs **increased by 13% more** between 1990 and 2019 for non-white households relative to white households 
+
+
+???
+
+.footnote[
+- A .hi-pink[hot] day is average temp is above 90th percentile (~80F)
+- Differences taken between 5-year moving averages in 1990 and 2019 
+]
+
+---
+# Differential ability to adapt 
+
+.hi-pink[Disadvantaged households] may be less able to adapt to **climate change**   
+--
+
+- Low-income HH's have **larger barriers to migration**    
+--
+
+- **Energy Justice** literature shows black HH's spend more on energy relative to observably similar white HH's
+
+<center>**Conditional Black-White Energy Expenditure Gap**</center> 
+```{r out.width='50%'}
+knitr::include_graphics('figures/energy/energy-exp-gap.jpeg')
+```
+
+--
+
+**Q: What are distributional consequences of climate change given differential ability to adapt and differential exposure?**  
+
+???
+.footnote[e.g. Reames 2016, Lyubich 2020, Carley and Konisky 2020, Morehouse 2022.]
+
+---
+name: intro
+# What we are going to do...
+
+1. Create a .hi-pink[spatial equilibrium model] of US labor markets  
+
+  - Heterogeneous households choose **where to live** and **electricity, natural gas, and housing consumption**  
+  - Climate impacts energy demand and city's amenity value  
+  
+--
+
+1. Structurally .hi-pink[estimate the model]     
+
+  - Household data from the census and ACS  
+  - Historical climate data from PRISM  
+
+--
+
+3. Simulate .hi-pink[counterfactual climate] scenarios  
+
+  - To-date, climate damages are over **2x larger** for black vs white HH's  
+  - Black-white gap will **continue to grow** under emissions projections   
+  - Mainly driven by differences in exposure and ability to migrate 
+
+
+---
+# Contribution to the literature  
+
+Contribute to understanding of .hi-pink[heterogeneous effects] of climate change    
+- Dynamic spatial equilibrium model with adaptation through trade, sectoral switching, and migration .smallest[(Rudik et. al. 2022)]   
+- Hedonic estimates of the amenity value of climate .smallest[(Albouy 2016)]  
+- Effect of climate on residential energy use .smallest[(Auffhammer 2022)]  
+
+Our paper extends this work by focusing on **distributional impacts** and decomposing relative value of different **adaptation mechanisms**. 
+
+--
+
+We build on the .hi-pink[quantitative spatial equilibrium] literature  
+- Worker skill sorting and endogenous amenities .smallest[(Diamond 2016)]  
+- Moving costs in China .smallest[(Liang, Song, and Timmins 2020)] 
+- Emissions and land use restrictions .smallest[(Colas and Morehouse 2022)]    
+
+
+
+  
+
+---
+# Roadmap   
+
+.pull-left[
+#### .bold[ [Introduction](#intro) ]
+#### [<span style="color: #A8A8AA">**Model**</span>](#model) 
+#### [<span style="color: #A8A8AA">**Data**</span>](#data)
+#### [<span style="color: #A8A8AA">**Estimation**</span>](#estimation)
+#### [<span style="color: #A8A8AA">**Simulations**</span>](#sim-intro)
+#### [<span style="color: #A8A8AA">**Conclusion**</span>](#next-steps)
+]
+
+.pull-right[
+<center>Change in .hi-blue[cold] days</center>
+
+```{r, out.width = "80%", fig.align='center'}
+
+knitr::include_graphics(
+  path = "figures/climate/prism-grid-cold-days-1990-2019.jpeg"
+)
+
+```
+
+<center>Change in .hi-red[hot] days</center>
+
+```{r, out.width = "80%", fig.align='center'}
+
+knitr::include_graphics(
+  path = "figures/climate/prism-grid-hot-days-1990-2019.jpeg"
+)
+
+```
+
+]
+
+---
+# Roadmap   
+
+.pull-left[
+#### [<span style="color: #A8A8AA">**Introduction**</span>](#intro) 
+#### .bold[ [Model](#model) ]
+#### [<span style="color: #A8A8AA">**Data**</span>](#data)
+#### [<span style="color: #A8A8AA">**Estimation**</span>](#estimation)
+#### [<span style="color: #A8A8AA">**Simulations**</span>](#sim-intro)
+#### [<span style="color: #A8A8AA">**Conclusion**</span>](#next-steps)
+]
+
+.pull-right[
+<center>Change in .hi-blue[cold] days</center>
+
+```{r, out.width = "80%", fig.align='center'}
+
+knitr::include_graphics(
+  path = "figures/climate/prism-grid-cold-days-1990-2019.jpeg"
+)
+
+```
+
+<center>Change in .hi-red[hot] days</center>
+
+```{r, out.width = "80%", fig.align='center'}
+
+knitr::include_graphics(
+  path = "figures/climate/prism-grid-hot-days-1990-2019.jpeg"
+)
+
+```
+]
+
+---
+class: inverse, middle
+name: model
+# Model 
+## Overview   
+
+
+---
+# Main ingredients  
+
+
+Households choose .hi-pink[where to live] based on...  
+- Wages they could earn  
+- Rent they would have to pay  
+- Local amenities---includes both climate and non-climate factors   
+- Moving costs 
+
+--
+
+Conditional on location, they choose .hi-pink[electricity, gas, and housing demand]  
+- They use housing, electricity, and natural gas to produce **comfort**    
+- The comfort production function is **affected by climate**
+- Allow for heterogeneity in comfort production technology across demographic groups  
+
+--
+
+Wages and rents **endogenously adjust** based on a city's population.  
+
+
+---
+# Key intuition  
+
+### Consider Jacksonville, FL as an example  
+
+--
+
+There are now more hot days than there were in the 80's
+
+```{r, fig.dim = c(6*1.618, 6), out.width = "80%"}
+
+prism_cbsa_daily_dt = 
+  read.fst(
+    path = 'data/prism-cbsa-daily-dt.fst',
+    as.data.table = TRUE
+  )[,
+    period := fcase(
+      time < ymd('1991-01-01'), '1990',
+      time >= ymd('2015-01-01'), '2019'
+    )
+  ]
+jacksonville_temp_distr = 
+  ggplot(
+    prism_cbsa_daily_dt[cbsa_fip == '27260' & !is.na(period) & variable == 'tmean'], 
+    aes(x = (value*(9/5) + 32), fill = period)
+  ) + 
+  geom_density(alpha = 0.3, color = NA) + 
+  scale_x_continuous(
+    name = 'Mean Temperature (F)',
+    breaks = seq(20, 90, 5)
+  ) + 
+  scale_fill_brewer(palette = 'Dark2', name = 'Period (5 year avg)') + 
+  scale_y_continuous(
+    name = "Number of Days Annually", 
+    breaks = seq(0, 80, by = 20)/(365*5),
+    labels = seq(0, 80, by = 20)
+  ) + 
+  theme_minimal(base_size = 20) + 
+  theme(legend.position = 'bottom')
+jacksonville_temp_distr
+
+```
+
+
+---
+# Key intuition  
+
+### Consider Jacksonville, FL as an example  
+
+There are now more hot days than there were in the 80's
+
+- **Amenities decrease** relative to other cities    
+- **More costly to produce comfort** as HH's use A/C more intensely     
+
+--
+
+$\implies$ conditional on living in Jacksonville, utility has decreased.  
+
+--
+
+- Some households **migrate**, equilibrium wages and rents adjust    
+
+--
+
+### Mechanisms that could cause .pink[unequal distribution]  
+
+1. **Greater exposure to climate change** based on *ex-ante* location  
+
+--
+1. **Moving costs are higher**, more difficult migrate to mitigate welfare loss  
+
+--
+1. **Comfort costs are higher**, may be more sensitive to climate     
+
+
+
+---
+class: inverse, middle
+name: model-households
+# Model 
+## Household Choices    
+
+
+---
+# Household preferences   
+
+Household $i$ of demographic group $d$ living in city $j$ gets utility from a composite $X$, "comfort at dwelling" $\mathcal{C}$, and location-specific amenities $\mathbb{A}$. 
+
+$$U_{ij} = X^{\alpha_d^X} \mathcal{C}_{dj}^{\alpha_d^c}\exp(\mathbb{A}_{ij})$$  
+
+--
+
+**Amenities** are affected by .hi-pink[climate variables], moving costs, a shared, unobservable component, and an idiosyncratic taste shock
+
+$$\mathbb{A}_{ij} = \color{#EC7662}{\alpha^Z_d \cdot Z_{j}} + g(j,\boldsymbol{b}_i) + \xi_{dj}  + \sigma_d\varepsilon_{ij}$$
+
+---
+# Household preferences   
+
+Household $i$ of demographic group $d$ living in city $j$ gets utility from a composite $X$, "comfort at dwelling" $\mathcal{C}$, and location-specific amenities $\mathbb{A}$. 
+
+$$U_{ij} = X^{\alpha_d^X} \mathcal{C}_{dj}^{\alpha_d^c}\exp(\mathbb{A}_{ij})$$  
+
+
+**Amenities** are affected by climate variables, .hi-pink[moving costs], a shared, unobservable component, and an idiosyncratic taste shock
+
+$$\mathbb{A}_{ij} = \alpha^Z_d \cdot Z_{j} + \color{#EC7662}{g(j,\boldsymbol{b}_i)} + \xi_{dj}  + \sigma_d\varepsilon_{ij}$$
+
+
+---
+# Household comfort
+
+Households produce .hi-blue[comfort] using .hi-purple[energy] $\color{#9370DB}{\mathcal{E}}$ and housing $H$ 
+
+$$\color{#4682B4}{\mathcal{C}(H,\mathcal{E}|d,j)} = \left(\theta^H_{dj}H^{\rho_c} + \theta^\mathcal{E}_{dj}\color{#9370DB}{\mathcal{E}}^{\rho_c} \right)^{1/\rho_c}$$
+
+--
+.hi-purple[Energy] $\color{#9370DB}{\mathcal{E}}$ aggregates .hi-yellow[electricity] $\color{#FFCC77}{E}$ and .hi-green[natural gas] $\color{#57754D}{G}$.
+ 
+$$\color{#9370DB}{\mathcal{E}(E,G|d,j)} = \left(\theta^E_{dj} \color{#FFCC77}{E}^{\rho_\mathcal{E}} + \theta^G_{dj}\color{#57754D}{G}^{\rho_\mathcal{E}} \right)^{1/\rho_\mathcal{E}}$$
+--
+
+**Climate impacts the production of .hi-blue[comfort]** through $\theta^m_{dj}$, where $\theta^m_{dj} = f_m(Z_j)$ for $m \in \{E,G\}$, where $Z_j$ is a vector of climate variables in city $j$. 
+
+---
+# The Price of Comfort  
+
+.footnote[[[details]](#energy-cost-min)]
+
+We can solve two, nested **cost-minimzation** problems...
+
+1. Households pick the cost-minimizing combination of .hi-yellow[electricity] and .hi-green[gas] to produce a given level of .hi-purple[energy]  
+
+--
+1. Then pick the cost-minimizing combination of housing and .hi-purple[energy] to produce a given level of .hi-blue[comfort]    
+
+--
+
+The result is the unit cost function for .hi-blue[comfort], or the .hi-blue[price of comfort] 
+
+$$\color{#4682B4}{P^\mathcal{C}_{dj}} = \left({\theta^H_{dj}}^{\sigma_c} {P^H_{j}}^{1-\sigma_c}+ {\theta^\mathcal{E}_{dj}}^{\sigma_c}{\color{#9370DB}{P^\mathcal{E}_{dj}}}^{1-\sigma_c}\right)^{\frac{1}{1-\sigma_c}}$$
+
+
+where $P^H_{j}$ is the price of housing (rent) and $\color{#9370DB}{P^\mathcal{E}_{dj}}$ is a similarly-defined unit cost function for energy, $\color{#9370DB}{\mathcal{E}}$. 
+
+
+
+
+---
+name: labor-supply
+# Labor supply  
+
+.footnote[ [[details]](#labor-supply-details) ]
+
+#### Indirect utility function  
+Conditional on choosing city $j$, household $i$ gets indirect utility $V_{ij}$, as
+
+$$\log V_{ij} =\tilde{\alpha}_{d}\log(W_{dj}) - \alpha_d^\mathcal{C} \log(P_{dj}^\mathcal{C}) + \alpha^Z_d \cdot Z_{j} + g(j,\boldsymbol{b}_i) +\xi_{dj}+ \sigma_d\varepsilon_{ij}$$
+
+---
+# Labor supply  
+
+.footnote[ [[details]](#labor-supply-details) ]
+
+#### Indirect utility function  
+Conditional on choosing city $j$, household $i$ gets indirect utility $V_{ij}$, as
+
+$$\log V_{ij} =\color{#EC7662}{\tilde{\alpha}_{d}\log(W_{dj})} - \alpha_d^\mathcal{C} \log(P_{dj}^\mathcal{C}) + \alpha^Z_d \cdot Z_{j} + g(j,\boldsymbol{b}_i) +\xi_{dj}+ \sigma_d\varepsilon_{ij}$$
+
+- $\color{#EC7662}{W_{dj}}$ are wages for demographic group $d$ in city $j$  
+
+---
+# Labor supply  
+
+.footnote[ [[details]](#labor-supply-details) ]
+
+#### Indirect utility function  
+Conditional on choosing city $j$, household $i$ gets indirect utility $V_{ij}$, as
+
+$$\log V_{ij} =\tilde{\alpha}_{d}\log(W_{dj}) - \color{#EC7662}{\alpha_d^\mathcal{C} \log(P_{dj}^\mathcal{C})} + \alpha^Z_d \cdot Z_{j} + g(j,\boldsymbol{b}_i) +\xi_{dj}+ \sigma_d\varepsilon_{ij}$$
+
+- $W_{dj}$ are wages for demographic group $d$ in city $j$  
+- $\color{#EC7662}{P_{dj}^\mathcal{C}}$ is the price of comfort, a function of climate  
+
+---
+# Labor supply  
+
+.footnote[ [[details]](#labor-supply-details) ]
+
+#### Indirect utility function  
+Conditional on choosing city $j$, household $i$ gets indirect utility $V_{ij}$, as
+
+$$\log V_{ij} =\tilde{\alpha}_{d}\log(W_{dj}) - \alpha_d^\mathcal{C} \log(P_{dj}^\mathcal{C}) + \color{#EC7662}{\alpha^Z_d \cdot Z_{j}} + g(j,\boldsymbol{b}_i) +\xi_{dj}+ \sigma_d\varepsilon_{ij}$$
+
+- $W_{dj}$ are wages for demographic group $d$ in city $j$  
+- $P_{dj}^\mathcal{C}$ is the price of comfort, a function of climate  
+- $\color{#EC7662}{Z_j}$ is a vector of climate variables in city $j$  
+
+---
+# Labor supply  
+.footnote[ [[details]](#labor-supply-details) ]
+
+#### Indirect utility function  
+Conditional on choosing city $j$, household $i$ gets indirect utility $V_{ij}$, as
+
+$$\log V_{ij} =\tilde{\alpha}_{d}\log(W_{dj}) - \alpha_d^\mathcal{C} \log(P_{dj}^\mathcal{C}) + \alpha^Z_d \cdot Z_{j} + \color{#EC7662}{g(j,\boldsymbol{b}_i)} +\xi_{dj}+ \sigma_d\varepsilon_{ij}$$
+
+- $W_{dj}$ are wages for demographic group $d$ in city $j$  
+- $P_{dj}^\mathcal{C}$ is the price of comfort, a function of climate  
+- $Z_j$ is a vector of climate variables in city $j$  
+- $\color{#EC7662}{g(j, \boldsymbol{b}_i)}$ are moving costs that depend on birth-state $b^{st}_i$  
+$$g(j, \boldsymbol{b}_i) = \gamma_d^{st} \mathbb{I}\left(j \in b^{st}_i\right) + \gamma_d^{\text{dist}} \phi \left(j,b^{st}_i\right) + \gamma_d^{\text{dist2}} \phi^2\left(j,b^{st}_i\right)$$
+
+---
+# Labor supply  
+.footnote[ [[details]](#labor-supply-details) ]
+
+#### Indirect utility function  
+Conditional on choosing city $j$, household $i$ gets indirect utility $V_{ij}$, as
+
+$$\log V_{ij} =\tilde{\alpha}_{d}\log(W_{dj}) - \alpha_d^\mathcal{C} \log(P_{dj}^\mathcal{C}) + \alpha^Z_d \cdot Z_{j} + g(j,\boldsymbol{b}_i) +\color{#EC7662}{\xi_{dj}}+ \sigma_d\varepsilon_{ij}$$
+
+- $W_{dj}$ are wages for demographic group $d$ in city $j$  
+- $P_{dj}^\mathcal{C}$ is the price of comfort, a function of climate  
+- $Z_j$ is a vector of climate variables in city $j$  
+- $g(j, \boldsymbol{b}_i)$ are moving costs that depend on birth-state $b^{st}_i$  
+$$g(j, \boldsymbol{b}_i) = \gamma_d^{st} \mathbb{I}\left(j \in b^{st}_i\right) + \gamma_d^{\text{dist}} \phi \left(j,b^{st}_i\right) + \gamma_d^{\text{dist2}} \phi^2\left(j,b^{st}_i\right)$$  
+- $\color{#EC7662}{\xi_{dj}}$ are unobserved amenities in city $j$ shared within dem group $d$     
+
+---
+# Labor supply  
+.footnote[ [[details]](#labor-supply-details) ]
+
+#### Indirect utility function  
+Conditional on choosing city $j$, household $i$ gets indirect utility $V_{ij}$, as
+
+$$\log V_{ij} =\tilde{\alpha}_{d}\log(W_{dj}) - \alpha_d^\mathcal{C} \log(P_{dj}^\mathcal{C}) + \alpha^Z_d \cdot Z_{j} + g(j,\boldsymbol{b}_i) + \xi_{dj}+ \color{#EC7662}{\sigma_d\varepsilon_{ij}}$$
+
+- $W_{dj}$ are wages for demographic group $d$ in city $j$  
+- $P_{dj}^\mathcal{C}$ is the price of comfort, a function of climate  
+- $Z_j$ is a vector of climate variables in city $j$  
+- $g(j, \boldsymbol{b}_i)$ are moving costs that depend on birth-state $b^{st}_i$  
+$$g(j, \boldsymbol{b}_i) = \gamma_d^{st} \mathbb{I}\left(j \in b^{st}_i\right) + \gamma_d^{\text{dist}} \phi \left(j,b^{st}_i\right) + \gamma_d^{\text{dist2}} \phi^2\left(j,b^{st}_i\right)$$  
+- $\xi_{dj}$ are unobserved amenities in city $j$ shared within dem group $d$     
+- $\color{#EC7662}{\varepsilon_{ij}}$ are idiosyncratic preferences for city $j$, with variance $\sigma_d$  
+
+---
+# Labor supply  
+
+
+#### Indirect utility function  
+Conditional on choosing city $j$, household $i$ gets indirect utility $V_{ij}$, as
+
+$$\log V_{ij} =\tilde{\alpha}_{d}\log(W_{dj}) - \alpha_d^\mathcal{C} \log(P_{dj}^\mathcal{C}) + \alpha^Z_d \cdot Z_{j} + g(j,\boldsymbol{b}_i) + \xi_{dj}+ \sigma_d\varepsilon_{ij}$$
+
+- $W_{dj}$ are wages for demographic group $d$ in city $j$  
+- $P_{dj}^\mathcal{C}$ is the price of comfort, a function of climate  
+- $Z_j$ is a vector of climate variables in city $j$  
+- $g(j, \boldsymbol{b}_i)$ are moving costs that depend on birth-state $b^{st}_i$  
+$$g(j, \boldsymbol{b}_i) = \gamma_d^{st} \mathbb{I}\left(j \in b^{st}_i\right) + \gamma_d^{\text{dist}} \phi \left(j,b^{st}_i\right) + \gamma_d^{\text{dist2}} \phi^2\left(j,b^{st}_i\right)$$  
+- $\xi_{dj}$ are unobserved amenities in city $j$ shared within dem group $d$     
+- $\varepsilon_{ij}$ are idiosyncratic preferences for city $j$, with variance $\sigma_d$  
+
+
+Households pick the city which gives them the .hi-pink[highest indirect utility]  
+
+
+---
+# Labor supply  
+
+
+#### Indirect utility function  
+Conditional on choosing city $j$, household $i$ gets indirect utility $V_{ij}$, as
+
+$$\log V_{ij} =\tilde{\alpha}_{d}\log(W_{dj}) - \color{#EC7662}{\alpha_d^\mathcal{C} \log(P_{dj}^\mathcal{C})} + \color{#EC7662}{\alpha^Z_d \cdot Z_{j}} + g(j,\boldsymbol{b}_i) + \xi_{dj}+ \sigma_d\varepsilon_{ij}$$
+
+- $W_{dj}$ are wages for demographic group $d$ in city $j$  
+- $P_{dj}^\mathcal{C}$ is the price of comfort, a function of climate  
+- $Z_j$ is a vector of climate variables in city $j$  
+- $g(j, \boldsymbol{b}_i)$ are moving costs that depend on birth-state $b^{st}_i$  
+$$g(j, \boldsymbol{b}_i) = \gamma_d^{st} \mathbb{I}\left(j \in b^{st}_i\right) + \gamma_d^{\text{dist}} \phi \left(j,b^{st}_i\right) + \gamma_d^{\text{dist2}} \phi^2\left(j,b^{st}_i\right)$$  
+- $\xi_{dj}$ are unobserved amenities in city $j$ shared within dem group $d$     
+- $\varepsilon_{ij}$ are idiosyncratic preferences for city $j$, with variance $\sigma_d$  
+
+
+Climate affects utility through .hi-pink[comfort prices] and .hi-pink[climate amenities]
+
+---
+class: inverse, middle
+name: model-housing-labor
+# Model 
+## Housing supply and Firms    
+
+---
+name: housing-supply
+# Housing supply  
+
+Each city is characterized by a long-run, upward sloping rental supply curve,
+
+$$\log(P^H_j) = a_j + \zeta_j\log(H_j)$$
+- $a_j$ captures variation in construction costs   
+- $\zeta_j$ is the inverse housing supply elasticity, reflecting variation in the amount of land available for development and land-use restrictions  
+- $H_j$ is aggregate housing demand in city $j$   
+
+.footnote[ [[details]](#housing-supply-details) ]
+
+---
+name: firms
+# Firms  
+
+Firms producing the output good $Y$ using labor $\mathcal{L}$ with capital $K$ in perfectly competitive markets    
+
+--
+
+\begin{align}
+    Y_{j} = B_jK_j^{\alpha}\mathcal{L}_j^{1-\alpha}.
+\end{align}
+
+ - $B_j$ is city-specific total factor productivity 
+ - $\mathcal{L}_j$ is a CES aggregator of college $S$ and non-college $L$ educated labor  
+
+$$\mathcal{L}_j = \left(\lambda_jS_j^{\rho_l} + (1-\lambda_j)L_j^{\rho_l}\right)^{\frac{1}{\rho_l}}$$
+
+--
+
+We can solve the firm's profit maximization problem to derive labor demand curves 
+
+.footnote[ [[details]](#firms-details) ] 
+
+
+---
+# Roadmap   
+
+.pull-left[
+#### [<span style="color: #A8A8AA">**Introduction**</span>](#intro) 
+#### .bold[ [Model](#model) ]
+#### [<span style="color: #A8A8AA">**Data**</span>](#data)
+#### [<span style="color: #A8A8AA">**Estimation**</span>](#estimation)
+#### [<span style="color: #A8A8AA">**Simulations**</span>](#sim-intro)
+#### [<span style="color: #A8A8AA">**Conclusion**</span>](#next-steps)
+]
+
+.pull-right[
+<center>Change in .hi-blue[cold] days</center>
+
+```{r, out.width = "80%", fig.align='center'}
+
+knitr::include_graphics(
+  path = "figures/climate/prism-grid-cold-days-1990-2019.jpeg"
+)
+
+```
+
+<center>Change in .hi-red[hot] days</center>
+
+```{r, out.width = "80%", fig.align='center'}
+
+knitr::include_graphics(
+  path = "figures/climate/prism-grid-hot-days-1990-2019.jpeg"
+)
+
+```
+]
+
+
+---
+# Roadmap   
+
+.pull-left[
+#### [<span style="color: #A8A8AA">**Introduction**</span>](#intro) 
+#### [<span style="color: #A8A8AA">**Model**</span>](#model)
+#### .bold[ [Data](#data) ]
+#### [<span style="color: #A8A8AA">**Estimation**</span>](#estimation)
+#### [<span style="color: #A8A8AA">**Simulations**</span>](#sim-intro)
+#### [<span style="color: #A8A8AA">**Conclusion**</span>](#next-steps)
+]
+
+.pull-right[
+<center>Change in .hi-blue[cold] days</center>
+
+```{r, out.width = "80%", fig.align='center'}
+
+knitr::include_graphics(
+  path = "figures/climate/prism-grid-cold-days-1990-2019.jpeg"
+)
+
+```
+
+<center>Change in .hi-red[hot] days</center>
+
+```{r, out.width = "80%", fig.align='center'}
+
+knitr::include_graphics(
+  path = "figures/climate/prism-grid-hot-days-1990-2019.jpeg"
+)
+
+```
+]
+
+
+
+
+---
+class: inverse, middle
+name: data
+# Data 
+
+
+
+---
+# Data and Estimation 
+
+
+### We structurally estimate the model using... 
+
+1. **Household Data**: Repeated cross sections of the 1990 and 2000 census and 2010 and 2019 5-year ACS   
+2. **Climate Data**: Daily temperature and precipitation from PRISM and natural disaster risk from the First Street Foundation    
+3. **Energy Prices**: Annual, state average residential electricity and gas prices from the EIA  
+
+---
+name: household-data
+# Household data  
+
+We use the 1990, 2000 census and 2010, 2019 5-year ACS, for HH location, demographics, income, energy, and housing expenditure. 
+
+--
+
+### Market level indices  
+We construct indices for rent, wages, and energy.   
+
+  - **Rent**: We decompose housing expenditure into rent and housing quantity by regressing housing expenditure on a city-year fixed effect and house characteristics .smallest[[[details]](#housing-indices-details)]  
+--
+
+  - **Wages**: We perform a similar process for wages, additionally adjusting for unemployment .smallest[[[details]](#wage-indices-details)]  
+--
+
+  - **Energy**: We divide energy expenditure by state level prices from the EIA, then control for observable characteristics .smallest[[[details]](#energy-indices-details)]  
+
+
+---
+name: climate-data
+# Climate data 
+
+### PRISM historical climate data  
+- Average daily temperature and total precipitation for the continental US on a 4km grid from 1981 to 2019  
+- Take population weighted averages of grid cells within each CBSA
+- Calculate annual and 5-year moving average measures of climate 
+
+--
+
+### First Street Foundation   
+
+- State of the art disaster risk modeling for fire and flood  
+- Assign individual properties a risk score between 1 and 10, with 1 being least at-risk and 10 being the most at-risk  
+- Currently, we have zip-code-level counts of properties at each score, integrated over potential (discounted) future climate scenarios  
+
+
+
+---
+# Spatial variation in FSF data
+
+
+.pull-left[
+  <center>.bold[Mean Fire Risk]</center>
+```{r, out.width = "100%"}
+knitr::include_graphics("figures/climate/fsf-mean-score-fire.jpeg")
+```
+]
+
+
+.pull-right[
+  <center>.bold[Mean Flood Risk]</center>
+```{r, out.width = "100%"}
+knitr::include_graphics("figures/climate/fsf-mean-score-flood.jpeg")
+```
+]
+
+
+
+
+---
+# Roadmap   
+
+.pull-left[
+#### [<span style="color: #A8A8AA">**Introduction**</span>](#intro) 
+#### [<span style="color: #A8A8AA">**Model**</span>](#model)
+#### .bold[ [Data](#data) ]
+#### [<span style="color: #A8A8AA">**Estimation**</span>](#estimation)
+#### [<span style="color: #A8A8AA">**Simulations**</span>](#sim-intro)
+#### [<span style="color: #A8A8AA">**Conclusion**</span>](#next-steps)
+]
+
+.pull-right[
+<center>Change in .hi-blue[cold] days</center>
+
+```{r, out.width = "80%", fig.align='center'}
+
+knitr::include_graphics(
+  path = "figures/climate/prism-grid-cold-days-1990-2019.jpeg"
+)
+
+```
+
+<center>Change in .hi-red[hot] days</center>
+
+```{r, out.width = "80%", fig.align='center'}
+
+knitr::include_graphics(
+  path = "figures/climate/prism-grid-hot-days-1990-2019.jpeg"
+)
+
+```
+]
+
+---
+# Roadmap   
+
+.pull-left[
+#### [<span style="color: #A8A8AA">**Introduction**</span>](#intro) 
+#### [<span style="color: #A8A8AA">**Model**</span>](#model)
+#### [<span style="color: #A8A8AA">**Data**</span>](#data)
+#### .bold[ [Estimation](#estimation) ]
+#### [<span style="color: #A8A8AA">**Simulations**</span>](#sim-intro)
+#### [<span style="color: #A8A8AA">**Conclusion**</span>](#next-steps)
+]
+
+.pull-right[
+<center>Change in .hi-blue[cold] days</center>
+
+```{r, out.width = "80%", fig.align='center'}
+
+knitr::include_graphics(
+  path = "figures/climate/prism-grid-cold-days-1990-2019.jpeg"
+)
+
+```
+
+<center>Change in .hi-red[hot] days</center>
+
+```{r, out.width = "80%", fig.align='center'}
+
+knitr::include_graphics(
+  path = "figures/climate/prism-grid-hot-days-1990-2019.jpeg"
+)
+
+```
+]
+
+---
+class: inverse, middle
+name: estimation
+# Estimation  
+
+???
+
+### Brief estimation overview  
+
+1. **Comfort Production Function**: Estimate parameters of comfort production function using relative electricity, gas, and housing demand.    
+2. **Moving Costs and Mean Utilities**: Use maximum likelihood estimation targetting the share of demographic group choosing each city.
+3. **Climate Amenities**: Decompose mean utilities with OLS. 
+
+---
+name: estimation-overview 
+# Estimation overview 
+
+We have to estimate the following...
+
+1. **Comfort parameters** *(Price of comfort)*: Relative demand functions   
+2. **Labor supply** *(Moving costs, climate amenities)*: Two-step BLP    
+3. **Labor demand** *(College and non-college wages)*: Calibrated .smallest[(Card 2010)]   
+4. **Housing supply** *(Elasticity of housing supply, city intercepts)*: Elasticities calibrated, then back out the intercepts .smallest[(Saiz 2010)] 
+
+
+--
+
+We'll focus on the parameters of the utility function. 
+
+.footnote[[[labor demand details]](#labor-demand-est-details) [[housing supply details]](#housing-supply-est-details)]
+
+
+---
+name: comfort-est
+# Comfort elasticities 
+
+Recall the .hi-purple[price of energy] and .hi-blue[price of comfort] 
+
+$$\color{#9370DB}{P^\mathcal{E}_{dj}} = \left({\theta^E_{dj}}^{\sigma_\mathcal{E}}{P^E_j}^{1-\sigma_\mathcal{E}} + {\theta^G_{dj}}^{\sigma_\mathcal{E}}{P^G_j}^{1-\sigma_\mathcal{E}}\right)^{\frac{1}{1-\sigma_\mathcal{E}}}\\
+\color{#4682B4}{P^\mathcal{C}_{dj}} = \left({\theta^H_{dj}}^{\sigma_c} {P^H_{j}}^{1-\sigma_c}+ {\theta^\mathcal{E}_{dj}}^{\sigma_c}{\color{#9370DB}{P^\mathcal{E}_{dj}}}^{1-\sigma_c}\right)^{\frac{1}{1-\sigma_c}}$$
+
+
+--
+
+We proceed in two steps... 
+1. Estimate $\sigma_\mathcal{E}$ and $\sigma_\mathcal{C}$ using relative demand functions, taking care of price-quantity endogeneity using first differences and supply-side shocks to electricity, gas, and housing prices .smallest[[[details]](#comfort-est-details)]  
+
+--
+1. Use data, estimated parameters, and a normalization to back out $\color{#FFCC77}{\log{\theta^E_{djt}}}$ and $\color{#57754D}{\log{\theta^G_{djt}}}$, regress these on climate variables 
+
+
+
+
+---
+# Effect of climate on comfort production  
+
+We parameterize $\theta$'s using $D_{\tau jt}$, the number of days at temperature $\tau$:  
+
+$$\color{#FFCC77}{\log{\theta^E_{djt}}} = \sum_\tau\kappa_E(\tau)D_{\tau jt} + \psi^E_j + \psi^E_d + \nu^E_{djt}\\ 
+\color{#57754D}{\log{\theta^G_{djt}}} = \sum_\tau\kappa_G(\tau)D_{\tau jt} + \psi^G_j + \psi^G_d + \nu^G_{djt}$$
+
+
+---
+# Effect of climate on comfort production  
+
+We parameterize $\theta$'s using $D_{\tau jt}$, the number of days at temperature $\tau$:  
+
+$$\color{#FFCC77}{\log{\theta^E_{djt}}} = \sum_\tau\color{#EC7662}{\kappa_E(\tau)}D_{\tau jt} + \psi^E_j + \psi^E_d + \nu^E_{djt}\\ 
+\color{#57754D}{\log{\theta^G_{djt}}} = \sum_\tau\color{#EC7662}{\kappa_G(\tau)}D_{\tau jt} + \psi^G_j + \psi^G_d + \nu^G_{djt}$$
+
+- $\color{#EC7662}{\kappa_m(\tau)}$ are cubic B-spline's, allowing for flexible, non-linear effect of an additional day at temperature $\tau$ on electricity and gas demand   
+
+---
+# Effect of climate on comfort production  
+
+We parameterize $\theta$'s using $D_{\tau jt}$, the number of days at temperature $\tau$:  
+
+$$\color{#FFCC77}{\log{\theta^E_{djt}}} = \sum_\tau\kappa_E(\tau)D_{\tau jt} + \color{#EC7662}{\psi^E_j} + \color{#EC7662}{\psi^E_d} + \nu^E_{djt}\\ 
+\color{#57754D}{\log{\theta^G_{djt}}} = \sum_\tau\kappa_G(\tau)D_{\tau jt} + \color{#EC7662}{\psi^G_j} + \color{#EC7662}{\psi^G_d} + \nu^G_{djt}$$
+
+- $\kappa_m(\tau)$ are cubic B-spline's, allowing for flexible, non-linear effect of an additional day at temperature $\tau$ on electricity and gas demand   
+- $\color{#EC7662}{\psi^m_j}$ and $\color{#EC7662}{\psi^m_d}$ are city and demographic group fixed effects   
+
+
+---
+name: kappas-main
+# Climate's effect on comfort production   
+
+<center>.bold[Effect of an additional day at temperature]</center> 
+<center>.small-it[Relative to a day at 65 degrees]</center>  
+
+.pull-left[
+
+<center>.hi-yellow[for electricity benefit]</center>
+```{r, out.width='100%', fig.align='center'}
+  knitr::include_graphics("figures/model/comfort/kappas-elec-bootstrap.jpeg")
+```
+
+]
+
+.pull-right[
+
+<center>.hi-green[for gas benefit]</center>
+```{r, out.width='100%', fig.align='center'}
+  knitr::include_graphics("figures/model/comfort/kappas-gas-bootstrap.jpeg")
+```
+
+]
+
+<br> 
+
+- Corresponds to marginal benefit of electricity or gas use  
+- Don't find evidence of heterogeneity, but with limited power .smallest[[[details]](#kappas-het)]    
+
+???
+
+CI calculated using a bootstrapping procedure with 10,000 draws, clustered by city-year.
+
+---
+# Estimating Labor Supply  
+
+We now estimate the remaining utility parameters. First, we define the .hi-pink[mean utility] associated with each city, 
+
+$$\color{#EC7662}{\delta_{djt}} = \beta_{e}^w\log(W_{djt}) + \beta_e^\mathcal{C}  \log(P_{djt}^c) + \beta^Z_e \cdot Z_{jt}+ \xi_{djt}$$
+
+---
+# Estimating Labor Supply  
+
+We now estimate the remaining utility parameters. First, we define the **mean utility** associated with each city, 
+
+$$\delta_{djt} = \beta_{e}^w\log(W_{djt}) + \beta_e^\mathcal{C}  \log(P_{djt}^c) + \beta^Z_e \cdot Z_{jt}+ \xi_{djt}$$
+
+We can then write probability of household $i$ choosing city $j$ as 
+
+
+$$\small P_{ijt}(\delta_{djt}; \boldsymbol{\gamma}_{dt}) = \frac{\exp\left( \delta_{djt} +  \tilde{\gamma}_{dt}^{st} \mathbb{I}\left(j \in b^{st}_i\right) + \tilde{\gamma}_{dt}^{\text{dist}} \phi \left(j,b^{st}_i\right) + \tilde{\gamma}_{dt}^{\text{dist2}} \phi^2\left(j,b^{st}_i\right)      \right)}{  \sum_{j'}  \exp\left( \delta_{dj't} +  \tilde{\gamma}_{dt}^{st} \mathbb{I}\left(j' \in b^{st}_i\right) + \tilde{\gamma}_{dt}^{\text{dist}} \phi \left(j',b^{st}_i\right) + \tilde{\gamma}_{dt}^{\text{dist2}} \phi^2\left(j',b^{st}_i\right)      \right)    }$$
+--
+
+Given these choice probabilities, the log-likelihood function is 
+
+$$LL(\delta_{djt}; \boldsymbol{\gamma}_{dt}) = \sum_{i}\sum_{j} \mathbb{I}_{idjt} \log(P_{ijt}(\delta_{djt}; \boldsymbol{\gamma}_{dt})),$$
+
+which we maximize by making guesses of $\boldsymbol{\gamma_{dt}}$ using the Nelder-Mead algorithm, recovering the $\delta_{djt}$'s using BLP contraction mapping. 
+
+
+???
+
+\noindent where $\beta_{e}^w = \frac{1}{\sigma_e}$, $\beta_e^\mathcal{C} = -\frac{\tilde{\alpha}_{e}^\mathcal{C}}{\sigma_e}$ and $\beta_e^Z = \frac{\alpha_e^Z}{\sigma_e}$.
+
+\noindent where the tildes over the parameters indicate they are normalized by the variance of the idiosyncratic preference shock, $\sigma_e$.
+
+We recover the $\delta_{dj}; \boldsymbol{\gamma}_d$ using the contraction mapping proposed in \cite{berry2004differentiated}.
+
+---
+# Moving cost parameter estimates    
+
+We can calculate **total moving costs** for each dem group and year as a function of distance with the estimated parameters, $\boldsymbol{\hat{\gamma}_{dt}}$. Here for 2019,   
+
+--
+
+```{r, out.width='65%', fig.align='center'}
+  knitr::include_graphics("figures/model/delta-decomp/mc-hist-2019.jpeg")
+```
+
+
+
+???
+
+We parameterize the moving cost function as  
+$$g(j, \boldsymbol{b}_i) = \gamma_d^{st} \mathbb{I}\left(j \in b^{st}_i\right) + \gamma_d^{\text{dist}} \phi \left(j,b^{st}_i\right) + \gamma_d^{\text{dist2}} \phi^2\left(j,b^{st}_i\right)$$
+
+---
+name: delta-decomp
+# Mean utility decomposition 
+
+We then decompose the mean utilities, $\delta_{djt}$, to estimate climate amenities  
+
+--
+1. Calibrate coefficients on $\small\log{W_{djt}}$ using **Diamond (2016)**
+2. Calibrate coefficients on $\small\log(P_{djt}^c)$ using **comfort expenditure shares**   
+3. Calculate residual, $\small\hat{\delta}_{djt} = \delta_{djt} - \beta_{e}^w\log(W_{djt}) + \beta_{djt}^\mathcal{C}  \log(P_{djt}^c)$  
+
+--
+4. Regress residual on 5-year average of climate variables, 
+
+$$\hat{\delta}_{djt} = \beta^Z_{1} \text{Fire}_j + \beta^Z_{2} \text{Flood}_j + \beta^Z_{3} \text{Precip}_{jt} + \beta^Z_{4} \text{No Rain}_{jt} + \\ \sum_\tau \beta^Z_5(\tau) D_{\tau jt} + \omega_d + \omega_t + \xi_{djt}$$
+
+---
+# Mean utility decomposition 
+
+We then decompose the mean utilities, $\delta_{djt}$, to estimate climate amenities  
+
+1. Calibrate coefficients on $\small\log{W_{djt}}$ using **Diamond (2016)**
+2. Calibrate coefficients on $\small\log(P_{djt}^c)$ using **comfort expenditure shares**   
+3. Calculate residual, $\small\hat{\delta}_{djt} = \delta_{djt} - \beta_{e}^w\log(W_{djt}) + \beta_{djt}^\mathcal{C}  \log(P_{djt}^c)$  
+4. Regress residual on 5-year average of climate variables, 
+
+$$\hat{\delta}_{djt} = \color{#EC7662}{\beta^Z_{1} \text{Fire}_j} + \color{#EC7662}{\beta^Z_{2} \text{Flood}_j} + \beta^Z_{3} \text{Precip}_{jt} + \beta^Z_{4} \text{No Rain}_{jt} + \\ \sum_\tau \beta^Z_5(\tau) D_{\tau jt} + \omega_d + \omega_t + \xi_{djt}$$
+
+- $\color{#EC7662}{\text{Fire}_j}$ and $\color{#EC7662}{\text{Flood}_j}$ are median fire and flood risk scores in city $j$  
+
+---
+# Mean utility decomposition 
+
+We then decompose the mean utilities, $\delta_{djt}$, to estimate climate amenities  
+
+1. Calibrate coefficients on $\small\log{W_{djt}}$ using **Diamond (2016)**
+2. Calibrate coefficients on $\small\log(P_{djt}^c)$ using **comfort expenditure shares**   
+3. Calculate residual, $\small\hat{\delta}_{djt} = \delta_{djt} - \beta_{e}^w\log(W_{djt}) + \beta_{djt}^\mathcal{C}  \log(P_{djt}^c)$  
+4. Regress residual on 5-year average of climate variables, 
+
+$$\hat{\delta}_{djt} = \beta^Z_{1} \text{Fire}_j + \beta^Z_{2} \text{Flood}_j + \color{#EC7662}{\beta^Z_{3} \text{Precip}_{jt}} + \color{#EC7662}{\beta^Z_{4} \text{No Rain}_{jt}} + \\ \sum_\tau \beta^Z_5(\tau) D_{\tau jt} + \omega_d + \omega_t + \xi_{djt}$$
+
+- $\text{Fire}_j$ and $\text{Flood}_j$ are median fire and flood risk scores in city $j$  
+- $\color{#EC7662}{\text{Precip}_{jt}}$ and $\color{#EC7662}{\text{No Rain}_{jt}}$ are total precip and Pr(<1mm of precip) in year $t$  
+
+---
+# Mean utility decomposition 
+
+We then decompose the mean utilities, $\delta_{djt}$, to estimate climate amenities  
+
+1. Calibrate coefficients on $\small\log{W_{djt}}$ using **Diamond (2016)**
+2. Calibrate coefficients on $\small\log(P_{djt}^c)$ using **comfort expenditure shares**   
+3. Calculate residual, $\small\hat{\delta}_{djt} = \delta_{djt} - \beta_{e}^w\log(W_{djt}) + \beta_{djt}^\mathcal{C}  \log(P_{djt}^c)$  
+4. Regress residual on 5-year average of climate variables, 
+
+$$\hat{\delta}_{djt} = \beta^Z_{1} \text{Fire}_j + \beta^Z_{2} \text{Flood}_j + \beta^Z_{3} \text{Precip}_{jt} + \beta^Z_{4} \text{No Rain}_{jt} + \\ \color{#EC7662}{\sum_\tau \beta^Z_5(\tau) D_{\tau jt}} + \omega_d + \omega_t + \xi_{djt}$$
+
+- $\text{Fire}_j$ and $\text{Flood}_j$ are median fire and flood risk scores in city $j$  
+- $\text{Precip}_{jt}$ and $\text{No Rain}_{jt}$ are total precip and Pr(<1mm of precip) in year $t$    
+- $\color{#EC7662}{\beta^Z_5(\tau)}$ is a cubic B-spline over days at temperature $\tau$, $D_{\tau jt}$  
+
+---
+# Mean utility decomposition 
+
+We then decompose the mean utilities, $\delta_{djt}$, to estimate climate amenities  
+
+1. Calibrate coefficients on $\small\log{W_{djt}}$ using **Diamond (2016)**
+2. Calibrate coefficients on $\small\log(P_{djt}^c)$ using **comfort expenditure shares**   
+3. Calculate residual, $\small\hat{\delta}_{djt} = \delta_{djt} - \beta_{e}^w\log(W_{djt}) + \beta_{djt}^\mathcal{C}  \log(P_{djt}^c)$  
+4. Regress residual on 5-year average of climate variables, 
+
+$$\hat{\delta}_{djt} = \beta^Z_{1} \text{Fire}_j + \beta^Z_{2} \text{Flood}_j + \beta^Z_{3} \text{Precip}_{jt} + \beta^Z_{4} \text{No Rain}_{jt} + \\ \sum_\tau \beta^Z_5(\tau) D_{\tau jt} + \color{#EC7662}{\omega_d} + \color{#EC7662}{\omega_t} + \xi_{djt}$$
+
+- $\text{Fire}_j$ and $\text{Flood}_j$ are median fire and flood risk scores in city $j$  
+- $\text{Precip}_{jt}$ and $\text{No Rain}_{jt}$ are total precip and Pr(<1mm of precip) in year $t$  
+- $\beta^Z_5(\tau)$ is a cubic B-spline over days at temperature $\tau$, $D_{\tau jt}$  
+- $\color{#EC7662}{\omega_d}$ and $\color{#EC7662}{\omega_t}$ are demographic group and year fixed effects  
+
+
+???
+
+
+First, we use estimates from \citet{diamondDeterminantsWelfareImplications2016} to calibrate $\beta^w_e$ to 5.22 for college and 4.15 for non-college. Additionally, we use the observed comfort expenditure shares for each city, demographic group, and year to calibrate $\beta^\mathcal{C}_{djt}$.  
+
+.smallest[[[Cobb Douglas Utility]](#labor-supply-details)  ]
+
+We can then estimate the effects of climate on the mean-utilities again using cubic B-splines to flexibly estimate the effect of climate on amenities, following \cite{albouyClimateAmenitiesClimate2016}. Specifically, $\beta^Z_e(\tau) = \sum_s \beta^Z_{e,s} S_s(\tau)$,  where $S_s(\tau)$ for $s\in \{1,\dots,S\}$ are the standard basis functions of a cubic B-spline of degree $S$. Our estimating equation is
+
+
+This is a parisimonuous, but rich characterization of the climate that allows us to capture the nuanced heterogeneity in the effects of climate change. 
+
+
+---
+name: climate-amenities-main
+# Climate's effect on amenities  
+
+
+<center>.bold[Effect of an additional day at temperature]</center> 
+<center>.small-it[Relative to a day at 65 degrees]</center>  
+
+```{r, out.width='90%', fig.align='center'}
+  knitr::include_graphics("figures/model/delta-decomp/climate-amenities-spline-7-full-bootstrap.jpeg")
+```
+
+
+- Robust to alternative model specifications .smallest[[[details]](#climate-amenities-alt)]
+- Limited evidence of heterogeneity .smallest[[[details]](#climate-amenities-het)]
+
+???
+
+Estimate $\hat{\delta}_{djt} = \sum_\tau\beta^Z_e(\tau)D_{\tau jt} + \text{FE}_d + \text{FE}_t + \xi_{djt}$ 
+
+.footnote[
+  CI calculated using a bootstrapping procedure with 10,000 draws, clustered by city and year. 
+]
+
+---
+name: climate-amenities-main-pt2
+# Climate's effect on amenities  
+
+```{r, results = 'asis'}
+  levels_mod_cal = qread('data/levels_mod_cal.qs')
+  etable(
+    levels_mod_cal[rhs ='spline'],
+    drop = 'spline',
+    digits = "r3",
+    digits.stats = "r2",
+    style.tex = style.tex(
+      depvar.title = "Dep. Var."
+    ),
+    markdown = TRUE,
+    dict = c(
+      delta_resid = 'Mean Utility Residual',
+      ppt_tot = 'Annual Precipitation',
+      ppt_below_1 = 'Pr(No Rain)',
+      median_score_fire = 'Median Fire Risk',
+      median_score_flood = 'Median Flood Risk',
+      dem_group = "Dem Group",
+      cbsa = "City",
+      year = "Year",
+      college = 'College',
+      non_college = 'Non-college'
+    ),
+    page.width = '15cm'
+  ) 
+
+```
+
+
+---
+# Climate amenity rankings in 2019 
+
+We can use the estimated coefficients to calculate the amenity value of climate in each city using actual climate data in 2019, 
+
+$$\boldsymbol{\hat{\beta}^Z} \cdot \boldsymbol{Z_{j,2019}}$$
+
+Here are the best/worst cities, ranked according to their climate amenities  
+
+---
+name: climate-amenity-rank
+# Climate amenity rankings in 2019 
+
+```{r results='asis'}
+  cat_rank_dt = read.fst(
+    "data/climate-amenities-rankings-2019-decomp.fst",
+    as.data.table = TRUE
+  )
+  # Table with rankings by category
+  kbl(
+    cat_rank_dt[c(1:6,15:20)],
+    "html",
+    linesep = ''
+  )|>
+  #add_header_above(
+  #  c("   " = 2, "Category Rankings" =4),
+  #  bold = TRUE
+  #) |>
+  row_spec(0,bold=TRUE) |>
+  #row_spec(2, background = '#FFCC77')|>
+  #column_spec(
+  #  3, 
+  #  color = "white",
+  #  background = spec_color(cat_rank_dt[c(1:6,15:20)]$Hot, scale_from = c(1,70)),
+  #)|>
+  pack_rows("Best Cities", 1,6) |>
+  pack_rows("Worst Cities", 7,12) 
+
+```
+
+
+.footnote[[[changes]](#climate-amenity-change)]
+
+
+---
+# Climate amenity rankings in 2019 
+
+```{r results='asis'}
+  cat_rank_dt = read.fst(
+    "data/climate-amenities-rankings-2019-decomp.fst",
+    as.data.table = TRUE
+  )
+  # Table with rankings by category
+  kbl(
+    cat_rank_dt[c(1:6,15:20)],
+    "html",
+    linesep = ''
+  )|>
+  #add_header_above(
+  #  c("   " = 2, "Category Rankings" =4),
+  #  bold = TRUE
+  #) |>
+  row_spec(0,bold=TRUE) |>
+  row_spec(1:2, background = '#FFCC77')|>
+  #column_spec(
+  #  3, 
+  #  color = "white",
+  #  background = spec_color(cat_rank_dt[c(1:6,15:20)]$Hot, scale_from = c(1,70)),
+  #)|>
+  pack_rows("Best Cities", 1,6) |>
+  pack_rows("Worst Cities", 7,12) 
+
+```
+
+
+---
+# Climate amenity rankings in 2019 
+
+```{r results='asis'}
+  cat_rank_dt = read.fst(
+    "data/climate-amenities-rankings-2019-decomp.fst",
+    as.data.table = TRUE
+  )
+  # Table with rankings by category
+  kbl(
+    cat_rank_dt[c(1:6,15:20)],
+    "html",
+    linesep = ''
+  )|>
+  #add_header_above(
+  #  c("   " = 2, "Category Rankings" =4),
+  #  bold = TRUE
+  #) |>
+  row_spec(0,bold=TRUE) |>
+  row_spec(c(6,8), background = '#FFCC77')|>
+  #column_spec(
+  #  3, 
+  #  color = "white",
+  #  background = spec_color(cat_rank_dt[c(1:6,15:20)]$Hot, scale_from = c(1,70)),
+  #)|>
+  pack_rows("Best Cities", 1,6) |>
+  pack_rows("Worst Cities", 7,12) 
+
+```
+
+.footnote[[[changes]](#climate-amenity-change)]
+
+---
+# Roadmap   
+
+.pull-left[
+#### [<span style="color: #A8A8AA">**Introduction**</span>](#intro) 
+#### [<span style="color: #A8A8AA">**Model**</span>](#model)
+#### [<span style="color: #A8A8AA">**Data**</span>](#data)
+#### .bold[ [Estimation](#estimation) ]
+#### [<span style="color: #A8A8AA">**Simulations**</span>](#sim-intro)
+#### [<span style="color: #A8A8AA">**Conclusion**</span>](#next-steps)
+]
+
+.pull-right[
+<center>Change in .hi-blue[cold] days</center>
+
+```{r, out.width = "80%", fig.align='center'}
+
+knitr::include_graphics(
+  path = "figures/climate/prism-grid-cold-days-1990-2019.jpeg"
+)
+
+```
+
+<center>Change in .hi-red[hot] days</center>
+
+```{r, out.width = "80%", fig.align='center'}
+
+knitr::include_graphics(
+  path = "figures/climate/prism-grid-hot-days-1990-2019.jpeg"
+)
+
+```
+]
+
+---
+# Roadmap   
+
+.pull-left[
+#### [<span style="color: #A8A8AA">**Introduction**</span>](#intro) 
+#### [<span style="color: #A8A8AA">**Model**</span>](#model)
+#### [<span style="color: #A8A8AA">**Data**</span>](#data)
+#### [<span style="color: #A8A8AA">**Estimation**</span>](#estimation)
+#### .bold[ [Simulations](#sim-intro) ]
+#### [<span style="color: #A8A8AA">**Conclusion**</span>](#next-steps)
+]
+
+.pull-right[
+<center>Change in .hi-blue[cold] days</center>
+
+```{r, out.width = "80%", fig.align='center'}
+
+knitr::include_graphics(
+  path = "figures/climate/prism-grid-cold-days-1990-2019.jpeg"
+)
+
+```
+
+<center>Change in .hi-red[hot] days</center>
+
+```{r, out.width = "80%", fig.align='center'}
+
+knitr::include_graphics(
+  path = "figures/climate/prism-grid-hot-days-1990-2019.jpeg"
+)
+
+```
+]
+
+
+---
+# Calculating welfare effects  
+
+.footnote[[[details]](#cv-details)]
+
+Household $i$'s compensating variation for the counterfactual climate, $\tilde{\mathbf{Z}}$ relative to the baseline climate, $\mathbf{Z}$
+
+$$CV_i = \left(\mathbb{E}[V_i(\tilde{\mathbf{Z}})] -  \mathbb{E}[V_i(\mathbf{Z})]\right)\times \frac{1}{\beta_{e}^w}$$
+
+
+---
+# Calculating welfare effects  
+
+.footnote[[[details]](#cv-details)]
+
+Household $i$'s compensating variation for the counterfactual climate, $\tilde{\mathbf{Z}}$ relative to the baseline climate, $\mathbf{Z}$
+
+$$CV_i = \left(\mathbb{E}[\color{#EC7662}{V_i(\tilde{\mathbf{Z}})}] -  \mathbb{E}[\color{#EC7662}{V_i(\mathbf{Z})}]\right)\times \frac{1}{\beta_{e}^w}$$
+
+- $\color{#EC7662}{V_i(\mathbf{Z})} = v_{ij}(\mathbf{Z},j^*)$ is household $i$'s indirect utility with climate $\mathbf{Z}$ evaluated at equilibrium choices $j^*$ and prices    
+
+---
+# Calculating welfare effects  
+
+.footnote[[[details]](#cv-details)]
+
+Household $i$'s compensating variation for the counterfactual climate, $\tilde{\mathbf{Z}}$ relative to the baseline climate, $\mathbf{Z}$
+
+$$CV_i = \left(\mathbb{E}[V_i(\tilde{\mathbf{Z}})] -  \mathbb{E}[V_i(\mathbf{Z})]\right)\times \color{#EC7662}{\frac{1}{\beta_{e}^w}}$$
+
+- $V_i(\mathbf{Z}) = v_{ij}(\mathbf{Z},j^*)$ is household $i$'s indirect utility with climate $\mathbf{Z}$ evaluated at equilibrium choices $j^*$ and prices    
+- Multiplying by $\color{#EC7662}{\frac{1}{\beta_{e}^w}}$ converts utility units into percent of income  
+
+
+---
+name: cv
+# Calculating welfare effects  
+
+.footnote[[[details]](#cv-details)]
+
+Household $i$'s compensating variation for the counterfactual climate, $\tilde{\mathbf{Z}}$ relative to the baseline climate, $\mathbf{Z}$
+
+$$CV_i = \left(\mathbb{E}[V_i(\tilde{\mathbf{Z}})] -  \mathbb{E}[V_i(\mathbf{Z})]\right)\times \frac{1}{\beta_{e}^w}$$
+
+- $V_i(\mathbf{Z}) = v_{ij}(\mathbf{Z},j^*)$ is household $i$'s indirect utility with climate $\mathbf{Z}$ evaluated at equilibrium choices $j^*$ and prices    
+- Multiplying by $\frac{1}{\beta_{e}^w}$ converts utility units into percent of income  
+- Can also multiply by wages to turn it into a dollar value  
+
+
+---
+name:sim-intro
+# Simulations   
+
+With the model estimated, we run two types of counterfactuals, 
+
+1. **Effect of Climate Change To-Date**: Plug in 1980's average climate to today's economy for effect of climate change thus far   
+--
+
+1. **Future Effects of Climate Change**: We use an ensemble of 26 climate models, downscaled and de-biased by the [Climate Impact Lab](https://planetarycomputer.microsoft.com/dataset/group/cil-gdpcir) to estimate the potential effects of future climate change .smallest[[[details]](#gdp-cil)]
+
+```{r, out.width = "50%", fig.align='center'}
+
+knitr::include_graphics(
+  path = "figures/cil-downscale.png"
+)
+
+```
+
+.footnote[[[model fit]](#model-fit)]
+
+
+---
+# Effect of climate change to-date
+
+### Compare present day climate with that of 1990
+
+```{r out.width='60%', fig.align='center'}
+knitr::include_graphics("figures/model/general-eqm/cv-ind-1990-2019.jpeg")
+```
+
+- Welfare loss for median black HH over **2x larger** than median white HH  
+- This amounts to damages of $750 vs $350 (or 1.7% vs 0.6% of income) 
+
+---
+# Effect of climate change to-date
+
+### Low-income households worse off  
+```{r out.width='70%', fig.align='center'}
+knitr::include_graphics("figures/model/general-eqm/inc-q10-cv-perc-5y.jpeg")
+```
+
+But black households are worse off relative to white households throughout the income distribution 
+
+---
+# Spatial variation 
+
+<center>**Compensating Variation**</center>
+```{r out.width='80%', fig.align='center'}
+knitr::include_graphics("figures/model/general-eqm/state_cv_perc_5y_1990_2019.jpeg")
+```
+
+
+---
+# What is driving the gap? 
+
+Recall we had three proposed mechanisms 
+1. **Greater exposure to climate change** based on *ex-ante* location  
+2. **Moving costs are higher**, more difficult migrate to mitigate welfare loss  
+3. **Comfort costs are higher**, may be more sensitive to climate    
+
+--
+
+We decompose these mechanisms with different simulations:  
+1. **Fixed Location**: Fix locations, rent, and wages
+
+--
+1. **Sorting**: Allow migration, but wages are fixed and rent is same as (2)  
+
+--
+1. **Full effects**: Allow migration, wages and rent endogenously adjust  
+
+--
+
+For each of these we look at welfare gap between black and white households both *on average* and *conditional on baseline city*. 
+
+
+---
+# Decomposing black-white welfare gap  
+
+
+```{r, results = 'asis'}
+  decomp_dt =
+    read.fst(
+      "data/fix-loc-decomp-1990-2019.fst",
+      as.data.table = TRUE
+    )[,':='(
+      decomp = fcase(
+        decomp == 'mech', 'Fixed Location',
+        decomp == 'sorting', 'Sorting, fixed prices',
+        decomp == 'general-eqm', 'Fully Flexible',
+        decomp == 'mech-ec', 'Fixed Location, adjust local rents'
+      ) |> factor(levels = c('Fixed Location','Fixed Location, adjust local rents','Sorting, fixed prices','Fully Flexible'))
+    )]
+  # First a table with the differences
+  base_decomp_kbl = 
+    dcast(
+      decomp_dt[
+        fixef != 'City x College' & 
+        decomp != 'Fixed Location, adjust local rents' & 
+        effect_from == 'both'
+      ],
+      formula = decomp ~ fixef + effect_from, 
+      value.var = 'Difference'
+    )|>
+    setnames(
+      old = c('decomp', 'None_both','City_both'),
+      new = c('Simulation', 'Unconditional','Within City')
+    ) |>
+    kbl(
+      format = "html",
+      digits = 2,
+      escape = FALSE,
+      booktabs = TRUE,
+      linesep = '',
+      position = 'H'
+    ) |>
+    #pack_rows("Fixed Location", 1, 2)|>
+    #pack_rows("Fixed Location, adjust comfort", 3,4)|>
+    #pack_rows("Sorting, fixed prices", 3, 4)|>
+    #pack_rows("Full Effects", 5, 6) |>
+    #add_header_above(c(' ' = 1, 'Climate Effect From' = 3), bold = TRUE, background = 'white') |>
+    row_spec(0, bold =TRUE)
+
+  base_decomp_kbl 
+
+```
+
+
+---
+# Decomposing black-white welfare gap  
+
+```{r, results = 'asis'}
+  # highlight the rows...
+  base_decomp_kbl |>
+  row_spec(1, background = '#FFCC77')
+```
+
+Black HHs worse off by **1.64%** of income on average with fixed locations and prices,    
+--
+but **this is entirely explained by differences in exposure**. 
+
+--
+
+- Suggests differences in price of comfort are not playing a role 
+
+---
+# Decomposing black-white welfare gap  
+
+```{r, results = 'asis'}
+  # highlight the rows...
+  base_decomp_kbl |>
+  row_spec(2, background = '#FFCC77')
+```
+
+Allowing households to sort **marginally reduces** the average black-white welfare gap, 
+--
+but the conditional welfare gap **grows to over 1%**.  
+
+--
+
+- Suggests white households are better able to migrate to mitigate welfare losses from climate change   
+
+---
+# Decomposing black-white welfare gap  
+
+```{r, results = 'asis'}
+  # highlight the rows...
+  base_decomp_kbl |>
+  row_spec(3, background = '#FFCC77')
+```
+
+Wage and rent adjustments in equilibrium dampen the welfare gaps. 
+
+---
+# Black-white gap grows with emissions  
+
+The **difference in welfare effects** of climate change between black and white HH's grows under future emissions scenarios. 
+
+--
+
+```{r out.width='100%', fig.align='center'}
+knitr::include_graphics("figures/model/general-eqm/ts-ej-gap.jpeg")
+```
+
+---
+# Roadmap   
+
+.pull-left[
+#### [<span style="color: #A8A8AA">**Introduction**</span>](#intro) 
+#### [<span style="color: #A8A8AA">**Model**</span>](#model)
+#### [<span style="color: #A8A8AA">**Data**</span>](#data)
+#### [<span style="color: #A8A8AA">**Estimation**</span>](#estimation)
+#### .bold[ [Simulations](#simulations) ]
+#### [<span style="color: #A8A8AA">**Conclusion**</span>](#next-steps)
+]
+
+.pull-right[
+<center>Change in .hi-blue[cold] days</center>
+
+```{r, out.width = "80%", fig.align='center'}
+
+knitr::include_graphics(
+  path = "figures/climate/prism-grid-cold-days-1990-2019.jpeg"
+)
+
+```
+
+<center>Change in .hi-red[hot] days</center>
+
+```{r, out.width = "80%", fig.align='center'}
+
+knitr::include_graphics(
+  path = "figures/climate/prism-grid-hot-days-1990-2019.jpeg"
+)
+
+```
+]
+
+---
+# Roadmap   
+
+.pull-left[
+#### [<span style="color: #A8A8AA">**Introduction**</span>](#intro) 
+#### [<span style="color: #A8A8AA">**Model**</span>](#model)
+#### [<span style="color: #A8A8AA">**Data**</span>](#data)
+#### [<span style="color: #A8A8AA">**Estimation**</span>](#estimation)
+#### [<span style="color: #A8A8AA">**Simulations**</span>](#sim-intro)
+#### .bold[ [Conclusion](#next-steps) ]
+]
+
+.pull-right[
+<center>Change in .hi-blue[cold] days</center>
+
+```{r, out.width = "80%", fig.align='center'}
+
+knitr::include_graphics(
+  path = "figures/climate/prism-grid-cold-days-1990-2019.jpeg"
+)
+
+```
+
+<center>Change in .hi-red[hot] days</center>
+
+```{r, out.width = "80%", fig.align='center'}
+
+knitr::include_graphics(
+  path = "figures/climate/prism-grid-hot-days-1990-2019.jpeg"
+)
+
+```
+]
+
+---
+name: next-steps  
+# Conclusions and next steps 
+
+### Significant distributional effects of climate change 
+- Black HHs have faced **2x larger** climate damages to-date  
+- Low income HHs are worse off relative to high-income HHs 
+- Largely driven by differences in **ex-ante** location and **ability to migrate**  
+
+--
+
+### Policy Implications 
+
+Our model is well suited to analyze the effectiveness of various policies at reducing the observed welfare gap. Policies that may be effective include,     
+- Reduce moving costs through housing or job search assistance    
+- Subsidies to relocate from high-climate-risk areas  
+
+--
+
+but, further work is required to determine the full implications.  
+
+
+
+???
+
+Distributional consequences of climate policy are important (e.g. Morehouse 2022), but we show that a **lack of climate policy** also has significant distributional consequences  
+
+---
+class: inverse, middle
+
+# Thank you    
+
+### Emmett Saulnier  
+PhD Candidate, University of Oregon  
+ORISE Research Fellow, US EPA Office of Water   
+[https://www.emmettsaulnier.com](https://www.emmettsaulnier.com)  
+
+### Other Research    
+
+[Vertical Migration Externalities](#vme) **RSUE, 2023**.   
+[Optimal Subsidies for Residential Solar](#solar-spatial) *under review*.   
+[Perinatal Health Effects of Herbicides](#gly) *working paper*.   
+[Means Tested Solar Subsidies](#solar-income) *in progress*.   
+[Valuing Water Quality: Benefits transfer with distance decay](#vme) *in progress*.
+
+
+---
+class: inverse, middle
+# Appendix 
+
+---
+name: appendix-toc
+# Appendix Table of Contents 
+
+.pull-left[
+- [**Research Portfolio**](#vme)
+- [**Model**](#model-appendix)
+  - [Comfort](#energy-cost-min-details)
+  - [Labor Supply](#labor-supply-details)
+  - [Firms](#firms-details)
+  - [Equilibrium](#eqm)
+- [**Data and Estimation**](#data-estimation-appendix)
+   - [Rent](#housing-indices-details), [Wage](#wage-indices-details), [Energy indices](#energy-indices-details)   
+   - [Comfort production](#kappas-het)
+   - [Amenities](#climate-amenities-alt)
+   - [Labor Demand Calibration](#labor-demand-est-details)
+   - [Housing Supply Calibration](#housing-supply-est-details)
+]
+.pull-right[
+- [**Simulation**](#sim-appendix)
+   - [CV Calculation Details](#cv-details)
+   - [CIL Data](#gdp-cil)
+   - [Model Fit](#model-fit-appendix)
+- [**Results**](#results-appendix)
+]
+
+---
+name: vme 
+# Vertical Migration Externalities  
+
+```{r vme, out.width = "60%"}
+knitr::include_graphics('figures/other-papers/colas-saulnier-map.jpeg')
+```
+
+
+.smaller[State income taxes affect federal income tax revenue by shifting the spatial distribution of households between high- and low-productivity states, thereby changing household incomes and tax payments.
+- We express these fiscal externalities in terms of estimable statistics 
+- The externalities vary widely by state from positive to negative 
+- Every dollar of California tax revenue raised decreases federal income tax revenue by 39 cents  ]
+
+
+---
+name: solar-spatial
+# Optimal Subsidies for Residential Solar  
+
+.pull-left[
+```{r os1, echo = FALSE, out.width="100%", fig.cap = "Optimal solar subsidies"}
+knitr::include_graphics("figures/other-papers/state-subsidy-opt-cost-neutral-welfare-max.jpeg")
+```
+]
+
+.pull-right[
+```{r os2, echo = FALSE, out.width="100%", fig.cap = "Installations as a % of optimal"}
+knitr::include_graphics("figures/other-papers/install-ratio-cost-neutral-welfare-max.jpeg")
+```
+]  
+
+
+.smallest[
+  We study the optimal design of spatially differentiated subsidies for residential solar panels. We build a structural model of solar panel demand and electricity production across the US and estimate the model by combining 1) remotely sensed data on residential solar panels, 2) power-plant-level data on hourly production and emissions, and 3) a state-of-the-art air pollution model. The current subsidies lead to severe spatial misallocation. National funding for subsidies under the current system exceeds the unconstrained optimum by seven-fold.
+]
+
+---
+name: solar-income
+# Means Tested Solar Subsidies  
+
+.pull-left[
+```{r ms1, echo = FALSE, out.width="100%"}
+knitr::include_graphics("figures/other-papers/inc-bin-log-kwh-cap-rel-ols.jpeg")
+```
+]
+
+.pull-right[
+```{r ms2, echo = FALSE, out.width="100%"}
+knitr::include_graphics("figures/other-papers/Opt_Sub_BincLatentInc1Sc1_Compare.png")
+```
+]  
+
+
+.smallest[
+  We study optimal design of income-contingent subsidies for residential solar panels. We document that the responsiveness of installation rates to subsidies is twice as high among low-income locations compared to high-income locations. Using these empirical elasticities, we estimate a model which embeds a solar panel installation decision into a dynamic consumption/savings framework with borrowing constraints. Counterfactual simulations reveal that switching to the production-maximizing income-contingent subsidies leads to a three-fold increase in public funds received by low-income households and a 4% increase in national solar production. Means-tested subsidies are justified on both equity and efficiency grounds.
+]
+
+
+---
+name: gly
+# Perinatal Health Effects of Glyphosate  
+
+.pull-left[
+```{r gly1, echo = FALSE, out.width="100%"}
+knitr::include_graphics("figures/other-papers/fig-co-fs-1-1.svg")
+```
+]
+
+.pull-right[
+```{r gly2, echo = FALSE, out.width="100%"}
+knitr::include_graphics("figures/other-papers/fig-rf-dbwt-1-1.svg")
+```
+]  
+
+**Research Question** What are the health effects of the most widely used herbicide in the world?   
+**Methods** Leverage the timing of the release of GM technology paired with spatial variation in the suitability for crops with GM varieties to estimate a causal effect of glyphosate on infant health.   
+**Main Finding** Glyphosate causes a decrease in birthweight and gestation length. These effects come from local spraying rather than that from upstream. Effects are concentrated among most at risk births. 
+
+
+---
+class: inverse, middle
+name: model-appendix
+# Model Appendix
+
+.footnote[[[return]](#appendix-toc)]
+
+
+---
+name: energy-cost-min
+# Household comfort   
+
+We can simplify the household's problem by .hi-pink[solving nested cost-minimization problems]. First, for energy production with elec and gas: .footnote[[[details]](#energy-cost-min-details)]
+
+$$\min_{E,G} P^E_jE + P^G_jG \quad \text{s.t.} \quad \bar{\mathcal{E}} = \left(\theta^E_{dj} E^{\rho_\mathcal{E}} + \theta^G_{dj}G^{\rho_\mathcal{E}} \right)^{1/\rho_\mathcal{E}}$$
+
+--
+
+The unit cost function gives the **price of energy**   
+
+$$P^\mathcal{E}_{dj} = \left({\theta^E_{dj}}^{\sigma_\mathcal{E}}{P^E_j}^{1-\sigma_\mathcal{E}} + {\theta^G_{dj}}^{\sigma_\mathcal{E}}{P^G_j}^{1-\sigma_\mathcal{E}}\right)^{\frac{1}{1-\sigma_\mathcal{E}}}$$
+
+Where $\sigma_\mathcal{E} = \frac{1}{1-\rho_\mathcal{E}}$ is the elasticity of substitution for electricity and gas.
+
+
+
+---
+name: comfort-cost-min
+# Household comfort
+We then solve the outer cost minimization problem for the price of comfort 
+
+.footnote[[[details]](#comfort-cost-min-details)]
+
+$$\min_{\mathcal{E},H} P^\mathcal{E}_{dj}\mathcal{E} + P^H_jH \quad \text{s.t.} \quad \bar{\mathcal{C}} = \left(\theta^H_{dj}H_{dj}^{\rho_c} + \theta^\mathcal{E}_{dj}\mathcal{E}_{dj}^{\rho_c}\right)^{1/\rho_c}$$
+--
+
+The unit cost function gives the .hi-blue[price of comfort]  
+
+$$\color{#4682B4}{P^\mathcal{C}_{dj}} = \left({\theta^H_{dj}}^{\sigma_c} {P^H_{j}}^{1-\sigma_c}+ {\theta^\mathcal{E}_{dj}}^{\sigma_c}{P^\mathcal{E}_{dj}}^{1-\sigma_c}\right)^{\frac{1}{1-\sigma_c}}$$
+Where $\sigma_c = \frac{1}{1-\rho_c}$ is the elasticity of substitution for housing and energy.
+
+
+--
+
+Once we have $\color{#4682B4}{P^\mathcal{C}_{dj}}$, we can solve the model like a typical Cobb-Douglas.   
+
+
+$$\max_{X,\mathcal{C}} X^{\alpha_d^X} \color{#4682B4}{\mathcal{C}}^{\alpha_d^C}\exp({\mathbb{A}_{ij}})  \quad \text{s.t.} \quad X + \color{#4682B4}{P^\mathcal{C}_{dj}} \mathcal{C}_{dj} = W_{dj}$$  
+
+---
+name: energy-cost-min-details
+# Cost minimization of energy
+
+$$\min_{E,G} P^E_jE + P^G_jG \quad \text{s.t.} \quad \bar{\mathcal{E}} = \left(\theta^E_{dj} E^{\rho_\mathcal{E}} + \theta^G_{dj}G^{\rho_\mathcal{E}} \right)^{1/\rho_\mathcal{E}}$$
+
+--
+
+The first-order conditions give us the following conditional demand functions for electricity $E^*$ and natural gas $G^*$, 
+
+$$E^*(\mathcal{E}| d, j) = M^\mathcal{E}_{dj}\left(P^G_{dj}\theta^E_{dj}\right)^{\sigma_\mathcal{E}} \mathcal{E} \qquad
+    G^*(\mathcal{E}| d, j) = M^\mathcal{E}_{dj}\left(P^E_j\theta^G_{dj}\right)^{\sigma_\mathcal{E}} \mathcal{E}$$
+
+where $M^\mathcal{E}_{dj} = \left( {\theta^E_{dj}}^{\sigma_\mathcal{E}}{P^G_{dj}}^{\sigma_\mathcal{E}-1} + {\theta^G_{dj}}^{\sigma_\mathcal{E}}{P^E_{dj}}^{\sigma_\mathcal{E}-1}\right)^{\frac{\sigma_\mathcal{E}}{1-\sigma_\mathcal{E}}}$.  
+
+--
+
+  The unit cost function gives the "price of energy"   
+
+$$P^\mathcal{E}_{dj} = \left({\theta^E_{dj}}^{\sigma_\mathcal{E}}{P^E_j}^{1-\sigma_\mathcal{E}} + {\theta^G_{dj}}^{\sigma_\mathcal{E}}{P^G_j}^{1-\sigma_\mathcal{E}}\right)^{\frac{1}{1-\sigma_\mathcal{E}}}$$
+which we can then use to solve the outer nest, $\mathcal{C}$. .smallest[[[return]](#energy-cost-min)]
+
+
+---
+name: comfort-cost-min-details
+# Cost minimization of comfort
+
+$$\min_{\mathcal{E},H} P^\mathcal{E}_j\mathcal{E} + P^H_jH \quad \text{s.t.} \quad \bar{\mathcal{C}} = \left(H_{dj}^{\rho_c} + \theta^\mathcal{E}_{dj}\mathcal{E}_{dj}^{\rho_c}\right)^{1/\rho_c}$$
+
+--
+
+The first-order conditions give us the following conditional demand functions for energy $\mathcal{E}^*$ and housing $H^*$, 
+
+$$H^*(C| d, j) = M^c_{dj}\left(P^\mathcal{E}_{dj}\right)^{\sigma_c} \mathcal{C}_{dj} \qquad
+\mathcal{E}^*(\mathcal{C}| d, j) = M^c_{dj}\left(P^H_j\theta^\mathcal{E}_{dj}\right)^{\sigma_c} \mathcal{C}_{dj}$$
+
+where $M^c_{dj} = \left({\theta^\mathcal{E}_{dj}}^{\sigma_c}{P^H_{dj}}^{\sigma_c-1} + {P^\mathcal{E}_j}^{\sigma_c-1}\right)^{\frac{\sigma_c}{1-\sigma_c}}$
+
+--
+
+Again, the unit cost function gives the "price of comfort"   
+
+
+$$P^\mathcal{C}_{dj} = \left({P^H_{dj}}^{1-\sigma_c}+ {\theta^\mathcal{E}_{dj}}^{\sigma_c}{P^\mathcal{E}_{dj}}^{1-\sigma_c}\right)^{\frac{1}{1-\sigma_c}}$$
+Once we have $P^c_j$, we can solve the model like a typical Cobb-Douglas. .smallest[[[return]](#comfort-cost-min)]
+
+---
+name: labor-supply-details
+# Labor Supply  
+
+#### City choice probabilities  
+Assuming $\varepsilon$ are type 1 extreme value, we get city choice probabilities as  
+
+$$\small P_{ij} = \frac{\exp{(\tilde{V}_{ij})}}{\sum_j\exp(\tilde{V}_{ij})} \quad \text{where} \quad  \tilde{V}_{ij} = (V_{ij} - \varepsilon_{ij})/\sigma_d$$
+
+Since we have cobb-douglas utility, $\mathcal{C}^*_{dj} = \frac{\alpha_{dj}^\mathcal{C}  W_{dj}}{\boldsymbol{\alpha_{dj}}P_{dj}^c}$
+
+\begin{align}
+    \small H^*_{dj} &= M^c_{dj} \left(P^E_{dj}\right)^{\frac{1}{1-\rho_c}}\times\frac{\alpha_d^\mathcal{C}  W_{dj}}{\tilde{\alpha}_{d}}\\
+    \small E^{*}_{dj} &= M^c_{dj}\left(P_j^h\theta^\mathcal{E}_{dj}\right)^{\frac{1}{1-\rho_c}} 
+    M^E_{dj}\left(P^g_j\theta^g_{dj}\right)^{\frac{1}{1-\rho_E}} 
+    \times\frac{\alpha_d^\mathcal{C}  W_{dj}}{\tilde{\alpha}_{d}}\\
+    \small G^{*}_{dj} &= M^c_{dj}\left(P_j^h\theta^\mathcal{E}_{dj}\right)^{\frac{1}{1-\rho_c}} 
+    M^E_{dj}\left(P^e_j\theta^e_{dj}\right)^{\frac{1}{1-\rho_E}} 
+    \times\frac{\alpha_d^\mathcal{C}  W_{dj}}{\tilde{\alpha}_{d}}.
+\end{align}
+
+.footnote[[[return]](#labor-supply)  [[delta decomp]](#delta-decomp)]
+
+
+---
+name: derivatives 
+# Effect of climate on utility  
+
+We can build intuition on how the climate affects household choices by taking derivatives in partial equilibrium, holding prices (rent, wages, electricity, and gas) fixed. 
+
+--
+
+1. Effect of climate on indirect utility, $v_{ij}$  
+\begin{align*}
+  \frac{\partial v_{ij}}{\partial z^l_j } &=  \alpha_d^{l}-\frac{\alpha_d^\mathcal{C}}{P_{dj}^\mathcal{C}}\times \frac{\partial P_{dj}^\mathcal{C} }{\partial z^l_j} \\
+  &= \alpha_d^{l}+\frac{\kappa_E}{\rho_\mathcal{E}}\frac{P^E_j E_{dj}}{W_{dj}}
+\end{align*}
+
+--
+2. Effect of climate on probability of choosing a city, $P_{ij}$  
+$$\frac{dP_{ij}}{dz^l_j} = \frac{1}{\sigma_d}\frac{\partial v_{ij}}{\partial z^l_j} \frac{P_{ij}(1-P_{ij})}{\exp(\tilde{v}_{ij})}$$
+
+
+.footnote[[[return]](#labor-supply)]
+
+---
+name: housing-supply-details
+# Housing supply 
+
+Each city is characterized by a long-run, upward sloping rental supply curve,
+
+$$\log(P^H_j) = a_j + \zeta_j\log(H_j)$$
+- $a_j$ captures variation in construction costs   
+- $\zeta_j$ is the inverse housing supply elasticity, reflecting variation in the amount of land available for development and land-use restrictions  
+- $H_j$ is aggregate housing demand in city $j$   
+
+.footnote[[[return]](#housing-supply)]
+
+---
+name: firms-details
+# Firm FOC Derivation
+
+The firm's profit function is 
+
+$$\pi_j = B_jK_j^\alpha \left(\lambda_jS_j^{\rho_l} + (1-\lambda_j)L_j^{\rho_l}\right)^{\frac{1-\alpha}{\rho_l}} - W^S_{j}S_j - W^L_{j}L_j - rK_j.$$
+
+Each firm chooses capital $K_j$, college educated labor $S_j$, and non-college educated labor $L_j$ to maximize profit. FOC's from this profit function are
+
+\begin{align*}
+  r &= \alpha \frac{Y_j}{K_j} \\
+  W^S_j &= (1-\alpha)\left(\frac{Y_j}{\mathcal{L}_j}\right)\mathcal{L}_j^{1-\rho_l} \lambda_j S^{\rho_l - 1}\\
+  W^L_j &= (1-\alpha)\left(\frac{Y_j}{\mathcal{L}_j}\right)\mathcal{L}_j^{1-\rho_l}(1-\lambda_j) L^{\rho_l - 1}.
+\end{align*}
+
+.footnote[[[return]](#firms)]
+
+---
+# Firm FOC Derivation pt. 2
+
+We assume capital is supplied perfectly elastically on the international market at rate $\bar{r}$. Thus, capital demand is $K^\star_j = \frac{\alpha Y_j}{\bar{r}}$. Plugging this into the production function yields 
+
+$$Y_j = B_j^\frac{1}{1-\alpha}\left(\frac{\alpha}{\bar{r}}\right)^{\frac{\alpha}{1-\alpha}} \mathcal{L}_j$$ 
+
+Letting $\tilde{B}_j = (1-\alpha)B_j^\frac{1}{1-\alpha}\left(\frac{\alpha}{\bar{r}}\right)^{\frac{\alpha}{1-\alpha}}$, we have the first order conditions. 
+
+\begin{align*}
+  W_{j}^S = & \tilde{B}_j\mathcal{L}_{j}^{1-\rho_l}\lambda_j S_j^{\rho_l-1}\\
+  W_{j}^L = &\tilde{B}_j\mathcal{L}_{j}^{1-\rho_l}(1-\lambda_j)L_j^{\rho_l-1}
+\end{align*}
+
+
+.footnote[[[return]](#firms)]
+
+
+---
+name: eqm 
+# Equilibrium  
+
+Equilibrium is characterized by a set of wages and comfort prices satisfying:
+
+1. **Utility Maximization**. Households make optimal location and comfort demand choices given wages, comfort prices, and amenities. Concretely, this implies $N_{dj}^\star = s_{dj}^\star\times N$ where $s_{dj}^\star$ are the choice shares constructed from $P_{ij}$, evaluated at equilibrium prices. Additionally, housing, electricity, and gas demand satisfy derived demand curves.  
+2. **Profit Maximization**. Firms maximize profits. This simply implies the firm's first order conditions are obeyed.
+3. **Market clearing**. In the model, labor supply must be equal to labor demand and housing supply must be equal to housing demand.
+
+
+.footnote[[[return]](#firms)]
+
+---
+class: inverse, middle
+name: data-estimation-appendix
+# Data and Estimation Appendix
+
+.footnote[[[return]](#appendix-toc)]
+
+---
+name: housing-indices-details
+# Housing and Rent indices  
+
+We decompose gross housing expenditure $\mathbb{E}^H_{ijt}$ into quantity $H$ and price $P^H_{jt}$ by regressing log expenditure on a city-year fixed effect and a vector of observable characteristics about the house, $X_{ijt}$
+
+$$\log(\mathbb{E}^H_{ijt}) = \mu_{jt} + X^\prime_{ijt} \beta_t   + \varepsilon_{ijt}$$
+Rent is $P^H_{jt} = e^{\mu_{jt}}$ and housing quantity is $H_{ijt} = \mathbb{E}^H_{ijt}/P^H_{jt}$.
+
+- $X_{ijt}$ includes the number of rooms, the number of units in the building, the number of bedrooms, the number of people living in the house per room, and the decade the house was built    
+- We limit the sample to renters here  
+
+.footnote[ [[return]](#household-data) ]
+
+
+---
+# Rent regression results
+
+```{r rent-reg, results = 'asis'}
+
+rent_reg = qread('data/rent.qs')
+
+etable(
+    rent_reg,
+    se.below = FALSE,
+    dict = c(
+      'log(real_rent_a)' = 'log(Annual Rent)',
+      'log(rooms)' = 'log(Rooms)',
+      'log(bedrooms)' = 'log(Bedrooms)',
+      'log(per_room)'= 'log(People per Room)' ,
+      'log(units_in_str)'= 'log(Units in Structure)',
+      'year' = 'Year',
+      'cbsa^year' = 'City x Year',
+      'decade_built_x_year' = 'Decade Built x Year'
+    ),
+    page.width = '25cm'
+  ) 
+rm(rent_reg)
+```
+
+.footnote[ [[return]](#household-data) ]
+
+---
+name: wage-indices-details
+# Wage indices  
+
+Total income for a household of a dem group $d$, in the city $j$ and year $t$, as $I_{djt} = W_{ejt}\times l_{dt}$, where $l_{dt}$ is the efficiency units of labor supplied by a worker. Let $l_{dt} = E_{dt}\times \tilde{l}_{dt}$, where 
+
+- $E_{dt}$ is the probability that a household in the demographic group $d$ is employed in year $t$
+- $\tilde{l}_{dt}$ is productivity conditional on working  
+
+We calculate $E_{dt}$ by defining employment as whether the household head or their spouse reports they are employed, work at least 48 weeks per year, and at least 35 hours per week  
+
+---
+name: wage-indices-details-pt2  
+# Wage indices 
+
+We estimate the following regression for workers, 
+
+$$\log I_{idjt} = X_{idjt}^\prime\beta_{et} + \nu_{ejt} + \varepsilon_{idjt}$$
+
+where $\nu_{ejt}$ is a education-city-year fixed effect that estimates $\log(W_{ejt})$. Our vector of controls, $X_{idjt}^\prime$ includes whether the household is married, whether the household has over 25 years of potential experience, and whether the household head or spouse is white.
+
+Income is then calculated as 
+
+$$I_{djt} = E_{dt} \times \exp(\hat\nu_{ejt}\times\bar{X}_{dt}^\prime\hat\beta_{et})$$
+
+
+
+.footnote[ [[return]](#household-data) ]
+
+
+???
+
+Efficiency units account for the probability that a worker is employed, the hours worked,  and the productivity of that work conditional on being employed. Specifically, 
+
+ We assume that no unobservable factors affect income after adding the vector of controls, $X_{idjt}^\prime$, and the education-city-year fixed effect. \cite{baum_snow_pavan_REStud12} and \cite{roca_puga_REStud17} provide evidence that after conditioning on education, there is little selection on unobservable factors that affect income. 
+
+
+---
+name: wage-indices-details-pt3  
+# Wage regression results  
+
+```{r wage-reg, results = 'asis', echo = FALSE, message = FALSE}
+
+wage_reg = qread('data/mod_wages_educ.qs')
+
+etable(
+    wage_reg,
+    se.below = FALSE,
+    dict = c(
+      'log(real_totinc)' = 'log(Income)',
+      'as.factor(educq)00' = 'College',
+      'as.factor(educq)01' = 'Non-college',
+      'as.factor(year)1990' = 'Year = 1990',
+      'as.factor(year)2000' = 'Year = 2000',
+      'as.factor(year)2010' = 'Year = 2010',
+      'as.factor(year)2019' = 'Year = 2019',
+      'married' = 'Married',
+      'high_experienceTRUE' = "High Experience",
+      'white' =  'White',
+      'cbsa^educq^year' = 'City x College x Year'
+    ),
+    page.width = '25cm'
+  ) 
+rm(wage_reg)
+```
+
+.footnote[ [[return]](#household-data) ]
+
+---
+name: energy-indices-details
+# Energy indices  
+
+A concern with energy data is that some renters may not pay utility bills separately from rent and thus falsely report zero energy expenditure in the census and ACS data. We use the EIA's Residential Energy Consumption Survey (RECS) to correct this feature of the census data, as it directly reports energy consumption.
+
+1. Estimate city-demographic group-year level energy consumption for single-family homeowners in the census data
+2. Adjusting those estimates by the difference between single-family homeowners and renters in the RECS data.
+
+
+---
+# Energy indices  
+Specifically, we estimate the following regression for single-family homeowners in the census, 
+
+$$e_{idjt}^m = \gamma^m_{djt} + X^\prime_{idjt}\beta^m + \varepsilon_{idjt}$$
+
+- $e^m_{idjt}$ is use of energy type $m \in \{elec, gas\}$ 
+- $X^\prime_{idjt}$ are controls including the number of people in the household, the number of children, and the age of the household head. 
+
+We then take the national average of the controls for each year-demographic group, $\bar{X}^\prime_{dt}$ to predict energy use for single-family homeowners for each city, demographic group, and year
+
+$$\small E^{SFO}_{djt} = \hat{\gamma}^{elec}_{djt} + \bar{X}^\prime_{dt}\hat{\beta}^{elec}\\
+G^{SFO}_{djt} = \hat{\gamma}^{gas}_{djt} + \bar{X}^\prime_{dt}\hat{\beta}^{gas}$$
+
+
+???
+We estimate this for single-family homeowners since they are most likely to report accurate energy expenditures in the census.
+
+---
+# Energy indices
+
+
+
+Then, we turn to the RECS to estimate the following regression, 
+
+$$e_{it}^m = \alpha^1_{mt}MultiFam_{it} + \alpha^2_{mt}Rent_{it} + \alpha^3_{mt}MultiFam_{it}\times Rent_{it} + X^\prime_{it}\beta_{mt} + \varepsilon_{it}$$
+
+- $MultiFam_{it}$ is an indicator for whether household $i$ lives in a multifamily home in year $t$  
+- $Rent_{it}$ is an indicator for whether household $i$ rents their home
+- $X^\prime_{it}$ is a vector of controls for the census division, number of children, household size, age of the household head, and an indicator for whether the household head is white. 
+
+---
+# Energy indices  
+To estimate energy usage for each demographic group, we use the estimated coefficients to adjust the single-family owners estimates,
+
+\begin{align*}
+\small E_{djt} &=  \pi_{djt}^{SFO} E^{SFO}_{djt} + 
+            \pi_{djt}^{MFO} E^{SFO}_{djt}e^{\hat{\alpha}^1_{elec,t}}+ 
+            \pi_{djt}^{SFR} E^{SFO}_{djt}e^{\hat{\alpha}^2_{elec,t}}+ 
+            \pi_{djt}^{MFR} E^{SFO}_{djt}e^{\sum_k\hat{\alpha}^k_{elec,t}} \\
+\small G_{djt} &=  \pi_{djt}^{SFO} G^{SFO}_{djt} + 
+            \pi_{djt}^{MFO} G^{SFO}_{djt}e^{\hat{\alpha}^1_{gas,t}}+ 
+            \pi_{djt}^{SFR} G^{SFO}_{djt}e^{\hat{\alpha}^2_{gas,t}}+ 
+            \pi_{djt}^{MFR} G^{SFO}_{djt}e^{\sum_k\hat{\alpha}^k_{gas,t}}
+\end{align*}
+
+
+where $\pi_{djt}^{SFO}$, $\pi_{djt}^{MFO}$, $\pi_{djt}^{SFR}$, and $\pi_{djt}^{MFR}$ are the proportion of single/multi family owners/renters in demographic group $d$, city $j$, and year $t$.
+
+
+???
+
+RECS is administered every three to six years. We match our census years to the closest RECS survey available, using the 1993, 2001, 2009, and 2015 surveys. The 1997 and 2001 RECS surveys did not ask about the education status of surveyed households. We use divison, race, home type, rental status, and household size from 1993 and 2009 to predict the probability of each observation in the 2001 sample being college educated using logistic regression. After predicting the probability of being college educated, we draw actual outcomes according to the predicted probability.
+
+
+.footnote[ [[return]](#household-data) ]
+
+
+---
+name: comfort-est-details
+# Estimation strategy for $\mathcal{E}$  
+
+.footnote[[[return]](#comfort-est)]
+
+The relative demand function from the cost-minimization problem give us  
+
+$$\log\left({\frac{E_{djt}}{G_{djt}}}\right) = \sigma_\mathcal{E} \log\left({\frac{\theta^E_{djt}}{\theta^G_{djt}}}\right)+ \sigma_\mathcal{E}\log\left(\frac{P^G_{jt}}{P^E_{jt}}\right)$$
+
+--
+
+Taking first differences yields our estimating equation:
+
+$$\Delta \log\left({\frac{E_{djt}}{G_{djt}}}\right) = \sigma_\mathcal{E}\Delta \log\left(\frac{P^G_{jt}}{P^E_{jt}}\right) + \Delta u_{djt}$$  
+
+--
+
+- Concerned with endogeneity between prices and quantity demanded
+- Instrument for price ratio with lagged commercial elec and gas prices to isolate shocks to supply 
+
+--
+
+Use $\hat{\sigma_\mathcal{E}}$ and residuals to calculate $\mathcal{E}$ and $P_\mathcal{E}$
+
+
+---
+# Estimation strategy for $\mathcal{C}$  
+
+.footnote[[[return]](#comfort-est)]
+
+The relative demand function from the cost-minimization problem give us  
+
+$$\log\left({\frac{\mathcal{E}_{djt}}{H_{djt}}}\right) = \sigma_c \log\left({\frac{\theta^\mathcal{E}_{djt}}{\theta^H_{djt}}}\right)+ \sigma_c\log\left(\frac{P^H_{jt}}{P^\mathcal{E}_{jt}}\right)$$
+
+--
+
+Taking first differences yields our estimating equation, 
+
+$$\Delta\log\left({\frac{\mathcal{E}_{djt}}{H_{djt}}}\right) = \sigma_{\mathcal{C}}\Delta\log\left(\frac{P^H_{jt}}{P^\mathcal{E}_{jt}}\right) + \Delta\epsilon_{djt}$$
+
+--
+
+We use a **Bartik instrument interacted with land availability** for $\Delta\log(P^H_{jt}/P^\mathcal{E}_{jt})$, taking care of endogeneity caused by unobserved amenities being correlated with both rent and housing demand.
+
+---
+name: comfort-eos-results
+# Comfort Elasticity of Substitution  
+
+```{r energy-eos, results = 'asis'}
+  
+  # Reading models w/different fixed effects
+  dem_cbsa_mods = qread('data/dem_group_cbsa/spline-deg-7/mod.qs')
+  cbsa_mods = qread('data/cbsa/spline-deg-7/mod.qs')
+  year_mods = qread('data/year/spline-deg-7/mod.qs')
+  dem_mods = qread('data/dem_group/spline-deg-7/mod.qs')
+  dem_year_mods = qread('data/dem_group_year/spline-deg-7/mod.qs')
+
+setFixest_dict(c(
+    D1.log_prices_ge = " $\\log{(P_g/P_e)}$ ", 
+    D1.log_usage_eg_ols = " $\\log{(E/G)}$ ",
+    D1.log_prices_he = " $\\log{(P_h/P_\\mathcal{E})}$ ", 
+    D1.log_eh = " $\\log{(\\mathcal{E}/H)}$ ",
+    dem_group = "Dem Group",
+    cbsa = "City",
+    year = "Year"
+  ))
+  # Electricity and gas EOS 
+  etable(
+    dem_cbsa_mods[[1]],
+    dem_mods[[1]],
+    cbsa_mods[[1]],
+    year_mods[[1]],
+    dem_year_mods[[1]],
+    cluster = ~cbsa,
+    fitstat = ~ n + ivf,
+    digits = "r3",
+    digits.stats = "r2",
+    style.tex = style.tex(
+      depvar.title = "Dep. Var."
+    ),
+    se.below = TRUE,
+    page.width = '25cm'
+  ) 
+```
+
+
+```{r comfort-eos, results = 'asis'}
+  # Now a table with comfort eos 
+  etable(
+    dem_cbsa_mods[[2]],
+    dem_mods[[2]],
+    cbsa_mods[[2]],
+    year_mods[[2]],
+    dem_year_mods[[2]],
+    cluster = ~cbsa,
+    fitstat = ~ n + ivf,
+    digits = "r3",
+    digits.stats = "r2",
+    style.tex = style.tex(
+      depvar.title = "Dep. Var."
+    ),
+    se.below = TRUE,
+    page.width = '25cm'
+  )
+
+```
+
+
+.footnote[[[return]](#comfort-est)]
+
+
+---
+name: kappas-het
+# Heterogeneity in comfort production   
+
+<center>.bold[Effect of an additional day at temperature]</center> 
+
+<center>.hi-yellow[for electricity benefit]</center>
+```{r, out.width='65%', fig.align='center'}
+  knitr::include_graphics("figures/model/comfort/kappas-elec-het-bootstrap.jpeg")
+```
+
+
+
+<center>.hi-green[for gas benefit]</center>
+```{r, out.width='65%', fig.align='center'}
+  knitr::include_graphics("figures/model/comfort/kappas-gas-het-bootstrap.jpeg")
+```
+
+
+
+.footnote[ [[return]](#kappas-main) ]
+
+
+
+---
+name: comfort-price-het
+# Effect of climate on comfort price
+
+<center>.bold[Effect of an additional day at temperature on comfort price]</center> 
+<center>.small-it[Relative to a day at 65 degrees]</center>  
+
+
+```{r, out.width='90%', fig.align='center'}
+  knitr::include_graphics("figures/model/comfort/marginal-effect-comfort-price-dem-bootstrap.jpeg")
+```
+
+
+
+.footnote[ [[return]](#kappas-main) ]
+
+
+---
+name: climate-amenities-alt
+# Climate's effect on amenities  
+
+
+<center>.bold[Effect of an additional day at temperature]</center> 
+<center>.small-it[Relative to a day at 65 degrees]</center>  
+
+```{r, out.width='70%', fig.align='center'}
+  knitr::include_graphics("figures/model/delta-decomp/climate-amenities-all-temp-vars.jpeg")
+```
+
+.footnote[ [[return]](#climate-amenities-main) ]
+
+---
+name: climate-amenities-het
+# Climate's effect on amenities  
+
+
+<center>.bold[Effect of an additional day at temperature]</center> 
+<center>.small-it[Relative to a day at 65 degrees]</center>  
+
+```{r, out.width='70%', fig.align='center'}
+  knitr::include_graphics("figures/model/delta-decomp/climate-amenities-spline-7-bootstrap.jpeg")
+```
+
+.footnote[ [[return]](#climate-amenities-main) ]
+
+---
+name: climate-amenity-change
+# Change in climate amenities 
+
+
+```{r results='asis'}
+change_decomp_dt = read.fst(
+  "data/climate-amenity-change-1990-2019-decomp.fst",
+  as.data.table =TRUE
+) |>
+setnames(old = 'Change (\\%)','Log Diff')
+
+kbl(
+  change_decomp_dt[c(1:6, 65:70)],
+  "html",
+  linesep = ''
+)|>
+#add_header_above(c(' ' = 2, "Category Change (\\%)" = 3)) |>
+row_spec(0,bold=TRUE) |>
+pack_rows("Improving Cities", 1,6) |>
+pack_rows("Worsening Cities", 7,12)
+```
+
+.footnote[[[return]](#climate-amenity-rank)]
+
+
+---
+name: labor-demand-est-details
+# Labor Demand Calibration
+
+We calibrate the labor elasticity of substitution $\sigma_{l}$ and the labor input use intensities, $\lambda_{j}$. First, we calibrate $\sigma_{l} = 2$ based on Card (2010). Then we use the relative labor demand curves to identify $\lambda_{j}$,
+
+
+$$\small\underbrace{\log \left( \frac{W_{j}^S}{W_{j}^{L}}  \right)}_{\text{Estimated}}= \underbrace{-\frac{1}{\sigma_{l}}}_{\text{Calibrated}} \underbrace{\log \left(\frac{S_{j}}{L_{j}} \right)}_{\text{Data}} + \underbrace{\log \left( \frac{\lambda_{j}}{1-\lambda_{j}}   \right)}_{\text{Unknown}}.$$
+
+Note that the only unknowns are the $\lambda_{j}$ values. We can solve for these as:
+
+$$\small\lambda_{j} =  \frac{K_{j}}{1+ K_{j}} \qquad \text{where} \qquad K_{j} = \left(\frac{W_{j}^S}{W_{j}^{L}} \right) \left(\frac{S_{j}}{L_{j}}\right) ^{1/\sigma_{l}}$$
+
+Next, we can solve for the firm's TFP using either first order condition for college or non-college labor as there is only one unknown. 
+
+.footnote[[[return]](#estimation-overview)]
+
+???
+\footnote{Note that $\rho_l-1 = -\frac{1}{\sigma_l}$.}
+
+---
+name: housing-supply-est-details
+# Housing Supply Calibration  
+
+We calibrate the inverse supply elasticities, $\zeta_j$, to those in Saiz (2010). The remaining parameters from the housing supply curve are the intercepts, $a_j$. Since housing supply equals housing demand in equilibrium, we back these out from the data as
+
+$$\exp{a_{jt}} = \frac{P^H_{jt}}{\left(\sum_d N_{djt}H_{djt}\right)^{\zeta_j}}$$
+
+where $N_{djt}$ is the count of housholds in demographic group $d$ and city $j$ in year $t$, and $H_{djt}$ is housing demand. 
+
+
+.footnote[[[return]](#estimation-overview)]
+
+???
+
+Some of our cities, Sacramento, Honolulu, and the census division aggregates, are not included in this table---we set the elasticity for Sacramento and the census division aggregates equal to the mean elasticity and calculate an elasticity for Honolulu using estimates from column (4) of Table III, setting land-unavailable equal to the maximum and the WRI to the mean. 
+
+---
+# Housing Supply Elasticity Variation  
+
+There is a slight positive correlation between the inverse housing supply elasticities and changes in climate between 1990 and 2019. 
+
+```{r hs-elast, out.width = "50%"}
+knitr::include_graphics('figures/climate-change-vs-1990/elasticities.jpeg')
+```
+
+---
+name: sim-appendix
+class: inverse, middle
+# Simulation Appendix 
+
+.footnote[[[return]](#appendix-toc)]
+
+---
+name: cv-details
+# Calculating welfare effects  
+
+Household $i$'s compensating variation for the counterfactual climate, $\tilde{\mathbf{Z}}$ relative to the baseline climate, $\mathbf{Z}$
+
+$$CV_i = \left(\color{#EC7662}{\mathbb{E}[V_i(\tilde{\mathbf{Z}})]} -  \color{#EC7662}{\mathbb{E}[V_i(\mathbf{Z})]}\right)\times \frac{1}{\beta_{e}^w}$$
+
+- $V_i(\mathbf{Z}) = v_{ij}(\mathbf{Z},j^*)$ is household $i$'s indirect utility with climate $\mathbf{Z}$ evaluated at equilibrium choices $j^*$ and prices    
+- Multiplying by $\frac{1}{\beta_{e}^w}$ converts utility units into percent of income  
+
+Taking the expectation over the idiosyncratic shocks gives us  
+
+$$\small \color{#EC7662}{\mathbb{E}[V_i(\boldsymbol{Z})]} = \bar{\gamma} + \log\left(\sum\limits_{j' \in J}\exp\left(\beta_{e}^w \log W_{ej'} + \beta_{dj'}^\mathcal{C} \log P_{d}^\mathcal{C}(Z_{j'}) + \beta^Z_d \cdot Z_{j'} + \xi_{dj'} + g(j', \boldsymbol{b}_i)\right)\right)$$
+
+where $\bar{\gamma}$ is Euler's constant.
+
+.footnote[[[return]](#cv)]
+
+
+---
+name: gdp-cil
+# CMIP6 climate models 
+
+These are made publicly available on the Microsoft Planetary Computer.
+
+- Most recent generation of climate models used for the IPCC's AR6 
+- Global daily temperature and precipitation (among others) for 1950-2100 under various emissions scenarios  
+- We take the population weighted mean from each climate model for each city 
+- Then take ensemble mean, min, and maximum across climate models
+- Main results use the ensemble mean 
+
+
+.footnote[[[return]](#sim-intro)]
+
+---
+name:model-fit 
+# GE simulation model fit 
+
+The simulation matches actual data under the baseline (factual) climate 
+
+.pull-left[
+<center>**Electricity Demand**</center>
+```{r out.width='100%', fig.align='center'}
+knitr::include_graphics("figures/model/model-fit/elec.jpeg")
+```
+]
+
+
+.pull-right[
+<center>**Gas Demand**</center>
+```{r out.width='100%', fig.align='center'}
+knitr::include_graphics("figures/model/model-fit/gas.jpeg")
+```
+]
+
+.footnote[[[return]](#sim-intro)]
+
+
+---
+name: model-fit-appendix
+# Model fit 
+
+.pull-left[
+<center>**Rent**</center>
+```{r out.width='100%', fig.align='center'}
+knitr::include_graphics("figures/model/model-fit/rent.jpeg")
+```
+]
+
+.pull-right[
+<center>**Wages**</center>
+```{r out.width='100%', fig.align='center'}
+knitr::include_graphics("figures/model/model-fit/wages.jpeg")
+```
+]
+
+.footnote[[[return]](#sim-intro)]
+
+---
+# Model fit 
+
+<center>.bold[Population Shares]</center>
+
+```{r out.width='65%', fig.align='center'}
+knitr::include_graphics("figures/model/model-fit/population-shares.jpeg")
+```
+
+
+.footnote[[[return]](#sim-intro)]
+
+
+---
+name:results-appendix
+class: inverse, middle
+# Results Appendix
+
+.footnote[[[return]](#appendix-toc)]
+
+---
+# Spatial variation 
+
+
+<center>**Energy Price**</center>
+```{r out.width='80%', fig.align='center'}
+knitr::include_graphics("figures/model/general-eqm/state_diff_5y_energy_price_sim_1990_2019.jpeg")
+```
+
+Different effects of warming in hot vs cold states  
+
+---
+# CV Gaps by race and education    
+
+```{r ind-reg-results, results = 'asis'}
+
+  ind_distr_mod = qread('data/ind-distr-mod.qs')
+  # Making a table with these results 
+  setFixest_dict(c(
+    raceBlack = "Black", 
+    raceRest = "Rest", 
+    `collegeNon-college` = "Non-college",
+    cbsa = "City",
+    `cbsa^college` = "City x College",
+    `bplace^college` = "Birth State x College",
+    cv_5y = "CV (%)",
+    `100*cv_perc_5y` = "CV (% of income)",
+    cv_perc_5y = "CV (% of income)",
+    bplace = 'Birth State'
+  ))
+  etable(
+    list(
+      ind_distr_mod[lhs = 'perc', rhs = 1, fixef = '1|cbsa'],
+      ind_distr_mod[lhs = 'perc', rhs = 2, fixef = '1|cbsa']
+    ),
+    digits = "r2",
+    digits.stats = "r2",
+    title = "Differences in Compensating Variation by Demographic Group",
+    style.tex = style.tex(
+      depvar.title = "Dependent Variable"
+    ),
+    se.below = TRUE,
+    page.width = '25cm'
+  )
+
+```
+
+---
+# Levels for decomposition 
+
+```{r results = 'asis'}
+
+  decomp_dt2 =
+    read.fst(
+      "data/fix-loc-decomp-1990-2019.fst",
+      as.data.table = TRUE
+    )
+
+  melt(
+    decomp_dt2[fixef == 'None' & decomp != 'mech-ec'],
+    id.vars = c('decomp','effect_from'),
+    measure.var = c('White','Black','Difference')
+  ) |>
+  dcast(
+    formula = decomp + variable ~ effect_from, 
+    value.var = 'value'
+  ) %>%
+  .[,-'decomp'] %>%
+  setnames(
+    old = c('variable', 'both','amenities','comfort'),
+    new = c(' ', 'Both','Amenities','Comfort')
+  ) %>%
+  kbl(
+    escape = FALSE,
+    booktabs = TRUE,
+    linesep = '',
+    position = 'H',
+    digits = 2
+  ) |>
+  pack_rows("Fixed Location", 1, 3)|>
+  pack_rows("Sorting, fixed prices", 4, 6)|>
+  pack_rows("Full Effects", 7, 9) |>
+  add_header_above(c(' ' = 1, 'Climate Effect From' = 3)) |>
+  row_spec(c(3,6,9), bold = TRUE, hline_after = TRUE) 
+
+```
+
+---
+# Wage differentials  
+
+Climate change has contributed to the increase in the college wage gap. Since college households are more mobile than non-college households, the college-noncollege worker ratio tends to decrease---more so in cities where the climate is deteriorating. Thus, college wages increase in those deteriorating cities, and non-college wages decrease. 
+
+.pull-left[
+```{r out.width='100%', fig.align='center'}
+knitr::include_graphics("figures/model/general-eqm/wage-distr-1990-2019.jpeg")
+```
+]
+
+
+.pull-right[
+```{r out.width='100%', fig.align='center'}
+knitr::include_graphics("figures/model/general-eqm/wage-ratio-1990-2019.jpeg")
+```
+]
+
+
+
+---
+# Population Changes  
+
+```{r results = 'asis'}
+  tmp_dt = 
+    read.fst(
+      "data/change-in-population-1990-2019.fst",
+      as.data.table = TRUE
+    ) |>
+    setnames('Change in Pop (\\%)', 'Change in Pop (%)')
+  kbl(
+    tmp_dt[c(1:6,65:70)],
+    escape = FALSE,
+    booktabs = TRUE,
+    linesep = '',
+    position = 'H'
+  ) |>
+  pack_rows('Growing Cities', 1, 6)|>
+  pack_rows('Declining Cities', 7, 12) 
+
+```
+
+---
+exclude: true
+
+```{R generate pdfs, include = F, eval = T}
+#remotes::install_github('rstudio/pagedown')
+library(pagedown)
+pagedown::chrome_print(
+  "saulnier-cal-poly.html",
+  output = "saulnier-cal-poly.pdf"
+)
+```
