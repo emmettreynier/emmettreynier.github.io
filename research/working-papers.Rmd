@@ -9,7 +9,8 @@ title: ""
 }
 ```
 
-#### **[Optimal Subsidies for Residential Solar](papers/colas-saulnier-optimal-solar.pdf)** with [Mark Colas](https://sites.google.com/site/markyaucolas/home) 
+#### **[Optimal Subsidies for Residential Solar](papers/colas-saulnier-optimal-solar.pdf)** with [Mark Colas](https://sites.google.com/site/markyaucolas/home)  
+**R&R, Journal of Political Economy Microeconomics**
 
 We study the optimal design of spatially differentiated subsidies for residential solar panels. We build a structural model of solar panel demand and electricity production across the US and estimate the model by combining 1) remotely sensed data on residential solar panels, 2) power-plant-level data on hourly production and emissions, and 3) a state-of-the-art air pollution model. The current subsidies lead to severe spatial misallocation. National funding for subsidies under the current system exceeds the unconstrained optimum by seven-fold.
 

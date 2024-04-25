@@ -27,7 +27,7 @@ Mark Colas and Emmett Saulnier. *Regional Science and Urban Economics, 2023.* [[
 ## Working papers 
 
 **Optimal Subsidies for Residential Solar**  
-Mark Colas and Emmett Saulnier. *CESifo working paper 10446.*  [[Paper]](https://www.emmettsaulnier.com/papers/colas-saulnier-optimal-solar.pdf)
+Mark Colas and Emmett Saulnier. *R&R, JPE Micro. CESifo working paper 10446.*  [[Paper]](https://www.emmettsaulnier.com/papers/colas-saulnier-optimal-solar.pdf)
 
 
 ## Research in Progress  
