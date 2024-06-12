@@ -10,7 +10,7 @@ I am an ORISE research fellow with the US EPA's Office of Water and a PhD Candid
 
 ## Education and Appointments 
 
-**ORISE Research Fellow**, US EPA Office of Water 2023-2024  
+**ORISE Research Fellow**, US EPA Office of Water 2023-present    
 **Ph.D. Economics**, University of Oregon, *Expected 2025*  
 **M.S. Economics**, University of Oregon, 2021  
 **B.A. Economics**, University of Virginia, 2017  
@@ -29,14 +29,13 @@ Mark Colas and Emmett Saulnier. *Regional Science and Urban Economics, 2023.* [[
 **Optimal Subsidies for Residential Solar**  
 Mark Colas and Emmett Saulnier. *R&R, JPE Micro. CESifo working paper 10446.*  [[Paper]](https://www.emmettsaulnier.com/papers/colas-saulnier-optimal-solar.pdf)
 
+**Glyphosate exposure & GM seed rollout unequally reduced perinatal health**  
+Edward Rubin and Emmett Saulnier. [[Paper]](https://www.emmettsaulnier.com/papers/rubin-saulnier-gly.pdf)  
 
 ## Research in Progress  
 
 **The Distributional Impacts of Climate Change across U.S. Local Labor Markets**  
 John Morehouse and Emmett Saulnier  
-
-**Perinatal health effects of herbicides: Glyphosate, Roundup, and the rollout of GM crops**  
-Edward Rubin and Emmett Saulnier  
 
 **Means Tested Solar Subsidies**  
 Mark Colas and Emmett Saulnier 
@@ -45,7 +44,7 @@ Mark Colas and Emmett Saulnier
 ## Teaching  
 
 
-**EC 434/534: Environmental Economics**, UO Winter and Spring 2023  
+**EC 434/534: Environmental Economics**, UO Fall 2024, Winter and Spring 2023  
 Instructor of record for upper level undergraduate/masters environmental economics course     
 **EC 320: Introduction to Econometrics**, UO Spring 2022  
 Instructor of record for first course in undergradute econometrics sequence  
@@ -72,7 +71,7 @@ Optimized product feeds for online retail clients to be sent to various search a
 
 ## Presentations  
 
-**2024** (*including scheduled*) Cal Poly, US EPA NCEE, AERE Summer Conference  
+**2024** Cal Poly, US EPA NCEE, US EPA OPP, AERE Summer Conference  
 **2023** Freddie Mac, WEAI Annual Conference, Camp Resources XXIX, TWEEDS, AERE\@OSWEET  
 **2022** WEAI Annual Conference, SWELL, TWEEDS  
 **2021** Berkeley/Sloan Summer School in Environmental and Energy Economics  
