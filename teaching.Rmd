@@ -1,31 +1,23 @@
 ---
-title: "Emmett Saulnier Teaching"
+title: "Courses"
+pagetitle: "Teaching | Emmett Saulnier"
+output: 
+  html_document:
+    includes:
+      in_header: header.html
 ---
 
-Here are the classes that I have (or will be) teaching.
+Here are the classes I have taught (or will be teaching). All course reviews and additional course materials are available upon request.  
 
-### Instructor  
+## Instructor of Record  
 
-- [EC 434/534: Environmental Economics](papers/ec434-534-syllabus.pdf)    
-  + University of Oregon  
-  + Fall 2024, Winter 2023, Spring 2023
+- [EC 434/534: Environmental Economics](papers/ec434-534-syllabus.pdf) (Fall 2024, Winter 2023, Spring 2023)  
+- [EC 320: Introduction to Econometrics](https://github.com/emmettsaulnier/EC320s22) (Spring 2022)  
 
-- [EC 320: Introduction to Econometrics](https://github.com/emmettsaulnier/EC320s22)    
-  + University of Oregon  
-  + Spring 2022
+## Teaching Assistant  
 
-### Teaching Assistant  
-
-- [EC 421: Introduction to Econometrics](https://github.com/emmettsaulnier/EC421-Lab-W22)  
-  + Upper level undergraduate econometrics course  
-  + Winter 2022  
-- EC 607: Core Microeconometrics III
-  + Third course in Ph.D Micro Theory Sequence
-  + Spring 2021
-- EC 607: Core Microeconometrics II  
-  + Second course in Ph.D Micro Theory Sequence
-  + Winter 2021
-- EC 511: Microeconomic Theory 
-  + First course in Masters Micro Theory Sequence 
-  + Fall 2020  
+- [EC 421: Introduction to Econometrics](https://github.com/emmettsaulnier/EC421-Lab-W22) (Winter 2022)  
+- EC 607: Core Microeconometrics III (Spring 2021) 
+- EC 607: Core Microeconometrics II  (Winter 2021)  
+- EC 511: Microeconomic Theory (Fall 2020)
 

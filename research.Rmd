@@ -1,17 +1,22 @@
 ---
-title: "Emmett Saulnier Research"
+title: ""
+pagetitle: "Research | Emmett Saulnier"
 output: 
   html_document:
     toc: true
     toc_float: true
     toc_depth: 2
+    includes:
+      in_header: header.html
 ---
 
 <br>
 
+## Job Market Paper 
+
 #### **The Distributional Impacts of Climate Change across U.S. Local Labor Markets**  
 with [John Morehouse](https://www.johnmmorehouse.com/)  
-*Job Market Paper, draft available upon request.*
+*Draft available upon request.*
 
 Climate change has affected households around the globe, but its impacts are not homogenous across space. We show that climate change has thus far disproportionately exposed disadvantaged demographic groups. However, household adaptation also impacts the welfare consequences of this unequal burden. We develop and estimate a new spatial equilibrium model of local labor markets, allowing households to adapt to climate change by choosing their city, energy consumption, and housing. We then simulate counterfactual climates and decompose the value of each adaptation mechanism. The lowest income decile has welfare effects an order of magnitude larger than the highest income decile. Additionally, Black households are worse off by 1.5% of income relative to white households due to climate change to-date, and we project that gap to grow by an additional 5-7% by the end of the century.  
 

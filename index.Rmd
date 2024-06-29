@@ -1,10 +1,13 @@
 ---
-title: "Emmett Saulnier"
+pagetitle: "Emmett Saulnier"
+output:
+  html_document:
+    includes:
+      in_header: header.html
 ---
 
 <figure style= "max-width: 40%;" margin = "20">
-  <img src="images/admin-regan.jpg" >
-  <figcaption>EPA Administrator Michael Regan (left) and me (right).</figcaption>
+  <img src="images/uo_econ_pic.jpg" >
 </figure>
 
 <br>
@@ -13,4 +16,5 @@ I am a [Ph.D. candidate in Economics at the University of Oregon](https://cas.uo
 
 I will be on the job market for the 2024-2025 academic year.  
 
-In my leisure time, I [like](https://www.strava.com/athletes/11415315) [to](https://worldathletics.org/athletes/united-states/emmett-saulnier-14862295) [run](https://www.grcrunning.com/emmett-saulnier/)--- sometimes [on](images/emmett-canyons.jpg) [the](images/or-trees.jpeg) [trails](https://ultrasignup.com/results_participant.aspx?fname=Emmett&lname=Saulnier), sometimes [on](images/hayward-premiere.jpeg) [the](https://www.uorunning.com/records.php) [track](images/oregon-relays-2023-start.jpg), and sometimes [on](https://x.com/billhagercincy/status/861207749702676480) [the](https://www.instagram.com/eugenemarathon/p/CrooWXDvFgh/?img_index=1) [roads](https://results2.xacte.com/#/e/2462/searchable/239).
+In my leisure time, I like to [run](https://www.strava.com/athletes/11415315). Since moving to DC, I've raced [on](images/hayward-premiere.jpeg) [the](https://worldathletics.org/athletes/united-states/emmett-saulnier-14862295) [track](images/oregon-relays-2023-start.jpg) as a part of the [Georgetown Running Club](https://www.grcrunning.com/emmett-saulnier/). I'll be back with the [UO Running Club](https://www.uorunning.com/records.php) come spring of 2025. I also like racing [on](images/emmett-canyons.jpg) [the](images/or-trees.jpeg) [trails](https://ultrasignup.com/results_participant.aspx?fname=Emmett&lname=Saulnier) and [on](https://x.com/billhagercincy/status/861207749702676480) [the](https://www.instagram.com/eugenemarathon/p/CrooWXDvFgh/?img_index=1) [roads](https://results2.xacte.com/#/e/2462/searchable/239).
+

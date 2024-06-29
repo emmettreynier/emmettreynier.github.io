@@ -1,5 +1,10 @@
 ---
 title: "Emmett Saulnier"
+pagetitle: "CV | Emmett Saulnier"
+output:
+  html_document:
+    includes:
+      in_header: header.html
 ---
 
 [Click for PDF version.](cv/saulnier-cv.pdf)
