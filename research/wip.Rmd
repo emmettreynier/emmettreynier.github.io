@@ -3,11 +3,7 @@ title: ""
 ---
 
 
-#### **The Distributional Impacts of Climate Change across U.S. Local Labor Markets** with [John Morehouse](https://www.johnmmorehouse.com/)  
+#### **Out-of-sight, Out-of-mind? Distance Decay in Use and Non-use Value of Water Quality**   
+with [Xibo Wan](https://xibowan.space/)
 
-Climate change has affected households around the globe, but its impacts are not homogenous across space. We show that climate change has thus far disproportionately exposed disadvantaged demographic groups. However, household adaptation also impacts the welfare consequences of this unequal burden. We develop and estimate a new spatial equilibrium model of local labor markets, allowing households to adapt to climate change by choosing their city, energy consumption, and housing. We then simulate counterfactual climates and decompose the value of each adaptation mechanism. The lowest income decile has welfare effects an order of magnitude larger than the highest income decile. Additionally, Black households are worse off by 1.5% of income relative to white households due to climate change to-date, and we project that gap to grow by an additional 5-7% by the end of the century.
-
-#### **Means Tested Solar Subsidies** with [Mark Colas](https://sites.google.com/site/markyaucolas/home)  
-
-We study the optimal design of income-contingent subsidies for residential solar panels. Using remotely sensed data on the universe of solar panel installations across the contiguous US, we document that the responsiveness of installation rates to subsidies is 30 to 50% higher in below-median-income locations compared to high-income locations. Using these empirical elasticities, we estimate a model that embeds a solar panel installation decision into a dynamic consumption/savings framework with borrowing constraints. Counterfactual simulations reveal that switching to production-maximizing income-contingent subsidies leads to a three-fold increase in public funds received by low-income households and a 4% increase in national solar production. Means-tested subsidies are justified on both equity and efficiency grounds.
 

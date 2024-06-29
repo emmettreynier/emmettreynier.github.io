@@ -9,12 +9,14 @@ title: ""
 }
 ```
 
-#### **[Optimal Subsidies for Residential Solar](papers/colas-saulnier-optimal-solar.pdf)** with [Mark Colas](https://sites.google.com/site/markyaucolas/home)  
+#### **[Optimal Subsidies for Residential Solar](papers/colas-saulnier-optimal-solar.pdf)**   
+with [Mark Colas](https://sites.google.com/site/markyaucolas/home)  
 **R&R, Journal of Political Economy Microeconomics.** *[CESifo Working Paper 10446](https://www.cesifo.org/node/75957).*
 
 We study the optimal design of spatially differentiated subsidies for residential solar panels. We build a structural model of solar panel demand and electricity production across the US and estimate the model by combining 1) remotely sensed data on residential solar panels, 2) power-plant-level data on hourly production and emissions, and 3) a state-of-the-art air pollution model. The current subsidies lead to severe spatial misallocation. National funding for subsidies under the current system exceeds the unconstrained optimum by seven-fold.
 
-```{r fig, echo = FALSE, fig.show="hold", out.width="50%", fig.cap = "**Left:** Optimal solar subsidies. **Right:** Installations as a percent of optimal."}
+```{r fig, echo = FALSE, fig.show="hold", out.width="50%", fig.cap = ""}
+#**Left:** Optimal solar subsidies. **Right:** Installations as a percent of optimal.
 knitr::include_graphics("images/state-subsidy-opt-cost-neutral-welfare-max.jpeg")
 knitr::include_graphics("images/install-ratio-cost-neutral-welfare-max.jpeg")
 #pacman::p_load(magick, here)
@@ -31,18 +33,37 @@ knitr::include_graphics("images/install-ratio-cost-neutral-welfare-max.jpeg")
 
 <br>
 
-#### **[Glyphosate exposure and GM seed rollout unequally reduced perinatal health](papers/rubin-saulnier-gly.pdf)** with [Ed Rubin](http://edrub.in/)  
-*Submitted.* *[SSRN 4867914](https://ssrn.com/abstract=4867914)*.  
+#### **[Glyphosate exposure and GM seed rollout unequally reduced perinatal health](papers/rubin-saulnier-gly.pdf)** 
+with [Ed Rubin](http://edrub.in/)   
+**Submitted.** *[SSRN 4867914](https://ssrn.com/abstract=4867914)*.  
 
 The advent of herbicide-tolerant genetically modified (GM) crops spurred rapid and widespread use of the herbicide glyphosate (GLY) throughout US agriculture. In the two decades following GM-seed's introduction, the volume of GLY applied in the US increased by more than 750\%. Despite its breadth and scale, science and policy remain unresolved regarding the effects of GLY on human health. We identify the causal effect of GLY exposure on perinatal health by combining (1) county-level variation in GLY use driven by (2) the timing of the GM technology and (3) differential geographic suitability for GM crops. Our results suggest the introduction of GM seeds and GLY significantly reduced average birthweight and gestational length. While we find effects throughout the birthweight distribution, low-weight births experienced the largest reductions: the effect for births in the lowest decile is 4.5 times larger than that of the highest decile. Together, these estimates suggest that GLY exposure caused previously undocumented and unequal health costs for rural US communities over the last 20 years.
 
 
 
-```{r fig2, echo = FALSE, fig.show="hold", out.width="33%", fig.cap = "**Left**: Increase in GLY 1995 to 2012. **Middle**: Effect of GM suitability on GLY. **Right**: Effect of GM suitability on birthweight."}
+```{r fig2, echo = FALSE, fig.show="hold", out.width="33%", fig.cap = ""}
+#**Left**: Increase in GLY 1995 to 2012. **Middle**: Effect of GM suitability on GLY. **Right**: Effect of GM suitability on birthweight.
 #*This paper was previously titled, "Perinatal health effects of herbicides: Glyphosate, Roundup, and the rollout of GM crops"*
 knitr::include_graphics("images/glyph-km2-diff-9512.jpeg")
 knitr::include_graphics("images/main-dbwt-fs.jpeg")
 knitr::include_graphics("images/main-dbwt-rf.jpeg")
 ```
+
+
+<br>
+
+
+#### [**Means Tested Solar Subsidies**](papers/colas-saulnier-income-solar.pdf)  
+with [Mark Colas](https://sites.google.com/site/markyaucolas/home)  
+
+We study the optimal design of income-contingent subsidies for residential solar panels. Using remotely sensed data on solar panel installations across the contiguous US and a border-discontinuity design, we estimate that the responsiveness of installation rates to subsidies is strongly decreasing in the local income level. Using these empirical elasticities, we estimate a model that embeds a solar panel installation decision into a dynamic consumption/savings framework with borrowing constraints. Counterfactual simulations reveal that switching to production-maximizing income-contingent subsidies leads to a three-fold increase in public funds received by low-income households and a 2.4% increase in national solar production. Means-tested subsidies are justified on both equity and efficiency grounds.
+
+
+```{r pvincome, echo = FALSE, fig.show="hold", out.width="49%", fig.cap = ""}
+knitr::include_graphics("images/log_kwh_new_cap-int-just-spline.jpeg")
+knitr::include_graphics("images/Opt_Sub_BincLatentInc1Sc1_Compare.png")
+
+```
+
 
 <br>
