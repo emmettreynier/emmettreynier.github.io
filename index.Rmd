@@ -16,7 +16,7 @@ I am a [Ph.D. candidate in Economics at the University of Oregon](https://cas.uo
 
 I will be on the job market for the 2024-2025 academic year.  
 
-I like to run in my lesiure time---I've been racing with the [Georgetown Running Club](https://www.grcrunning.com/emmett-saulnier/) during my time in DC.
+I like to run in my lesiure time---I've been racing with the [Georgetown Running Club](https://www.grcrunning.com/emmett-saulnier/) while in DC.
 
 
 ```{r echo = FALSE, include = FALSE, eval = FALSE}
