@@ -30,7 +30,7 @@ Mark Colas and Emmett Saulnier. *Regional Science and Urban Economics, 2023.* [[
 Mark Colas and Emmett Saulnier. *Resubmitted, Journal of Political Economy Microeconomics. CESifo working paper 10446.*  [[Paper]](https://www.emmettsaulnier.com/papers/colas-saulnier-optimal-solar.pdf)
 
 **Glyphosate exposure & GM seed rollout unequally reduced perinatal health**  
-Edward Rubin and Emmett Saulnier. *Submitted*. [[Paper]](https://www.emmettsaulnier.com/papers/rubin-saulnier-gly.pdf)  
+Edward Rubin and Emmett Saulnier. *Revise and Resubmit, PNAS*. [[Paper]](https://www.emmettsaulnier.com/papers/rubin-saulnier-gly.pdf)  
 
 **Means Tested Solar Subsidies**  
 Mark Colas and Emmett Saulnier. [[Paper]](https://www.emmettsaulnier.com/papers/colas-saulnier-income-solar.pdf) 
@@ -75,7 +75,7 @@ Optimized product feeds for online retail clients to be sent to various search a
 
 ## Presentations  
 
-**2024** Cal Poly, US EPA NCEE, US EPA OPP, AERE Summer Conference  
+**2024** Cal Poly, US EPA NCEE, US EPA OPP, AERE Summer Conference, Social Cost of Water Pollution Workshop    
 **2023** Freddie Mac, WEAI Annual Conference, Camp Resources XXIX, TWEEDS, AERE\@OSWEET  
 **2022** WEAI Annual Conference, SWELL, TWEEDS  
 **2021** Berkeley/Sloan Summer School in Environmental and Energy Economics  
