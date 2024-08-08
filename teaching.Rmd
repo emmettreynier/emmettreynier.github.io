@@ -1,6 +1,6 @@
 ---
 title: "Courses"
-pagetitle: "Teaching | Emmett Saulnier"
+pagetitle: "Teaching | Emmett Reynier"
 output: 
   html_document:
     includes:
@@ -12,11 +12,11 @@ Here are the classes I have taught (or will be teaching). All course reviews and
 ## Instructor of Record  
 
 - [EC 434/534: Environmental Economics](papers/ec434-534-syllabus.pdf) (Fall 2024, Winter 2023, Spring 2023)  
-- [EC 320: Introduction to Econometrics](https://github.com/emmettsaulnier/EC320s22) (Spring 2022)  
+- [EC 320: Introduction to Econometrics](https://github.com/emmettreynier/EC320s22) (Spring 2022)  
 
 ## Teaching Assistant  
 
-- [EC 421: Introduction to Econometrics](https://github.com/emmettsaulnier/EC421-Lab-W22) (Winter 2022)  
+- [EC 421: Introduction to Econometrics](https://github.com/emmettreynier/EC421-Lab-W22) (Winter 2022)  
 - EC 607: Core Microeconometrics III (Spring 2021) 
 - EC 607: Core Microeconometrics II  (Winter 2021)  
 - EC 511: Microeconomic Theory (Fall 2020)

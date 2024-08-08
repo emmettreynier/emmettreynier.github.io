@@ -1,5 +1,5 @@
 ---
-title: "Emmett Saulnier"
+title: "Emmett Reynier, née Saulnier"
 urlcolor: orange
 linkcolor: orange
 ---
@@ -20,20 +20,20 @@ I am an ORISE research fellow with the US EPA's Office of Water and a PhD Candid
 ## Publications 
 
 **Vertical Migration Externalities**   
-Mark Colas and Emmett Saulnier. *Regional Science and Urban Economics, 2023.* [[Paper]](https://www.emmettsaulnier.com/papers/colas-saulnier-vme.pdf)
+Mark Colas and Emmett Saulnier. *Regional Science and Urban Economics, 2023.* [[Paper]](https://www.emmettreynier.com/papers/colas-saulnier-vme.pdf)
     
 
 
 ## Working papers 
 
 **Optimal Subsidies for Residential Solar**  
-Mark Colas and Emmett Saulnier. *Resubmitted, Journal of Political Economy Microeconomics. CESifo working paper 10446.*  [[Paper]](https://www.emmettsaulnier.com/papers/colas-saulnier-optimal-solar.pdf)
+Mark Colas and Emmett Saulnier. *Resubmitted, Journal of Political Economy Microeconomics. CESifo working paper 10446.*  [[Paper]](https://www.emmettreynier.com/papers/colas-saulnier-optimal-solar.pdf)
 
 **Glyphosate exposure & GM seed rollout unequally reduced perinatal health**  
-Edward Rubin and Emmett Saulnier. *Revise and Resubmit, PNAS*. [[Paper]](https://www.emmettsaulnier.com/papers/rubin-saulnier-gly.pdf)  
+Edward Rubin and Emmett Saulnier. *Revise and Resubmit, PNAS*. [[Paper]](https://www.emmettreynier.com/papers/rubin-saulnier-gly.pdf)  
 
 **Means Tested Solar Subsidies**  
-Mark Colas and Emmett Saulnier. [[Paper]](https://www.emmettsaulnier.com/papers/colas-saulnier-income-solar.pdf) 
+Mark Colas and Emmett Saulnier. [[Paper]](https://www.emmettreynier.com/papers/colas-saulnier-income-solar.pdf) 
 
 
 ## Research in Progress  
@@ -97,8 +97,8 @@ First Year Fellowship, 2019-2020
 
 ## Contact  
 **Email:** emmetts@uoregon.edu  
-**Website:** https://www.emmettsaulnier.com  
-**Github:** [emmettsaulnier](https://github.com/emmettsaulnier)
+**Website:** https://www.emmettreynier.com  
+**Github:** [emmettreynier](https://github.com/emmettreynier)
 
 
 ## References 

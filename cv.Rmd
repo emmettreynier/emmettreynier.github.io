@@ -1,22 +1,22 @@
 ---
-title: "Emmett Saulnier"
-pagetitle: "CV | Emmett Saulnier"
+title: "Emmett Reynier, née Saulnier"
+pagetitle: "CV | Emmett Reynier"
 output:
   html_document:
     includes:
       in_header: header.html
 ---
 
-[Click for PDF version.](cv/saulnier-cv.pdf)
+[Click for PDF version.](cv/reynier-cv.pdf)
 
-``` {r child = 'cv/saulnier-cv.rmd'}
+``` {r child = 'cv/reynier-cv.rmd'}
 ```
 
 ```{r, echo = FALSE, include = FALSE}
 # Thanks @edrubin for this code chunk...
 pacman::p_load(stringr, magrittr, rmarkdown, here)
 # Page break before experience section
-cv <- readLines(here("cv/saulnier-cv.Rmd"))
+cv <- readLines(here("cv/reynier-cv.Rmd"))
 cv[grep("## Professional Experience", cv) - 2] <- "\\pagebreak"
 # Create the new rmd file
 con <- file(here("tmp.Rmd"))
@@ -38,7 +38,7 @@ render(here("tmp.Rmd"),
       pandoc_variable_arg("linestretch", "0.9")
       )
     ),
-  output_file = here("cv/saulnier-cv.pdf")
+  output_file = here("cv/reynier-cv.pdf")
 )
 
 # Clean up temporary files

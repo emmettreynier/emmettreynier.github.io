@@ -1,7 +1,7 @@
 name: "emmetts-website"
 output_dir: "."
 navbar:
-  title: "Emmett Saulnier"
+  title: "Emmett Reynier"
   left:
     - text: "Research"
       href: research.html
@@ -13,7 +13,7 @@ navbar:
     - icon: fa-envelope-o fa-lg   
       href: mailto:emmetts@uoregon.edu
     - icon: fa-github fa-lg
-      href: https://github.com/emmettsaulnier
+      href: https://github.com/emmettreynier
 output:
   html_document:
     css: theme/emmetts_theme.css

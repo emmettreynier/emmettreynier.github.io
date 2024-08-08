@@ -1,5 +1,5 @@
 ---
-pagetitle: "Emmett Saulnier"
+pagetitle: "Emmett Reynier"
 output:
   html_document:
     includes:
@@ -15,6 +15,8 @@ output:
 I am a [Ph.D. candidate in Economics at the University of Oregon](https://cas.uoregon.edu/directory/economics/all/emmetts) and an ORISE research fellow in the [EPA Office of Water](https://www.epa.gov/aboutepa/about-office-water). My research interests include environmental, urban, health, and climate economics. Some of my [current projects](research.html) involve measuring the effect of herbicides on human health, quantifying how climate change has differentially impacted disadvantaged communities, and the spatial misallocation caused by current residential solar panel subsidies. See the header or my [CV](cv.html) for contact info. 
 
 I will be on the job market for the 2024-2025 academic year.  
+
+I recently got married and changed my last name from Saulnier to Reynier.  
 
 I like to run in my lesiure time---I've been racing with the [Georgetown Running Club](https://www.grcrunning.com/emmett-saulnier/) while in DC.
 
