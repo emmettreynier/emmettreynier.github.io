@@ -1,5 +1,5 @@
 ---
-title: "Emmett Reynier, née Saulnier"
+title: "Emmett Reynier, né Saulnier"
 pagetitle: "CV | Emmett Reynier"
 output:
   html_document:

@@ -1,5 +1,5 @@
 ---
-title: "Emmett Reynier, née Saulnier"
+title: "Emmett Reynier, né Saulnier"
 urlcolor: orange
 linkcolor: orange
 ---
