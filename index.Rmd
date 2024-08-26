@@ -6,8 +6,8 @@ output:
       in_header: header.html
 ---
 
-<figure style= "max-width: 40%;" margin = "20">
-  <img src="images/uo_econ_pic.jpg" >
+<figure style= "max-width: 33%;" margin = "20">
+  <img src="images/emmett-headshot.jpg" >
 </figure>
 
 <br>
