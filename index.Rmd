@@ -12,7 +12,7 @@ output:
 
 <br>
 
-I am a [Ph.D. candidate in Economics at the University of Oregon](https://cas.uoregon.edu/directory/economics/all/emmetts) and an ORISE research fellow in the [EPA Office of Water](https://www.epa.gov/aboutepa/about-office-water). My research interests include environmental, urban, health, and climate economics. Some of my [current projects](research.html) involve measuring the effect of herbicides on human health, quantifying how climate change has differentially impacted disadvantaged communities, and the spatial misallocation caused by current residential solar panel subsidies. See the header or my [CV](cv.html) for contact info. 
+I am a [Ph.D. candidate in Economics at the University of Oregon](https://cas.uoregon.edu/directory/economics/all/emmetts) and an ORISE research fellow with the [EPA Office of Water](https://www.epa.gov/aboutepa/about-office-water). My research interests include environmental, urban, health, and climate economics. Some of my [current projects](research.html) involve quantifying how climate change has differentially impacted disadvantaged communities, measuring the effect of herbicides on human health, and the spatial misallocation caused by current residential solar panel subsidies. See the header or my [CV](cv.html) for contact info. 
 
 I will be on the job market for the 2024-2025 academic year.  
 
