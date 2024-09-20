@@ -19,11 +19,11 @@ I am an ORISE research fellow with the US EPA's Office of Water and a PhD Candid
 
 ## Publications 
 
-**Vertical Migration Externalities**   
-Mark Colas and Emmett Saulnier. *Regional Science and Urban Economics, 2023.* [[Paper]](https://www.emmettreynier.com/papers/colas-saulnier-vme.pdf)
-    
 **Optimal Subsidies for Residential Solar**  
-Mark Colas and Emmett Reynier. *Accepted, Journal of Political Economy Microeconomics.*  [[Paper]](https://www.emmettreynier.com/papers/colas-saulnier-optimal-solar.pdf)
+Mark Colas and Emmett Reynier. *Accepted, Journal of Political Economy Microeconomics.*  [[Paper]](https://www.emmettreynier.com/papers/colas-reynier-optimal-solar.pdf)
+
+**Vertical Migration Externalities**   
+Mark Colas and Emmett Saulnier. 2023. *Regional Science and Urban Economics.* 101, 103900. [[Paper]](https://www.emmettreynier.com/papers/colas-saulnier-vme.pdf)
 
 
 ## Working papers 
@@ -38,7 +38,7 @@ Mark Colas and Emmett Reynier. [[Paper]](https://www.emmettreynier.com/papers/co
 ## Research in Progress  
 
 **The Distributional Impacts of Climate Change across U.S. Local Labor Markets**  
-John Morehouse and Emmett Reynier. *Job Market Paper, draft available upon request*.
+Emmett Reynier and John Morehouse. *Job Market Paper, draft available upon request*.
 
 **Out-of-sight, Out-of-mind? Distance Decay in Use and Non-use Value of Water Quality**  
 Nathaniel H. Merrill, Emmett Reynier, and Xibo Wan  
@@ -74,7 +74,7 @@ Optimized product feeds for online retail clients to be sent to various search a
 
 ## Presentations  
 
-**2024** Cal Poly, US EPA NCEE, US EPA OPP, AERE Summer Conference, Social Cost of Water Pollution Workshop    
+**2024** *(including scheduled)* Cal Poly, US EPA NCEE, US EPA OPP, AERE Summer Conference, Social Cost of Water Pollution Workshop, Heartland Workshop, Freddy Mac        
 **2023** Freddie Mac, WEAI Annual Conference, Camp Resources XXIX, TWEEDS, AERE\@OSWEET  
 **2022** WEAI Annual Conference, SWELL, TWEEDS  
 **2021** Berkeley/Sloan Summer School in Environmental and Energy Economics  
