@@ -6,4 +6,4 @@ title: ""
 #### **Out-of-sight, Out-of-mind? Distance Decay in Use and Non-use Value of Water Quality**   
 with [Xibo Wan](https://xibowan.space/)
 
-
+[Slides](scwp-2024/reynier-scwp-2024.html)
