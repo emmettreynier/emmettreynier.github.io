@@ -34,11 +34,14 @@ here::i_am('04 Meeting/scwp-2024/reynier-scwp-2024.rmd')
 name: motivation
 # Water quality valuation  
 
-The US EPA relies on a **metaanalysis-based benefit transfer function** to estimate the benefits of water quality improvements ([Corona et al. 2020](https://doi.org/10.3368/wple.96.4.478)). 
-- Limits extent of market to a given radius around water features (100mi)  
-- WTP is constant within that radius  
-- Based on 1996 National Survey on Recreation, where about .hi-green[80% of all recreational uses] were within 100mi ([Viscusi et al. 2008](https://doi.org/10.1007/s10640-007-9186-4))  
-- Known to be a conservative assumption, leaving benefits on the table
+The US EPA relies on a **metaanalysis-based benefit transfer function** to estimate the benefits of water quality improvements ([Corona et al. 2020](https://doi.org/10.3368/wple.96.4.478)).   
+
+--
+
+- Very difficult to incorporate a distance effect on WTP in the metaregression since it relies on aggregated data  
+- Benefits are very sensitive to the **"analyst's choice"** for extent of market  
+- Limit extent of market to 100 miles based on 1996 National Survey on Recreation, where about .hi-green[80% of all recreational uses] were within 100mi ([Viscusi et al. 2008](https://doi.org/10.1007/s10640-007-9186-4))  
+- Perceived to be a **"conservative assumption"** that leaves considerable benefits on the table        
 
 --
 
@@ -52,13 +55,13 @@ The US EPA relies on a **metaanalysis-based benefit transfer function** to estim
 
 **Q** What is the relationship between distance and WTP for water quality? Does that relationship differ for use and non-use values?  
 
-- Nest a .hi-green[travel cost random utility model] within a utility function that is also .hi-blue[directly affected by water quality], the value of which is impacted by the distance between a household and the water feature    
+- Nest a .hi-green[travel cost random utility model] within a utility function that is also .hi-blue[directly affected by water quality], which can vary by distance      
 
 --
-- Estimate travel cost RUM with .hi-green[cell phone-based mobility data] on trips to water-based recreation sites 
+- Estimate travel cost RUM with .hi-green[cell phone-based mobility data] on trips to water-based recreation sites  
 
 --
-- Combine with several .hi-blue[stated preference studies] (currently [Johnston et al. 2023](https://doi.org/10.1073/pnas.2120255119) and [Vossler et al. 2023](https://doi.org/10.1073/pnas.2120251119)) to estimate rest of utility parameters  
+- Combine with several .hi-blue[existing stated preference studies] to estimate rest of utility parameters  
 
 --
 
@@ -70,7 +73,7 @@ The US EPA relies on a **metaanalysis-based benefit transfer function** to estim
 ???
 
 Largely follows [Kim and Lupi (2023)](https://doi.org/10.1017/age.2023.26) 
-
+(currently [Johnston et al. 2023](https://doi.org/10.1073/pnas.2120255119) and [Vossler et al. 2023](https://doi.org/10.1073/pnas.2120251119))
 
 ---
 class: inverse, middle 
@@ -104,7 +107,7 @@ name: details-2
 # Structural Model Details 
 
 
-.hi-green[Use Value] If person $i$ decides to visit site $j$, the utility they get is an alternative specific constant $\alpha_{jt}$ plus a vector representing site quality $q_{js}$  
+.hi-green[Use Value] If person $i$ decides to visit site $j$, the utility they get is a site-time specific constant $\alpha_{jt}$ plus a vector representing site quality $q_{js}$  
 
 $$\color{#57754D}{v_{ijts}^{\text{use}}} = \alpha_{jt} + q_{js}^\prime \beta$$ 
 
@@ -164,7 +167,7 @@ We can make distributional assumptions to derive a [likelihood function](#app-li
 
 --
 
-Authors of stated preference studies should have 1-3 with **relatively low effort**, but most do not have **specific site visitation data**.
+It is relatively low effort to produce 1-3 from existing stated preference studies, but most would not have **specific site visitation data**.
 
 --
 
@@ -198,20 +201,14 @@ name: main-cell-data
 # Cell phone mobility data 
 
 #### Patterns data from Advan (formerly SafeGraph) 
-- Aggregated monthly visits from CBGs to POIs  
-- Can access data between 2019 to 2022--focus on 2022 to avoid Covid     
-- Privacy protection measures may cause econometric issues .smallest[[[details]](#app-cell-data-privacy)]  
---
-
-- Intersect Advan park POIs with river and lake shapes from NHDv2 .smallest[[[details]](#app-cell-data-poi)] 
-- Gives us .hi-green[30,950 lake-based] sites and .hi-blue[36,920 river-based] sites  .smallest[[[map]](#app-poi-map)]
-- Aggregate sites to HUC12 level  
-
+- Aggregated monthly visits from CBGs to POIs in 2022   
+- Follow [Wan et al (2024)](https://www.doi.org/10.1088/1748-9326/ad801c) in selecting 69K water-based recreation sites by intersecting Advan park POIs with NHDv2 .smallest[[[details]](#app-cell-data-poi)] .smallest[[[map]](#app-poi-map)]  
+- Aggregate sites to HUC12 level   
 
 --
 
 #### Dealing with zero share issues  
-1. **Unbalanced Panel**: Drop CBG-HUC12-month's with zero visits 
+1. **Unbalanced Panel**: Drop CBG-HUC12-month's with zero visits  
 2. **Balanced Panel**: Use empirical Bayes estimator as in [Li (2023)](https://jingli-econ.github.io/documents/papers/li_evcompatibility.pdf) or add a small number of visits to zero-visit sites   
 
 
@@ -229,21 +226,22 @@ name: main-survey-data
 
 We are greatful to the authors of two studies who have shared microdata from their studies with us, [Johnston et al. (2023)](https://doi.org/10.1073/pnas.2120255119) and [Vossler et al. (2023)](https://doi.org/10.1073/pnas.2120251119).  
 
-### Johnston et al. (2023) .smallest[.not-bold[[[details]](#app-johnston)]]  
+**Today's results only use the Johnston et al. data.** .smallest[.not-bold[[[details]](#app-johnston)]]  
+
+--
+
 - Focused on New England  
 - Survey instrument compares BAU to alternative policy scenarios in 2025   
 - Model three different water quality metrics using FRAMES  
-- Innovative analysis using data on where people zoomed in on maps  
+- We use their overall WQI as our measure of water quality  
+
+???
+
 
 ### Vossler et al. (2023) .smallest[.not-bold[[[details]](#app-vossler)]]
 - Focused on the upper-midwest  
 - Values improvements in the Biological Condition Gradient (BCG) 
 - Explore value for local vs non-local improvements 
-
---
-
-**Today's results only use the Johnston et al. data.** 
-
 
 ---
 # Stated preference data  
@@ -268,45 +266,26 @@ knitr::include_graphics('figs/mean-utility-decomp-wq-map-cropped.jpeg')
 class: inverse, middle 
 # Estimation Results  
 
----
-# Estimation Results: Travel Cost RUM  
-
-Estimates for the **marginal utility of income** $\gamma$ using cell data:   
-
-
-|                         | (1)         | **(2)**     | (3)         | (4)         | (5)         | (6)         |
-|-------------------------|-------------|-------------|-------------|-------------|-------------|-------------|
-| **Travel Cost**        | -0.015***   | **-0.021***** | -0.025*** | -0.018***   | -0.011***   | -0.004***   |
-|                         | (0.000)     | (0.000)     | (0.000)     | (0.000)     | (0.000)     | (0.000)     |
-|                                                                                                             |
-| **Observations**        | 493,413     | 1,520,726   | 1,520,726   | 1,520,726   | 1,520,726   | 1,520,726   |
-| **N (Zipcode)**         | 727         | 727         | 727         | 727         | 727         | 727         |
-| **Unbalanced**          | Yes         | No          | No          | No          | No          | No          |
-| **Share**               | -           | Bayes       | 1-e6        | 1-e5        | 1-e4        | 1-e3        |  
-
-
-- Use GMM estimator to solve the market share system  
-- Instruments for travel costs with interaction between state and crude oil price, and travel distance  
-- Get similar results modeling $\gamma_i$ as a random coefficient 
-
-.footnote[\* significant at 1% level]
 
 ---
 # Estimation Results: Stated Preferences 
 
-Estimate rest of parameters via maximum likelihood taking results from travel cost model as given. Restrict $\lambda <= 0$ 
+Preliminary parameter estimates: 
 
 | **Parameter**   | **Estimate**  |
 |:-------------:|-----------:|
+| $\gamma$     | 0.021     |
 | $\beta$     | 93.68     |
 | $b$         | 0.09      |
 | $\lambda$   | -3.3e-9   |
 | $\sigma^{RP}$| 55.90     |
 
 
+--
+
 To put these results into context, 
-- [Johnston et al. (2023)](https://doi.org/10.1073/pnas.2120255119) find **$12.2** WTP for 1pt improvement in region-wide WQ, our model suggests **$26.4** the same region  
-- [Corona et al. (2020)](https://doi.org/10.3368/wple.96.4.478) find **$3.1** WTP for 1pt improvement in a HUC4, median of 1pt improvements across HUC4's in our model is **$2.4**  
+- [Johnston et al. (2023)](https://doi.org/10.1073/pnas.2120255119) find $12.2 WTP for 1pt improvement in region-wide WQ, our model suggests **$26.4**, of which .hi-blue[36% is non-use]  
+- [Corona et al. (2020)](https://doi.org/10.3368/wple.96.4.478) find $3.1 WTP for 1pt improvement in a HUC4, median across HUC4's in our model is **$2.4**, of which .hi-blue[42% is non-use]    
 
 
 ---
@@ -335,14 +314,14 @@ We can plot the cumulative WTP for survey respondents as we get further from the
 knitr::include_graphics('figs/wtp-annual-cumulative.jpeg')
 ```
 
-At 100 miles, we caputure **92%** of the total use value, but only **29%** of the non-use value, or **59%** of total WTP. 
+At 100 miles, we caputure .hi-green[92% of total use value], but only .hi-blue[29% of non-use value], or **59%** of total WTP. 
 
 ---
 # Conclusions  
 
 ### Implications for benefits estimation  
 - Non-use values are low, may not decay much with distance  
-- The radius-based extent of market would severely understate benefits  
+- The radius-based extent of market captures nearly all .hi-green[use value], but leaves a considerable amount of .hi-blue[non-use value] on the table  
   
 --
 
@@ -351,6 +330,17 @@ At 100 miles, we caputure **92%** of the total use value, but only **29%** of th
 - Integrate more stated preference studies, and figure out how to handle the host of estimation complexities that brings   
 - Specify richer, more flexible utility model  
 
+
+---
+
+class: inverse, middle
+
+# Thank you! 
+
+### Emmett Reynier  
+PhD Candidate, University of Oregon  
+ORISE Research Fellow, US EPA Office of Water   
+[https://www.emmettreynier.com](https://www.emmettreynier.com)  
 
 ---
 class: inverse, middle
@@ -514,6 +504,31 @@ where
 ```{r reduced-form-1, out.width = "75%", fig.align= "center"}
 knitr::include_graphics('figs/reduced-form-results.png')
 ```
+
+
+---
+name: app-travel-cost-full
+# Estimation Results: Travel Cost RUM  
+
+Estimates for the **marginal utility of income** $\gamma$ using cell data:   
+
+
+|                         | (1)         | **(2)**     | (3)         | (4)         | (5)         | (6)         |
+|-------------------------|-------------|-------------|-------------|-------------|-------------|-------------|
+| **Travel Cost**        | -0.015***   | **-0.021***** | -0.025*** | -0.018***   | -0.011***   | -0.004***   |
+|                         | (0.000)     | (0.000)     | (0.000)     | (0.000)     | (0.000)     | (0.000)     |
+|                                                                                                             |
+| **Observations**        | 493,413     | 1,520,726   | 1,520,726   | 1,520,726   | 1,520,726   | 1,520,726   |
+| **N (Zipcode)**         | 727         | 727         | 727         | 727         | 727         | 727         |
+| **Unbalanced**          | Yes         | No          | No          | No          | No          | No          |
+| **Share**               | -           | Bayes       | 1-e6        | 1-e5        | 1-e4        | 1-e3        |  
+
+
+- Use GMM estimator to solve the market share system  
+- Instruments for travel costs with interaction between state and crude oil price, and travel distance  
+- Get similar results modeling $\gamma_i$ as a random coefficient 
+
+.footnote[\* significant at 1% level [[return]](#est-travel-cost)]
 
 ---
 name: app-johnston 
