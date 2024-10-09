@@ -5,7 +5,7 @@ linkcolor: orange
 ---
 
 ## About  
-I am an ORISE research fellow with the US EPA's Office of Water and a PhD Candidate at the University of Oregon studying economics. My research interests include environmental and public economics, with a focus on environmental justice.
+I am an ORISE Research Fellow with the US EPA Office of Water and a PhD Candidate at the University of Oregon studying economics. My research interests include environmental and public economics.
 
 
 ## Education and Appointments 
@@ -57,6 +57,8 @@ Nathaniel H. Merrill, Emmett Reynier, and Xibo Wan. [[Slides]](https://www.emmet
 &nbsp;&nbsp;&nbsp;&nbsp;Led lab section for upper level undergraduate econometrics class  
 &nbsp;&nbsp;&nbsp;&nbsp;**EC 607: Core Microeconomics III**, UO Spring 2021  
 &nbsp;&nbsp;&nbsp;&nbsp;Led discussion section for 1st year PhD students covering topics in game theory and general equilibrium  
+&nbsp;&nbsp;&nbsp;&nbsp;**EC 607: Core Microeconomics II**, UO Winter 2021  
+&nbsp;&nbsp;&nbsp;&nbsp;Led discussion section for 1st year PhD students covering topics in producer theory and partial equilibrium  
 
 
 ## Professional Experience  
