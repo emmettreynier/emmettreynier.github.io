@@ -8,7 +8,7 @@ with [Mark Colas](https://sites.google.com/site/markyaucolas/home)
 
 We study the optimal design of spatially differentiated subsidies for residential solar panels. We build a structural model of solar panel demand and electricity production across the US and estimate the model by combining 1) remotely sensed data on residential solar panels, 2) power-plant-level data on hourly production and emissions, and 3) a state-of-the-art air pollution model. The current subsidies lead to severe spatial misallocation. National funding for subsidies under the current system exceeds the unconstrained optimum by over 70%. Our results suggest that there could be large welfare gains to redistributing funds towards other programs.
 
-[Current draft](papers/colas-reynier-optimal-solar.pdf)  
+[Final draft](papers/colas-reynier-optimal-solar.pdf)  
 
 ```{r fig, echo = FALSE, fig.show="hold", out.width="50%", fig.cap = ""}
 #**Left:** Optimal solar subsidies. **Right:** Installations as a percent of optimal.
@@ -27,10 +27,10 @@ knitr::include_graphics("images/install-ratio-cost-neutral-welfare-max.jpeg")
 
 <br>
 
-#### **[Vertical Migration Externalities](papers/coals-saulnier-vme.pdf)**   
+#### **[Vertical Migration Externalities](papers/colas-saulnier-vme.pdf)**   
 with [Mark Colas](https://sites.google.com/site/markyaucolas/home)   
 **2023, Regional Science and Urban Economics**. 101, 103009. DOI [10.1016/j.regsciurbeco.2023.103900](https://doi.org/10.1016/j.regsciurbeco.2023.103900).  
 
 State income taxes affect federal income tax revenue by shifting the spatial distribution of households between high- and low-productivity states, thereby changing household incomes and tax payments. We derive an expression for these fiscal externalities of state taxes in terms of estimable statistics. An empirical quantification using American Community Survey data reveals that the externalities range from large and negative in some states, to large and positive in others. In California, an increase in the state income tax rate and the resulting change in the distribution of households across states lead to a decrease in federal income tax revenue of 39 cents for every dollar of California tax revenue raised. The externality amounts to a 0.27% decrease in total federal income tax revenue for a 1 pp increase in California’s state tax rate. Our results raise the possibility that state taxes may be set too high in high-productivity states, and set too low in low-productivity states.  
 
-[Final draft](papers/coals-saulnier-vme.pdf)
+[Final draft](papers/colas-saulnier-vme.pdf)
