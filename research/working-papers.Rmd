@@ -23,8 +23,8 @@ The advent of herbicide-tolerant genetically modified (GM) crops spurred rapid a
 #**Left**: Increase in GLY 1995 to 2012. **Middle**: Effect of GM suitability on GLY. **Right**: Effect of GM suitability on birthweight.
 #*This paper was previously titled, "Perinatal health effects of herbicides: Glyphosate, Roundup, and the rollout of GM crops"*
 knitr::include_graphics("images/glyph-km2-diff-9512.jpeg")
-knitr::include_graphics("images/main-dbwt-fs.jpeg")
-knitr::include_graphics("images/main-dbwt-rf.jpeg")
+knitr::include_graphics("images/main-policy-dbwt-fs.jpeg")
+knitr::include_graphics("images/main-policy-dbwt-rf.jpeg")
 ```
 
 

@@ -21,6 +21,11 @@ Climate change has affected households around the globe, but its impacts are not
 
 [Current Draft](papers/reynier-morehouse-climate-migration.pdf)
 
+```{r fig-jmp, echo = FALSE, fig.show="hold", out.width="49.5%", fig.cap = ""}
+knitr::include_graphics("images/prism-grid-hot-days-1990-2019.jpeg")
+knitr::include_graphics("images/inc-q10-cv-perc-5y.jpeg")
+```
+
 <br>
 
 ## Publications 
