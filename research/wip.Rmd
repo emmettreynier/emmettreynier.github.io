@@ -4,7 +4,7 @@ title: ""
 
 
 #### **Out-of-sight, Out-of-mind? Distance Decay in Use and Non-use Value of Water Quality**   
-with [Xibo Wan](https://xibowan.space/)
+with Nathaniel H. Merrill and [Xibo Wan](https://xibowan.space/)
 
 ```{r fig-water, echo = FALSE, fig.align = "center", out.width="70%", fig.cap = ""}
 knitr::include_graphics("scwp-2024/figs/wtp-annual-decay.jpeg")

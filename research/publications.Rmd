@@ -8,7 +8,7 @@ with [Mark Colas](https://sites.google.com/site/markyaucolas/home)
 
 We study the optimal design of spatially differentiated subsidies for residential solar panels. We build a structural model of solar panel demand and electricity production across the US and estimate the model by combining 1) remotely sensed data on residential solar panels, 2) power-plant-level data on hourly production and emissions, and 3) a state-of-the-art air pollution model. The current subsidies lead to severe spatial misallocation. National funding for subsidies under the current system exceeds the unconstrained optimum by over 70%. Our results suggest that there could be large welfare gains to redistributing funds towards other programs.
 
-[Final draft](papers/colas-reynier-optimal-solar.pdf)  
+[Final draft](papers/colas-reynier-optimal-solar.pdf), [CESifo Working Paper No. 10446](https://www.cesifo.org/node/75957)  
 
 ```{r fig, echo = FALSE, fig.show="hold", out.width="50%", fig.cap = ""}
 #**Left:** Optimal solar subsidies. **Right:** Installations as a percent of optimal.

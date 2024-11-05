@@ -12,11 +12,11 @@ title: ""
 
 #### **[Glyphosate exposure and GM seed rollout unequally reduced perinatal health](papers/rubin-saulnier-gly.pdf)** 
 with [Ed Rubin](http://edrub.in/)   
-**Revise and resubmit, PNAS.** *(resubmitted) [SSRN 4867914](https://ssrn.com/abstract=4867914)*.  
+**Revise and resubmit, PNAS** *(resubmitted draft available upon request)*.  
 
 The advent of herbicide-tolerant genetically modified (GM) crops spurred rapid and widespread use of the herbicide glyphosate (GLY) throughout US agriculture. In the two decades following GM-seed's introduction, the volume of GLY applied in the US increased by more than 750\%. Despite its breadth and scale, science and policy remain unresolved regarding the effects of GLY on human health. We identify the causal effect of GLY exposure on perinatal health by combining (1) county-level variation in GLY use driven by (2) the timing of the GM technology and (3) differential geographic suitability for GM crops. Our results suggest the introduction of GM seeds and GLY significantly reduced average birthweight and gestational length. While we find effects throughout the birthweight distribution, low-weight births experienced the largest reductions: the effect for births in the lowest decile is 4.5 times larger than that of the highest decile. Together, these estimates suggest that GLY exposure caused previously undocumented and unequal health costs for rural US communities over the last 20 years.
 
-[Original draft](papers/rubin-saulnier-gly.pdf) *(Current draft available upon request)*   
+[Original draft](papers/rubin-saulnier-gly.pdf), [SSRN 4867914](https://ssrn.com/abstract=4867914).     
 
 
 ```{r fig2, echo = FALSE, fig.show="hold", out.width="33%", fig.cap = ""}
@@ -37,7 +37,7 @@ with [Mark Colas](https://sites.google.com/site/markyaucolas/home)
 
 We study the optimal design of income-contingent subsidies for residential solar panels. Using remotely sensed data on solar panel installations across the contiguous US and a border-discontinuity design, we estimate that the responsiveness of installation rates to subsidies is strongly decreasing in the local income level. Using these empirical elasticities, we estimate a model that embeds a solar panel installation decision into a dynamic consumption/savings framework with borrowing constraints. Counterfactual simulations reveal that switching to production-maximizing income-contingent subsidies leads to a three-fold increase in public funds received by low-income households and a 2.4% increase in national solar production. Means-tested subsidies are justified on both equity and efficiency grounds.
 
-[Current draft](papers/colas-reynier-income-solar.pdf) 
+[Current draft](papers/colas-reynier-income-solar.pdf), [CESifo Working Paper No. 11378](https://www.cesifo.org/node/83083).
 
 ```{r pvincome, echo = FALSE, fig.show="hold", out.width="49%", fig.cap = ""}
 knitr::include_graphics("images/log_kwh_new_cap-int-just-spline.jpeg")
