@@ -19,6 +19,7 @@ knitr::include_graphics("images/main-policy-dbwt-fs.jpeg")
 knitr::include_graphics("images/main-policy-dbwt-rf.jpeg")
 ```
 
+<br>
 
 #### **[Optimal Subsidies for Residential Solar](papers/colas-reynier-optimal-solar.pdf)**   
 with [Mark Colas](https://sites.google.com/site/markyaucolas/home)  
