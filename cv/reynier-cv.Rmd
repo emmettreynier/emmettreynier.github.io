@@ -19,6 +19,9 @@ I am an ORISE Research Fellow with the US EPA Office of Water and a PhD Candidat
 
 ## Publications 
 
+**Glyphosate exposure & GM seed rollout unequally reduced perinatal health**  
+Emmett Reynier and Edward Rubin. *Accepted, Proceedings of the National Academy of Sciences*. [[Paper]](https://www.emmettreynier.com/papers/rubin-saulnier-gly.pdf)  
+
 **Optimal Subsidies for Residential Solar**  
 Mark Colas and Emmett Reynier. *Accepted, Journal of Political Economy Microeconomics.*  [[Paper]](https://www.emmettreynier.com/papers/colas-reynier-optimal-solar.pdf)
 
@@ -28,14 +31,11 @@ Mark Colas and Emmett Reynier. 2023. *Regional Science and Urban Economics.* 101
 
 ## Working papers 
 
-**Glyphosate exposure & GM seed rollout unequally reduced perinatal health**  
-Edward Rubin and Emmett Reynier. *Revise and Resubmit, PNAS*. [[Paper]](https://www.emmettreynier.com/papers/rubin-saulnier-gly.pdf)  
+**The Distributional Impacts of Climate Change across U.S. Local Labor Markets**  
+Emmett Reynier and John Morehouse. *Job Market Paper*. [[Paper]](https://www.emmettreynier.com/papers/reynier-morehouse-climate-migration.pdf)
 
 **Means Tested Solar Subsidies**  
 Mark Colas and Emmett Reynier. *Submitted. CESifo Working Paper 11378.* [[Paper]](https://www.emmettreynier.com/papers/colas-reynier-income-solar.pdf) 
-
-**The Distributional Impacts of Climate Change across U.S. Local Labor Markets**  
-Emmett Reynier and John Morehouse. *Job Market Paper*. [[Paper]](https://www.emmettreynier.com/papers/reynier-morehouse-climate-migration.pdf)
 
 ## Research in Progress  
 
@@ -74,7 +74,7 @@ Optimized product feeds for online retail clients to be sent to various search a
 
 ## Presentations  
 
-**2024** *(including scheduled)* Cal Poly, US EPA NCEE, US EPA OPP, AERE Summer Conference, Social Cost of Water Pollution Workshop, Heartland Workshop, Freddy Mac        
+**2024** Cal Poly, US EPA NCEE, US EPA OPP, AERE Summer Conference, Social Cost of Water Pollution Workshop, University of Oregon, Heartland Workshop, Freddy Mac        
 **2023** Freddie Mac, WEAI Annual Conference, Camp Resources XXIX, TWEEDS, AERE\@OSWEET  
 **2022** WEAI Annual Conference, SWELL, TWEEDS  
 **2021** Berkeley/Sloan Summer School in Environmental and Energy Economics  
