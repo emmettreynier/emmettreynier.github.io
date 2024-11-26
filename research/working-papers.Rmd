@@ -14,7 +14,7 @@ title: ""
 
 #### [**Means Tested Solar Subsidies**](papers/colas-reynier-income-solar.pdf)  
 with [Mark Colas](https://sites.google.com/site/markyaucolas/home)  
-**Submitted.**  
+*Submitted.*
 
 We study the optimal design of income-contingent subsidies for residential solar panels. Using remotely sensed data on solar panel installations across the contiguous US and a border-discontinuity design, we estimate that the responsiveness of installation rates to subsidies is strongly decreasing in the local income level. Using these empirical elasticities, we estimate a model that embeds a solar panel installation decision into a dynamic consumption/savings framework with borrowing constraints. Counterfactual simulations reveal that switching to production-maximizing income-contingent subsidies leads to a three-fold increase in public funds received by low-income households and a 2.4% increase in national solar production. Means-tested subsidies are justified on both equity and efficiency grounds.
 

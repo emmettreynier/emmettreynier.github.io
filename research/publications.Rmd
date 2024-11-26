@@ -2,13 +2,13 @@
 title: ""
 ---
 
-#### **[Glyphosate exposure and GM seed rollout unequally reduced perinatal health](papers/rubin-saulnier-gly.pdf)** 
+#### **[Glyphosate exposure and GM seed rollout unequally reduced perinatal health](https://dx.doi.org/10.2139/ssrn.4867914)** 
 with [Ed Rubin](http://edrub.in/)   
-**Accepted, Proceedings of the National Academy of Sciences.**  
+*In press, Proceedings of the National Academy of Sciences.*  
 
 The advent of herbicide-tolerant genetically modified (GM) crops spurred rapid and widespread use of the herbicide glyphosate (GLY) throughout US agriculture. In the two decades following GM-seed's introduction, the volume of GLY applied in the US increased by more than 750\%. Despite its breadth and scale, science and policy remain unresolved regarding the effects of GLY on human health. We identify the causal effect of GLY exposure on perinatal health by combining (1) county-level variation in GLY use driven by (2) the timing of the GM technology and (3) differential geographic suitability for GM crops. Our results suggest the introduction of GM seeds and GLY significantly reduced average birthweight and gestational length. While we find effects throughout the birthweight distribution, low-weight births experienced the largest reductions: the effect for births in the lowest decile is 4.5 times larger than that of the highest decile. Together, these estimates suggest that GLY exposure caused previously undocumented and unequal health costs for rural US communities over the last 20 years.
 
-[Original draft](papers/rubin-saulnier-gly.pdf), [SSRN 4867914](https://ssrn.com/abstract=4867914).     
+SSRN DOI [10.2139/ssrn.4867914](https://dx.doi.org/10.2139/ssrn.4867914).     
 
 
 ```{r fig2, echo = FALSE, fig.show="hold", out.width="33%", fig.cap = ""}
@@ -21,9 +21,9 @@ knitr::include_graphics("images/main-policy-dbwt-rf.jpeg")
 
 <br>
 
-#### **[Optimal Subsidies for Residential Solar](papers/colas-reynier-optimal-solar.pdf)**   
+#### **[Optimal Subsidies for Residential Solar](https://doi.org/10.1086/734142)**   
 with [Mark Colas](https://sites.google.com/site/markyaucolas/home)  
-**Accepted, Journal of Political Economy Microeconomics.**   
+*Forthcoming, Journal of Political Economy Microeconomics.* DOI [10.1086/734142](https://doi.org/10.1086/734142)
 
 We study the optimal design of spatially differentiated subsidies for residential solar panels. We build a structural model of solar panel demand and electricity production across the US and estimate the model by combining 1) remotely sensed data on residential solar panels, 2) power-plant-level data on hourly production and emissions, and 3) a state-of-the-art air pollution model. The current subsidies lead to severe spatial misallocation. National funding for subsidies under the current system exceeds the unconstrained optimum by over 70%. Our results suggest that there could be large welfare gains to redistributing funds towards other programs.
 
@@ -48,7 +48,7 @@ knitr::include_graphics("images/install-ratio-cost-neutral-welfare-max.jpeg")
 
 #### **[Vertical Migration Externalities](papers/colas-saulnier-vme.pdf)**   
 with [Mark Colas](https://sites.google.com/site/markyaucolas/home)   
-**2023, Regional Science and Urban Economics**. 101, 103009. DOI [10.1016/j.regsciurbeco.2023.103900](https://doi.org/10.1016/j.regsciurbeco.2023.103900).  
+*2023, Regional Science and Urban Economics*. 101, 103009. DOI [10.1016/j.regsciurbeco.2023.103900](https://doi.org/10.1016/j.regsciurbeco.2023.103900).  
 
 State income taxes affect federal income tax revenue by shifting the spatial distribution of households between high- and low-productivity states, thereby changing household incomes and tax payments. We derive an expression for these fiscal externalities of state taxes in terms of estimable statistics. An empirical quantification using American Community Survey data reveals that the externalities range from large and negative in some states, to large and positive in others. In California, an increase in the state income tax rate and the resulting change in the distribution of households across states lead to a decrease in federal income tax revenue of 39 cents for every dollar of California tax revenue raised. The externality amounts to a 0.27% decrease in total federal income tax revenue for a 1 pp increase in California’s state tax rate. Our results raise the possibility that state taxes may be set too high in high-productivity states, and set too low in low-productivity states.  
 
