@@ -82,11 +82,16 @@ Optimized product feeds for online retail clients to be sent to various search a
 
 ## Honors and Awards  
 
-Kleinsorge Summer Research Fellowship 2022  
-Dale Underwood Outstanding Graduate Student Scholarship, 2020  
-Best 1st Year Econometrics Performance, 2020  
-First Year Fellowship, 2019-2020
-   
+Kleinsorge Summer Research Fellowship, UO 2022  
+Dale Underwood Outstanding Graduate Student Scholarship, UO 2020  
+Best 1st Year Econometrics Performance, UO 2020  
+First Year Fellowship, UO 2019-2020
+
+
+## Service  
+
+**Referee**: *[Journal of Economic Behavior and Organization](https://www.sciencedirect.com/journal/journal-of-economic-behavior-and-organization)*, *[AERE@WEAI](https://www.aere.org/organized-sessions)*  
+**First Year Student Mentor, UO**: 2022, 2024  
 
 ## Skills 
 **Computing:** R, SQL, Julia, git  
