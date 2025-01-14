@@ -19,11 +19,11 @@ I am an ORISE Research Fellow with the US EPA Office of Water and a PhD Candidat
 
 ## Publications 
 
-**Glyphosate exposure & GM seed rollout unequally reduced perinatal health**  
-Emmett Reynier and Edward Rubin. *In press, Proceedings of the National Academy of Sciences*. [[Paper]](https://dx.doi.org/10.2139/ssrn.4867914)  
-
 **Optimal Subsidies for Residential Solar**  
 Mark Colas and Emmett Reynier. *Forthcoming, Journal of Political Economy Microeconomics.*  [[Paper]](https://www.emmettreynier.com/papers/colas-reynier-optimal-solar.pdf)
+
+**Glyphosate exposure & GM seed rollout unequally reduced perinatal health**  
+Emmett Reynier and Edward Rubin, 2025. *Proceedings of the National Academy of Sciences*. 122 (3). [[Paper]](https://doi.org/10.1073/pnas.2413013121)  
 
 **Vertical Migration Externalities**   
 Mark Colas and Emmett Reynier. 2023. *Regional Science and Urban Economics.* 101, 103900. [[Paper]](https://www.emmettreynier.com/papers/colas-saulnier-vme.pdf)
@@ -102,7 +102,7 @@ First Year Fellowship, UO 2019-2020
 ## Contact  
 **Email:** emmetts@uoregon.edu  
 **Website:** https://www.emmettreynier.com  
-**Github:** [emmettreynier](https://github.com/emmettreynier)
+**Github:** [emmettreynier](https://github.com/emmettreynier)  
 
 
 ## References 
