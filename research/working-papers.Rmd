@@ -10,7 +10,19 @@ title: ""
 ```
 
 
+#### **[The Distributional Impacts of Climate Change across U.S. Local Labor Markets](papers/reynier-morehouse-climate-migration.pdf)**  
+with [John Morehouse](https://www.johnmmorehouse.com/)  
 
+Climate change has affected households around the globe, but its impacts are not homogenous across space. We first show that disadvantaged demographic groups are disproportionately exposed to climate change in the US and are less responsive in their adaptive behavior. Motivated by these findings, we develop and estimate a spatial equilibrium model of US local labor markets, allowing households to adapt to climate change by choosing where to live and, conditional on that choice, energy and housing consumption. Our results show that climate change to date has caused welfare losses 20\% larger for black households relative to white households and twice as large for the lowest income decile relative to the highest income decile. We estimate that these gaps will continue to grow under projections of the future climate. Both the population's ex-ante distribution and differential mobility contribute to the observed disparities. We then evaluate a \$3 billion place-based policy from the Inflation Reduction Act, quantifying the tradeoff between subsidzing places with high climate damages and the resulting in-migration to climate-exposed areas.   
+
+[Current Draft](papers/reynier-morehouse-climate-migration.pdf)
+
+```{r fig-jmp, echo = FALSE, fig.show="hold", out.width="49.5%", fig.cap = ""}
+knitr::include_graphics("images/prism-grid-hot-days-1990-2019.jpeg")
+knitr::include_graphics("images/inc-q10-cv-perc-5y.jpeg")
+```
+
+<br>
 
 #### [**Means Tested Solar Subsidies**](papers/colas-reynier-income-solar.pdf)  
 with [Mark Colas](https://sites.google.com/site/markyaucolas/home)  
