@@ -5,13 +5,13 @@ linkcolor: orange
 ---
 
 ## About  
-I am an ORISE Research Fellow with the US EPA Office of Water and a PhD Candidate at the University of Oregon studying economics. My research interests include environmental and public economics.
+I am an ORISE Research Fellow with the US EPA Office of Water, recently completing my PhD in economics at the University of Oregon. My research interests include environmental and public economics.
 
 
 ## Education and Appointments 
 
 **ORISE Research Fellow**, US EPA Office of Water 2023-present    
-**Ph.D. Economics**, University of Oregon, *Expected 2025*  
+**Ph.D. Economics**, University of Oregon, 2025  
 **M.S. Economics**, University of Oregon, 2021  
 **B.A. Economics**, University of Virginia, 2017  
 **B.S. Commerce**, University of Virginia, 2017  

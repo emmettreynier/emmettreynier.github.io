@@ -35,7 +35,7 @@ The advent of herbicide-tolerant genetically modified (GM) crops spurred rapid a
 
 [Replication Code](https://github.com/edrubin/glyphosate-birthweight)  
 SSRN DOI [10.2139/ssrn.4867914](https://dx.doi.org/10.2139/ssrn.4867914)     
-**Press**: [Science](https://www.science.org/content/article/common-weed-killer-may-be-harming-infants), [Newsweek](https://www.newsweek.com/glyphosate-low-birth-weight-rural-counties-herbicide-2020499), [OPB](https://www.opb.org/article/2025/01/27/university-oregon-glyphosate-herbicide-health/), [UO](https://news.uoregon.edu/content/study-links-popular-herbicide-problems-infant-health)  
+**Press**: [Science](https://www.science.org/content/article/common-weed-killer-may-be-harming-infants), [Newsweek](https://www.newsweek.com/glyphosate-low-birth-weight-rural-counties-herbicide-2020499), [OPB](https://www.opb.org/article/2025/01/27/university-oregon-glyphosate-herbicide-health/), [UO News](https://news.uoregon.edu/content/study-links-popular-herbicide-problems-infant-health), [Vox](https://www.vox.com/climate/393538/rfk-jr-maha-trump-environmental-movement-far-right)  
 
 
 ```{r fig2, echo = FALSE, fig.show="hold", out.width="33%", fig.cap = ""}
