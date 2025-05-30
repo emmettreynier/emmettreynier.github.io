@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Out-of-sight, Out-of-mind? Distance Decay in Use and Non-use Value of Water Quality</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Emmett Reynier and Xibo Wan" />
+    <script src="libs/header-attrs-2.28/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="my-css.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Out-of-sight, Out-of-mind? Distance Decay in Use and Non-use Value of Water Quality
+]
+.subtitle[
+## AERE Summer Conference
+]
+.author[
+### Emmett Reynier and Xibo Wan
+]
+.date[
+### May 2025
+]
+
+---
+
+
+
+
+
+
+name: motivation
+# Water quality valuation  
+
+The US EPA relies on a **metaanalysis-based benefit transfer function** to estimate the benefits of water quality improvements ([Corona et al. 2020](https://doi.org/10.3368/wple.96.4.478)).   
+
+--
+
+- Very difficult to incorporate a distance effect on WTP in the metaregression since it relies on aggregated data  
+- Limit extent of market to 100 miles based on 1996 National Survey on Recreation, where about .hi-green[80% of all recreational uses] were within 100mi ([Viscusi et al. 2008](https://doi.org/10.1007/s10640-007-9186-4))  
+- Perceived to be a **"conservative assumption"** that leaves considerable benefits on the table        
+- Benefits are very sensitive to the **"analyst's choice"** for extent of market  
+
+--
+
+### More generally... 
+- **Revealed preference methods** inform us about the decay of .hi-green[use values]  
+- We know **considerably less** about how distance affects .hi-blue[non-use values]  
+
+
+---
+# Our approach    
+
+**Q** What is the relationship between distance and WTP for water quality? Does that relationship differ for use and non-use values?  
+
+- Nest a .hi-green[travel cost random utility model] within a utility function that is also .hi-blue[directly affected by water quality], which can vary by distance      
+
+--
+- Estimate travel cost RUM with .hi-green[cell phone-based mobility data] on trips to water-based recreation sites  
+
+--
+- Combine with several .hi-blue[existing stated preference studies] to estimate rest of utility parameters  
+
+--
+
+### Preliminary Results    
+- .hi-green[Use values decay quickly], over 90% of benefits captured within 100mi  
+- .hi-blue[Non-use value decays much slower], and potentially not at all  
+
+
+???
+
+Largely follows [Kim and Lupi (2023)](https://doi.org/10.1017/age.2023.26) 
+(currently [Johnston et al. 2023](https://doi.org/10.1073/pnas.2120255119) and [Vossler et al. 2023](https://doi.org/10.1073/pnas.2120251119))
+
+
+---
+class: inverse, middle
+# Cell phone mobility data 
+
+
+---
+name: main-cell-data-map
+# Cell phone mobility data 
+
+### Patterns data from Advan (formerly SafeGraph) 
+- Count of monthly visits from an origin CBG to a destination POI  
+- Follow [Wan et al (2024)](https://www.doi.org/10.1088/1748-9326/ad801c) in selecting 69K water-based recreation sites by intersecting Advan park POIs with NHDv2 .smallest[[[details]](#app-cell-data-poi)]  
+
+--
+
+&lt;img src="figs/site_stype.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+name: main-cell-data
+# Cell phone mobility data 
+
+### Patterns data from Advan (formerly SafeGraph) 
+- Count of monthly visits from an origin CBG to a destination POI  
+- Follow [Wan et al (2024)](https://www.doi.org/10.1088/1748-9326/ad801c) in selecting 69K water-based recreation sites by intersecting Advan park POIs with NHDv2 .smallest[[[details]](#app-cell-data-poi)]  
+- Calculate driving distances from each CBG to POI using OSRM .smallest[[[details]](#app-osrm)]  
+- Aggregate sites to HUC12 level and CBGs to zipcode level  
+
+
+
+---
+class: inverse, middle 
+# Reduced Form
+
+---
+# Reduced form model with cell data   
+
+We begin with some simple regressions measuring distance decay in visitation with the cell-phone data: 
+
+`$$\log{\text{Visit}_{ijt}} = f(d_{ij}) + \text{zip}_i + \text{huc}_j + \text{ym}_t + \varepsilon_{ijt}$$`
+
+where
+- `\(\text{Visit}_{ijt}\)` are monthly visits (normalized by number of devices in origin)  
+- `\(d_{ij}\)` is driving distance from zip code `\(i\)` to a HUC12 `\(j\)`    
+- `\(\text{zip}_i\)` and `\(\text{huc}_j\)` are origin and destination fixed effects  
+- `\(\text{ym}_t\)` are year-month fixed effects  
+
+--
+
+We test different functional forms for effect of distance on visits, `\(f(\cdot)\)` 
+
+???
+
+#### Dealing with zero share issues  
+1. **Unbalanced Panel**: Drop CBG-HUC12-month's with zero visits  
+2. **Balanced Panel**: Use empirical Bayes estimator as in [Li (2023)](https://jingli-econ.github.io/documents/papers/li_evcompatibility.pdf) or add a small number of visits to zero-visit sites   
+
+
+---
+# Reduced form results 
+
+
+&lt;img src="figs/fig_glake_lvisits_decay.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+--
+
+`\(\implies\)` 100mi radius likely to capture almost all .hi-green[use value]  
+
+
+---
+class: inverse, middle 
+# Structural decomposition of use and non-use values  
+
+---
+name: details-1
+# Structural Model Details  
+
+[Day et al. (2019)](https://doi.org/10.1016/j.jeem.2019.102256) and [Kim and Lupi (2023)](https://doi.org/10.1017/age.2023.26) propose a method for combining stated and revealed preferences to decompose use and non-use values. 
+- Our goal is to take this model to survey data from **several studies**  
+- Fill in missing visitation data with cell phone-based mobility data  
+
+--
+
+Person `\(i\)`'s utility conditional on visiting water feature `\(j\)` in month `\(t\)` and state of the world `\(s\)` is     
+
+`$$u_{ijts} = \color{#57754D}{v_{ijts}^{\text{use}}} + \color{#4682B4}{v_{its}^{\text{nonuse}}} + v_{ijts}^{o} + \varepsilon_{ijts}$$`
+
+--
+
+Numeraire is linear in income net of travel cost `\(TC_{ij}\)` and program cost `\(c_s\)`&lt;sup&gt;†&lt;/sup&gt;  
+
+`$$v_{ijts}^o = \gamma(y_{it} - TC_{ij} - c_s)$$`
+
+
+&lt;div class="footnote"&gt;† The baseline case has \(c_0 = 0\).&lt;/div&gt; 
+
+---
+name: details-2
+# Structural Model Details 
+
+
+.hi-green[Use Value] If person `\(i\)` decides to visit site `\(j\)`, the utility they get is a site-time specific constant `\(\alpha_{jt}\)` plus a vector representing site quality `\(q_{js}\)`  
+
+`$$\color{#57754D}{v_{ijts}^{\text{use}}} = \alpha_{jt} + q_{js}^\prime \beta$$` 
+
+Thus, `\(\beta\)` reflects the marginal use utility of quality. 
+
+
+--
+
+.hi-blue[Non-use Value] Non-use utility is the distance weighted sum across all sites, 
+
+`$$\color{#4682B4}{v_{its}^\text{nonuse}} = \sum_{j} (d_{ij} + 1)^\lambda(a_{jt} + q_{js}^\prime b)$$`
+
+where `\(d_{ij}\)` is distance between `\(i\)` and `\(j\)`, `\(\lambda\)` is the rate of decay, and `\(b\)` is the marginal non-use utility of quality. **Does not depend on actual site choice!**
+
+--
+
+People .hi-green[visit the sites] with the highest indirect utility. They then vote on the proposed policy from the sum of their **expected use and non-use utility**. .smallest[[[WTP functions]](#wtp-functions)]
+
+
+
+---
+layout: false
+class: inverse, middle 
+# Stated Preference Data     
+
+
+---
+layout: true
+# Stated preference data  
+
+---
+name: main-survey-data  
+
+We are greatful to the authors of three studies who have shared microdata from their studies with us: [Johnston et al. (2023)](https://doi.org/10.1073/pnas.2120255119), [Vossler et al. (2023)](https://doi.org/10.1073/pnas.2120251119), and a recently conducted national study by EPA NCEE.  
+
+
+
+???
+
+
+### [Johnston et al. (2023)](https://doi.org/10.1073/pnas.2120255119)   
+- Focused on New England   
+- Survey instrument compares BAU to realistic policy scenarios in 2025   
+- Utilize three modeled water quality measures at the river-segment level    
+
+
+### [Vossler et al. (2023)](https://doi.org/10.1073/pnas.2120251119)    
+- Focused on the upper-midwest  
+- Values improvements in the Biological Condition Gradient (BCG)  
+  - Vary the spatial scale of improvements (HUC4, 3 HUC4s, region)  
+  - Vary whether improvement is local or non-local  
+
+
+a water safety index, aquatic life index, and overall water quality index. The water safety index is based on fecal coliform concentrations. The aquatic life index is based on chloride concentrations. Then the overall water quality index is based on both of the previous measures in addition to dissolved inorganic nitrogen
+
+- Model three different water quality metrics using FRAMES    
+  - Aggregate **river segments** to HUC12 with length-weighted average  
+  - We use their overall WQI, which combines chlorides, fecal coliforms, and dissolved inorganic nitrogen  
+- Gives us **1,239 responses** for study area of **1,836 HUC12s**
+
+
+- Base data is at **HUC8** level  
+  - Manually filled in ~50 HUC8s missing in replication code (where no respondents have as home HUC8)  
+  - Dissagregate these to HUC12s  
+  - Rescale 1-6 BCG score to be 0-1 (0, 0.2, ..., 0.8, 1)  
+- Gives us **17,653 responses** for study area of **11,747 HUC12s**  
+
+---
+
+&lt;img src="figs/fig-3.jpg" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;img src="figs/vossler-fig4.jpg" width="50%" style="display: block; margin: auto;" /&gt;
+
+
+---
+class: inverse, middle
+layout: false
+
+# Estimation   
+
+---
+name: est-main
+# Estimation   
+
+
+
+We estimate the model in two stages: 
+
+1. Estimate a state-of-the-art .hi-green[travel cost RUM using cell data] to generate predictions of `\(\hat{v}^{use}_{ijt}\)` .smallest[[[details]](#app-tc-rum)]  
+
+--
+  - Using cell data allows us to estimate **high-dimensional fixed effects**  
+  - Would be very difficult with survey data (small sample size, recall)  
+
+--
+1. Take predicted `\(\hat{v}^{use}_{ijt}\)` with .hi-blue[stated preference data] to estimate rest of utility parameters `\(\theta = \{\beta, b, \lambda, \sigma^{SP}\}\)` via maximum likelihood .smallest[[[details]](#app-model-sp)]
+
+--
+
+#### Model Fit with Estimated Parameters   
+- [Johnston et al. (2023)](https://doi.org/10.1073/pnas.2120255119) find $24.2 WTP for 1pt improvement in region-wide WQ. Our model suggests **$26.4**, of which .hi-blue[36% is non-use]  
+- [Vossler et al (2023)]() find $300 WTP for 1pt improvement in region-wide BCG. Our model suggests **$202**, of which .hi-blue[26% is non-use]  
+
+
+.smallest[[[Parameter Estimates]](#app-travel-cost-full)]
+
+???
+
+.smallest[[[RP details]](#app-model-rp) [[SP details]](#app-model-sp) [[likelihood function]](#app-likelihood)]
+
+can make distributional assumptions to derive a [likelihood function](#app-likelihood) and 
+
+We estimate the parameters via MLE---this requires four key pieces of data  
+
+1. Characteristics of the proposed policy (i.e. cost and `\(\Delta\)` water quality)   
+2. **Distance** between respondents and water quality improvements  
+3. Respondent's .hi-blue[vote yes/no for the proposed program]  
+4. Respondent's .hi-green[site visitation behavior] 
+
+It is relatively low effort to produce 1-3 from existing stated preference studies, but most would not have **specific site visitation data**.
+
+`\(\implies\)` We want to use .hi-green[cell data] to fill in missing visitation behavior  
+  
+
+
+---
+class: inverse, middle 
+# Results  
+
+
+---
+name: sim-expl
+# MWTP for 1pt WQ in a HUC12  
+
+For each study we...
+1. Consider a 1pt WQ improvement in a single HUC12  
+2. Calculate use and non-use WTP for each respondent .smallest[[[WTP functions]](#wtp-functions)]  
+3. Repeat 100x for randomly chosen HUC12s in study area  
+4. Take average by distance bin between respondent and HUC12  
+
+---
+# MWTP for 1pt WQ in a HUC12  
+
+&lt;img src="figs/wtp-annual-decay-jv.jpeg" width="100%" style="display: block; margin: auto;" /&gt;
+
+
+???
+
+We plot the WTP functions for a 1pt improvement in a HUC12, integrated over all individuals and watersheds in the sample.
+
+---
+# Cumulative WTP for 1pt WQ by distance  
+ 
+We can plot the cumulative WTP for survey respondents as we get further from the HUC12 seeing a water quality improvement,  
+&lt;img src="figs/wtp-annual-cumulative-jv.jpeg" width="85%" style="display: block; margin: auto;" /&gt;
+
+--
+
+&lt;center&gt;.bold[Percent of total WTP captured at 100mi]&lt;/center&gt;
+
+| Study            | Use | Nonuse | Total |
+|-----------------|:-----:|:--------:|:-------:|
+| Johnston et al. | 94% | 28%    | 55%   |
+| Vossler et al.  | 97% | 8%     | 62%   |
+
+---
+# Conclusions  
+
+### Implications for benefits estimation  
+- Non-use values are low, may not decay much with distance  
+- The radius-based extent of market captures nearly all .hi-green[use value], but may leave a considerable amount of .hi-blue[non-use value] on the table  
+  
+--
+
+### Next steps  
+- Expand to national scale with NCEE survey  
+- Directly compare to EPA BenSPLASH for a past regulatory analysis      
+- Robustness checks with alternative assumptions/model structure  
+
+
+---
+
+class: inverse, middle
+
+# Thank you! 
+
+---
+class: inverse, middle
+# Appendix 
+
+---
+name: app-cell-data-poi
+# Cell phone mobility data 
+
+### Identifying Water POIs  
+
+We intersect the Advan parks polygon with the NHDv2:   
+- Create 50 meter buffer around park polygons  
+- Create 20 meter buffer around river flowlines  
+- Identify lake-based sites as those adjacent to a water body  
+
+#### A few important caveats  
+
+1. Difficult to identify river visits (esp. river sites across states)  
+3. Represents approximately 10% of all smartphones  
+4. Tends to represent a younger demographic than the general population  
+5. Privacy protection algorithm may lead to biases in estimation .smallest[[[details]](#app-cell-data-privacy)] 
+6. Mobile GPS positioning may have ~5 meter errors  
+
+
+.footnote[[[return]](#main-cell-data)]
+
+???
+
+(NAICS code 712190)
+2. Aggregation of sites to HUC12 may be a concern: the partial aggregation approach reasonably approximates the results of a disaggregate model (Lupi and Feather (1988), Daniel Phaneuf's recent work with EPA grants)
+
+---
+name: app-cell-data-privacy
+
+# Advan privacy protection measures  
+
+Advan implements the following procedure to protect user's privacy:  
+1. Differential privacy: add a Laplane noise with `\(N(0,10/9)\)`  
+1. Discretization: round the number to integer  
+1. Integer Floor: present a visitor count if `\(floor(V_{ijt})\)` is larger than `\(2\)` 
+2. Censoring: `\(\max\{4, \text{floor}(V_{ijt})\}\)`
+
+[Connolly, Steinbach, Vo, and Wan (2025)](https://www.dropbox.com/scl/fi/p1pmfzod67lcq9c788ki1/CapeCod_Wan.pdf?rlkey=snf54f1jgg2db93n3o3p4jf20&amp;e=1&amp;st=hxn1gj2a&amp;dl=0) that these techniques may lead to bias using standard estimation techniques. 
+
+.footnote[[[return]](#app-cell-data-poi)]
+
+---
+name: app-osrm
+layout: false
+# Driving Distances with OSRM  
+
+We use the [Open Source Routing Machine (OSRM)](https://project-osrm.org/) to calculate the shortest driving distance between CBG and water-based POI site centroids.  
+- Getting OSRM to run nationally requires ~100gb of RAM in inital setup (used virtual machine on Google Compute Engine)    
+- Fed it 60 million lat/lon pairs and waited for 3 days...  
+
+&lt;img src="figs/dist-compare.jpeg" width="55%" style="display: block; margin: auto;" /&gt;
+
+.footnote[[[return]](#main-cell-data)]
+
+---
+name: wtp-functions
+# Structural Model Details  
+
+
+### Welfare measures  
+
+We can calculate WTP for a given water quality change `\(\Delta q\)` as 
+
+`\begin{align*}
+&amp;\color{#57754D}{WTP^\text{use}_i} = \frac{1}{\gamma}\sum_t\log{\left[\frac{\sum_j \exp{\left(\tilde{\alpha}_{jt} + \Delta q_j^\prime \beta - \gamma TC_{ij}\right)}}{\sum_j \exp{\left(\tilde{\alpha}_{jt} - \gamma TC_{ij}\right)}}\right]} \\
+&amp;\color{#4682B4}{WTP^\text{nonuse}_i} = \frac{1}{\gamma}\sum_t\sum_j (d_{ij} + 1)^\lambda \Delta q_j^\prime b
+\end{align*}`
+
+
+both of which vary as respondents get further from a given water feature.&lt;sup&gt;†&lt;/sup&gt;
+
+&lt;div class="footnote"&gt;† Travel costs \(TC_{ij}\) are a non-linear function of driving distance. .smallest[[[return to model]](#details-2) [[return to results]](#sim-expl)]&lt;/div&gt;
+
+---
+name: app-model-rp
+# Model Details: Revealed Preferences   
+
+Assume that trips occur in the baseline period, `\(s=0\)` before quality change. Then the probability `\(i\)` visits `\(j\)` is 
+
+`\begin{align}
+  Pr^{visit}_{ijt0} &amp;= Pr(u_{ijt0} - u_{ikt0} &gt; 0)  \quad \forall \; k \neq j \\
+  &amp;= Pr\left[(v_{ijt0}^{\text{use}} + v_{it0}^{\text{nonuse}} + v_{ijt0}^{o}) - (v_{ikt0}^{\text{use}} + v_{it0}^{\text{nonuse}} + v_{ikt0}^{o}) &gt; \varepsilon_{ikt0} - \varepsilon_{ijt0}\right] \\
+  &amp;= Pr\left[(v_{ijt0}^{\text{use}} + v_{ijt0}^{o}) - (v_{ikt0}^{\text{use}} + v_{ikt0}^{o}) &gt; \varepsilon_{ikt0} - \varepsilon_{ijt0}\right] \quad \forall \; k \neq j
+\end{align}`
+
+The non-use values cancel out since they do not depend on choice `\(j\)`. Given T1EV errors, we have 
+
+`$$Pr^{visit}_{ijts} = \frac{\exp{\left(\alpha_{jt} + q_{js}^\prime\beta - \gamma (y_{it} - TC_{ij} - c_s)\right)}}{\sum_{k}\exp{\left(\alpha_{kt} + q_{ks}^\prime\beta - \gamma (y_{it} - p_{ik} - c_s)\right)}}$$`
+
+
+.footnote[[[return]](#est-main)]
+
+---
+name: app-model-sp 
+# Model Details: Stated Preferences   
+
+### Stated preference portion  
+
+The utility `\(i\)` receives from state of the world `\(s\)` is 
+
+`$$u_{is} = \tilde{v}_{is} + \tilde{\varepsilon}_{is} = T\tilde{v}_{is} + \sum_t\tilde{\varepsilon}_{its}$$`  
+
+where `\(\tilde{v}_{is}\)` is the deterministic portion of utility, 
+
+`$$\tilde{v}_{is} = \frac{1}{\sigma^{SP}} \left(v^\text{nonuse}_{is} +  \sum_j \exp{\left(v^\text{use}_{ijs} + v^o_{ijs}\right)}\right) + \kappa$$`
+
+`\(\sigma^{SP}\)` is the variance of T1EV shock and the left terms are expected use-utility in state `\(s\)` with constant of integration `\(\kappa\)`. Household `\(i\)` will choose the change scenario `\(s=1\)` with probability 
+
+`$$Pr^{vote}_{i1}(u_{i1} &gt; u_{i0}) = Pr\left(\tilde{v}_{i1} - \tilde{v}_{i0}&gt; \tilde{\varepsilon}_{i1} - \tilde{\varepsilon}_{i0}\right)$$`
+
+.footnote[[[return]](#est-main)]
+
+---
+name: app-likelihood
+# Likelihood Function 
+
+Calculate log-likelihood as  
+
+`$$ll_i = \sum_t\sum_j Y_{ijt}\log{Pr^{\text{visit}}_{ijt}} + \sum_s Y_{is}\log{Pr_{is}^{\text{vote}}},$$`
+
+
+where `\(Y_{ijt}\)` and `\(Y_{is}\)` are the actual visit choices and vote choices respectively. 
+
+.footnote[[[return]](#est-main)]
+
+---
+name: app-travel-costs  
+# Calculating Travel Costs  
+
+We use the following formula to calculate travel costs: 
+
+`$$TC_{ijt} =2\left(gs_{it} + f_t\right)\text{Dist}_{ijt} +2\gamma \frac{\text{Medinc}_i}{2080} \text{Time}_{ijt}$$`  
+
+where...
+- `\(\text{Dist}_{ijt}\)` and `\(\text{time}_{ijt}\)` are one-way travel distance and time between the centroid of CBG `\(i\)` and HUC12 `\(j\)` in period `\(t\)`   
+- `\(gs_{it}\)` is state-level average gas cost in year `\(t\)`   
+- `\(f_t\)` is marginal vehicle maintenance cost, repair cost, and depreciation   
+- `\(\frac{\text{Medinc}_i}{2080}\)` is median annual income CBG `\(i\)`, converted to hourly wages     
+- `\(\gamma = \frac{1}{3}\)` for central estimate, with robustness checks  
+- Travel time: replace missing values with travel distance/38.5  
+
+.footnote[[[return]](#main-cell-data)]
+
+---
+layout: true
+# Estimation Strategy: Travel Cost RUM    
+
+---
+name: app-tc-rum 
+
+.footnote[[[return]](#est-main)]  
+
+### Discrete choice setup     
+
+The probability that HH from CBG `\(c\)` visit site `\(j\)` in month `\(t\)` is
+
+`$$\text{share}_{cjt} = \frac{\exp(\gamma TC_{cjt} + \delta_{jt} + CBG_c)}{1 + \sum_{k=1}^{J} \exp(\gamma TC_{ckt} + \delta_{jt} + CBG_c)}$$`
+
+--
+
+a visitor from CBG `\(c\)` selects the outside option `\(o\)`
+
+`$$\text{share}_{c0t} =  \frac{1}{1 + \sum_{k=1}^{J} \exp(\gamma TC_{ckt} + \delta_{jt} + CBG_c)}$$`
+
+--
+
+Taking the log-ratio of a site's share relative to the outside option:
+
+`$$\log(\text{share}_{cjt}) - \log(\text{share}_{c0t}) = \gamma TC_{cjt} + \delta_{jt} + CBG_c$$`
+
+--
+
+This allows us to estimate `\(\gamma\)` and the `\(\delta_{jt}\)`'s using a linear regression  
+
+---
+
+.footnote[[[return]](#est-main)]  
+
+### Zero share issues 
+
+However, `\(\log(\text{share}_{cjt})\)` is not defined if `\(\text{share}_{cjt} = 0\)`, which very commonly occurs in the cell-data. We deal with this by,  
+
+--
+
+1. **Define choice set** for each CBG as all sites visited over all time    
+  - Goal is to eliminate sites that were truely not in choice set  
+  - (remaining zero-visits due to imperfect measurement)   
+
+--
+2. **Adjust remaining zero shares** using Bayes posterior mean estimation 
+  - Follows procedure in [Li (2023)](https://www.mit.edu/~lijing/documents/papers/li_evcompatibility.pdf)     
+  - Use behavior from 50 closest CBGs in terms of travel distance  
+  - Gives strictly postive `\(\text{share}_{cjt}\)`'s    
+
+---
+name: main-bayes
+
+.footnote[[[return]](#est-main)]  
+
+### Zero share issues 
+
+`\(N_c\)` is total visits from CBG `\(c\)` and `\(K_{jc}\)` is visits to site `\(j\)`:
+
+`\begin{equation*}
+  K_{jc}\sim \text{Binomial}(N_{c},s_{jc}^0) \\
+  s_{jc}^0\sim \text{Beta}(\lambda^1_{jc},\lambda^2_{jc})
+\end{equation*}`
+
+Visit probability `\(s^0_{jc}\)` follows a Beta prior distribution with two hyperparameters, `\(\lambda^1_{jc}\)` and `\(\lambda^2_{jc}\)`.
+
+--
+
+- Use visitation data from similar markets `\(l \in P_c\)`, where `\(P_c\)` is a set of similar CBGs to `\(c\)` (similarity defined using travel cost)  
+- Use MLE for Hyperparameters `\(\lambda^1_{jc}\)` and `\(\lambda^2_{jc}\)` over these similar markets  
+
+.footnote[[[log-likelihood equation]](#app-bayes-ll)]
+
+
+---
+
+.footnote[[[return]](#est-main)]  
+
+### Zero share issues  
+
+The posterior distribution of visit probability `\(s_{jc}\)` also follows a Beta distribution, with posterior mean of 
+
+`\begin{equation*}
+  \hat{s}_{jc} = \frac{\lambda^1_{jc} + K_{jc}}{\lambda^1_{jc} + \lambda^2_{jc} + N_c}
+\end{equation*}`
+
+These `\(\hat{s}_{jc}\)`'s are 
+ 1. **Strictly positive**  
+ 2. **Converge to true shares** as `\(K_{jc}\)` and `\(N_c\)` increase  
+
+--
+
+`\(\implies\)` use them as `\(\text{share}_{cjt}\)` to solve our problem!   
+
+
+---
+name: app-bayes-ll
+layout: false
+# Log Likelihood for Beta distribution   
+
+The log-likelihood equation for hyperparameters `\(\lambda^1_{jc}\)` and `\(\lambda^2_{jc}\)` over similar markets `\(P_c\)` is  
+
+`\begin{equation*}
+    f(K_{jl}, l \in P_c | \lambda^1_{jc}, \lambda^2_{jc}) = \prod_{l \in P_c} \binom{N_l}{K_{jl}} 
+    \frac{\Gamma(\lambda^1_{jc} + \lambda^2_{jc}) 
+    \Gamma(\lambda^1_{jc} + K_{jl}) 
+    \Gamma(N_l - K_{jl} + \lambda^2_{jc})}{
+    \Gamma(\lambda^1_{jc}) 
+    \Gamma(\lambda^2_{jc}) 
+    \Gamma(N_l + \lambda^1_{jc} + \lambda^2_{jc})}.
+\end{equation*}`
+
+.footnote[[[return]](#main-bayes)]
+
+
+---
+name: app-sp-est
+
+# Maximum likelihood estimation 
+`$$\tilde{v}_{is} = \kappa + \left(v^{nonuse}_{is} + \color{#57754D}{E\left[v^{use}_{is} + v^o_{is}\right]}\right)\frac{1}{\sigma^{SP}}$$`
+
+where `\(\color{#57754D}{E\left[v^{use}_{is} + v^o_{is}\right]} = \sum_t \log{\sum_j \exp{\left(\hat{\alpha}_{jt} + q_{js}^\prime \beta + \hat{\gamma}\left(y_{i} - TC_{ij} - c_s\right)\right)}}\)` 
+
+
+.footnote[[[return]](#est-main)]
+
+---
+# Johnston data  
+
+&lt;img src="figs/mean-utility-decomp-wq-map-cropped.jpeg" width="63%" style="display: block; margin: auto;" /&gt;
+
+---
+layout: false
+name: app-travel-cost-full
+# Estimation Results: Travel Cost RUM  
+
+
+Estimates for the .hi-green[marginal utility of income] `\(\gamma\)` using cell data:   
+
+.pull-left[
+
+&lt;center&gt;\(\hspace{8em} \) .bold[Johnston et al.]&lt;/center&gt;
+
+|                         | (1)         | **(2)**     | (3)         |
+|-------------------------|-------------|-------------|-------------|
+| **Travel Cost**        | -0.015***   | .hi-green[-0.021*]| -0.025***   |
+|                         | (0.000)     | (0.000)     | (0.000)     |
+|                                                                   |
+| **Observations**        | 493,413     | 1,520,726   | 1,520,726   |
+| **N (Zipcode)**         | 727         | 727         | 727         |
+| **Unbalanced**          | Yes         | No          | No          |
+| **Share**               | -           | Bayes       | 1-e6        |
+
+]
+
+.pull-right[
+&lt;center&gt;.bold[Vossler et al.]&lt;/center&gt;
+
+| **(1)**     |
+|-------------|
+| .hi-green[-0.013*] |
+| (0.000)     |
+|              
+| 826,567   |
+| 1,130         |
+| Yes          |
+| -       |
+
+]
+
+&lt;br&gt;
+
+- Instruments for travel costs with interaction between state and crude oil price, and travel distance  
+- Get similar results modeling `\(\gamma_i\)` as a random coefficient 
+
+
+.footnote[\* significant at 1% level [[Return]](#est-main)]
+
+
+
+---
+name: app-sp-parameter-estimates
+# Estimation Results: Stated Preferences 
+
+Preliminary parameter estimates: 
+
+| **Parameter**   | **Johnston et al**  | **Vossler et al**  |
+|:-------------:|-----------:|-----------:|
+| `\(\beta\)`     | 93.68     |  17.84     |
+| `\(b\)`         | 0.09      |  0.001      |
+| `\(\lambda\)`   | -0.000   |  -0.000   |
+| `\(\sigma^{RP}\)`| 55.90    | 21.08     |
+
+
+Estimated via maximum likelihood with 5 random starting values 
+
+--
+
+To put these results into context, 
+- [Johnston et al. (2023)](https://doi.org/10.1073/pnas.2120255119) find $24.2 WTP for 1pt improvement in region-wide WQ. Our model suggests **$26.4**, of which .hi-blue[36% is non-use]  
+- [Vossler et al (2023)]() find $300 WTP for 1pt improvement in region-wide BCG. Our model suggests **$202**, of which .hi-blue[26% is non-use]  
+
+
+.footnote[[[Return]](#est-main)]
+
+???
+
+
+Johnston: parameter * mean (Table 1 and Appendix) = average scenario
+((12.221 * 2.29)+ # WQ
+ (6.282 * 1.51) +# WQtop3
+ (-20.774 * -3.16)+ # WQbot3
+ (1.296 * 0.71) +# WQ25top3
+ (-10.664 * -3.14)+ # WQ25bot3
+ (0.759 * 0.53) +# WQ10top3
+ (-9.852 * -2.64)+ # WQ10bot3
+ (3.636 * 1.09) +# F1_WQtop3
+ (-7.108 * -3.34)) # F1_WQbot3
+
+
+12.221+6.282+-20.774+1.296+-10.664+0.759+-9.852+3.636+-7.108
+
+| `\(\gamma\)`     | 0.021     | 0.013     |
+
+- [Corona et al. (2020)](https://doi.org/10.3368/wple.96.4.478) find $3.1 WTP for 1pt improvement in a HUC4, median across HUC4's in our model is:
+  - WTP of **$2.4**, of which .hi-blue[42% is non-use] using **Johnston** data  
+  - WTP of **$xx**, of which .hi-blue[xx% is non-use] using **Vossler** data  
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"slideNumberFormat": "%current%"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
