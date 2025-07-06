@@ -7,7 +7,7 @@ output:
       in_header: header.html
 ---
 
-Here are the classes I have taught or will be teaching. All course reviews and additional course materials are available upon request.  
+Here are the classes I have taught or will be teaching. I am happy to share additional course material by request.    
 
 ## Instructor of Record  
 
