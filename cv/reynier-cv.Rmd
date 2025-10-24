@@ -32,7 +32,7 @@ Mark Colas and Emmett Reynier. 2023. *Regional Science and Urban Economics.* 101
 ## Working papers 
 
 **The Distributional Impacts of Climate Change across U.S. Local Labor Markets**  
-Emmett Reynier and John Morehouse. *Job Market Paper*. [[Paper]](https://www.emmettreynier.com/papers/reynier-morehouse-climate-migration.pdf)
+Emmett Reynier and John Morehouse. [[Paper]](https://www.emmettreynier.com/papers/reynier-morehouse-climate-migration.pdf)
 
 **Means Tested Solar Subsidies**  
 Mark Colas and Emmett Reynier. *Submitted. CESifo Working Paper 11378.* [[Paper]](https://www.emmettreynier.com/papers/colas-reynier-income-solar.pdf) 
