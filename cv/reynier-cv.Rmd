@@ -1,5 +1,5 @@
 ---
-title: "Emmett Reynier, né Saulnier"
+title: "Emmett Reynier"
 urlcolor: orange
 linkcolor: orange
 ---
@@ -14,8 +14,7 @@ linkcolor: orange
 
 **Ph.D. Economics**, University of Oregon, 2025  
 **M.S. Economics**, University of Oregon, 2021  
-**B.A. Economics**, University of Virginia, 2017  
-**B.S. Commerce**, University of Virginia, 2017  
+**B.A. Economics**, **B.S. Commerce** University of Virginia, 2017  
 
 
 ## Publications 
@@ -63,9 +62,9 @@ Worked on a multidisciplinary team of marketing strategists, software engineers,
 
 
 ## Presentations  
-**2025** University of New Hampshire, Duke (Nicholas), ISO New England, NC State (ARE), Indiana (BEPP), University of Georgia, AERE Summer Conference    
-**2024** Cal Poly, US EPA NCEE, US EPA OPP, AERE Summer Conference, Social Cost of Water Pollution Workshop, University of Oregon, Heartland Workshop, Freddy Mac, Macquarie  
-**2023** Freddie Mac, WEAI Annual Conference, Camp Resources XXIX, TWEEDS, AERE\@OSWEET  
+**2025** University of New Hampshire Economics, Duke University Nicholas School of the Environment, ISO New England, North Carolina State University Agricultural and Resource Economics, Stanford University Doerr School of Sustainability, Indiana University Business Economics and Public Policy, University of Georgia Economics, AERE Summer Conference    
+**2024** California Polytechnic University San Luis Obispo Economics, US Environmental Protection Agency National Center for Environmental Economics, US Environmental Protection Agency Office of Pesticide Programs, AERE Summer Conference, Social Cost of Water Pollution Workshop, University of Oregon Economics, Heartland Workshop, Federal Home Loan Mortgage Corporation, Macquarie University Economics 
+**2023** Federal Home Loan Mortgage Corporation, WEAI Annual Conference, Camp Resources XXIX, TWEEDS, AERE\@OSWEET  
 **2022** WEAI Annual Conference, SWELL, TWEEDS  
 **2021** Berkeley/Sloan Summer School in Environmental and Energy Economics  
   
@@ -80,11 +79,11 @@ First Year Fellowship, UO 2019-2020
 
 ## Service  
 
-**Referee**: *[Journal of Economic Behavior and Organization](https://www.sciencedirect.com/journal/journal-of-economic-behavior-and-organization)*, *[AERE@WEAI](https://www.aere.org/organized-sessions)*  
+**Referee**: *Journal of Economic Behavior and Organization*, *Journal of Environmental Economics and Management*     
 **First Year Student Mentor, UO**: 2022, 2024  
 
 ## Skills 
-**Computing:** R, SQL, Julia, git  
+**Computing:** R, Julia, SQL, git  
 **Visual:** Markdown, LaTeX, Tableau  
 **Languages:** English, Spanish (intermediate)  
   
@@ -93,8 +92,10 @@ First Year Fellowship, UO 2019-2020
 **Email:** emmettr@stanford.edu  
 **Website:** https://www.emmettreynier.com  
 **Github:** [emmettreynier](https://github.com/emmettreynier)  
+**Previous name:** Emmett Saulnier (until 2024)
 
 
+<!-- 
 ## References 
 
 **Dr. Mark Colas**   
@@ -111,3 +112,4 @@ University of Oregon
 Assistant Professor  
 University of Michigan  
 [ericzou@umich.edu](mailto:ericzou@umich.edu) 
+-->
