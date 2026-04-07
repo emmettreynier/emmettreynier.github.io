@@ -1,0 +1,42 @@
+---
+title: "Emmett Reynier"
+pagetitle: "CV | Emmett Reynier"
+---
+
+[Click for PDF version.](cv/reynier-cv.pdf)
+
+{{< include cv/reynier-cv.qmd >}}
+
+```{r}
+#| echo: false
+#| include: false
+# Thanks @edrubin for this code chunk...
+pacman::p_load(stringr, magrittr, rmarkdown, here)
+# Page break before experience section
+cv <- readLines(here("cv/reynier-cv.qmd"))
+cv[grep("## Professional Experience", cv) - 2] <- "\\pagebreak"
+# Create the new rmd file
+con <- file(here("tmp.qmd"))
+writeLines(cv, con)
+close(con)
+# Render to pdf
+render(here("tmp.qmd"),
+  pdf_document(
+    latex_engine = "xelatex",
+    toc = F,
+    number_sections = F,
+    highlight = "pygments",
+    pandoc_args = c(
+       pandoc_variable_arg("mainfont", "Charter"),
+      pandoc_variable_arg("fontsize", "10pt"),
+      pandoc_variable_arg("linestretch", "0.9"),
+      pandoc_variable_arg("colorlinks", "true"),
+      pandoc_variable_arg("urlcolor", "[HTML]{4A7C34}")
+      )
+    ),
+  output_file = here("cv/reynier-cv.pdf")
+)
+
+# Clean up temporary files
+file.remove(here("tmp.qmd"))
+```

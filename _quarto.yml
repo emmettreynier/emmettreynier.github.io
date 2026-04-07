@@ -1,0 +1,33 @@
+project:
+  type: website
+  output-dir: .
+  render:
+    - index.qmd
+    - research.qmd
+    - teaching.qmd
+    - cv.qmd
+
+website:
+  title: "Emmett Reynier"
+  favicon: images/favicon.ico
+  google-analytics: "G-BJ5QB7G01T"
+  navbar:
+    left:
+      - text: "Research"
+        href: research.qmd
+      - text: "Teaching"
+        href: teaching.qmd
+      - text: "CV"
+        href: cv.qmd
+    right:
+      - icon: envelope
+        href: mailto:emmettr@stanford.edu
+        aria-label: Email
+      - icon: github
+        href: https://github.com/emmettreynier
+        aria-label: GitHub
+
+format:
+  html:
+    theme: [cosmo, theme/custom.scss]
+    include-in-header: header.html

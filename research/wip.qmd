@@ -1,0 +1,12 @@
+#### **Out-of-sight, Out-of-mind? Distance Decay in Use and Non-use Value of Water Quality**
+with [Xibo Wan](https://xibowan.space/)
+
+```{r}
+#| label: water
+#| echo: false
+#| fig-align: center
+#| out-width: "70%"
+include_image("scwp-2024/figs/wtp-annual-decay.jpeg")
+```
+
+[Slides](scwp-2024/reynier-scwp-2024.html)

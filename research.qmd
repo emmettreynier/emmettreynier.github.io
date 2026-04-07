@@ -1,0 +1,29 @@
+---
+pagetitle: "Research | Emmett Reynier"
+toc: true
+toc-depth: 2
+toc-title: ""
+toc-location: left
+---
+
+```{r}
+#| label: setup
+#| include: false
+source("R/include_image.R")
+```
+
+## Publications
+
+{{< include research/publications.qmd >}}
+
+<br>
+
+## Working Papers
+
+{{< include research/working-papers.qmd >}}
+
+<br>
+
+## Works in Progress
+
+{{< include research/wip.qmd >}}

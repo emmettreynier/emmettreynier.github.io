@@ -1,0 +1,140 @@
+/*-- scss:defaults --*/
+
+// Western Oregon Forest palette
+$forest-green:    #2D5016;
+$moss-green:      #4A7C34;
+$fern-green:      #3A6B2A;
+$bark-brown:      #5C4033;
+$cream:           #FAFAF5;
+$charcoal:        #2B2B2B;
+
+$font-family-sans-serif: "Lato", sans-serif;
+$body-bg: $cream;
+$body-color: $charcoal;
+$link-color: $moss-green;
+$link-hover-color: $fern-green;
+$navbar-bg: $forest-green;
+$navbar-fg: $cream;
+
+/*-- scss:rules --*/
+
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700,400italic&display=swap");
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+  color: $forest-green;
+}
+
+// Navbar
+.navbar {
+  .navbar-brand {
+    font-weight: 700;
+  }
+
+  .nav-link {
+    color: rgba($cream, 0.85) !important;
+    &:hover, &:focus {
+      color: $cream !important;
+    }
+  }
+
+  .navbar-title {
+    color: $cream;
+  }
+}
+
+// Links within body text
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Horizontal rules and borders
+hr {
+  border-color: rgba($bark-brown, 0.3);
+}
+
+
+
+// Fix TOC links hidden by Bootstrap collapse class
+#TOC ul.collapse {
+  display: block !important;
+}
+
+// Home page layout
+.years {
+  display: inline-block;
+  width: 120px;
+}
+
+figcaption {
+  display: block;
+  text-align: center;
+  font-style: italic;
+  margin-top: 5px;
+}
+
+.pull-left {
+  float: left;
+  width: 47%;
+}
+.pull-right {
+  float: right;
+  width: 47%;
+}
+
+.home-layout {
+  margin-top: 10px;
+}
+
+.home-sidebar {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.home-headshot {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  border-radius: 4px;
+}
+
+.home-icon-links {
+  margin-top: 16px;
+}
+
+.home-icon-links a {
+  display: inline-block;
+  margin: 0 10px;
+  color: $moss-green;
+  text-decoration: none;
+}
+
+.home-icon-links a:hover,
+.home-icon-links a:focus {
+  color: $fern-green;
+}
+
+.home-icon-links i {
+  font-size: 30px;
+}
+
+.home-cv-label {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+@media (max-width: 991px) {
+  .home-headshot {
+    width: 33.333vw;
+    max-width: none;
+  }
+}
+
+.caption {
+  margin: auto;
+  text-align: center;
+}
