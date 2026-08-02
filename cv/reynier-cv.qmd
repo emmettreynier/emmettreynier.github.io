@@ -4,7 +4,8 @@ title: "Emmett Reynier"
 
 ## Appointments
 
-<span class="years">2025 -- *present* &nbsp;</span>  **Postdoctoral Fellow**, Center on Food Security and the Environment, Stanford University  
+<span class="years">2026 -- *present* &nbsp;</span>  **Assistant Professor**, Department of Economics, University of Georgia  
+<span class="years">2025 -- 2026 &nbsp;&nbsp;&nbsp;&nbsp;</span>  **Postdoctoral Fellow**, Center on Food Security and the Environment, Stanford University  
 <span class="years">2023 -- 2025 &nbsp;&nbsp;&nbsp;&nbsp;</span>  **ORISE Research Fellow**, Office of Water, US Environmental Protection Agency
 
 
@@ -63,6 +64,7 @@ Worked on a multidisciplinary team of marketing strategists, software engineers,
 
 ## Presentations 
 
+**2026**: University of Pennsylvania  
 **2025** University of New Hampshire Economics, Duke University Nicholas School of the Environment, ISO New England, North Carolina State University Agricultural and Resource Economics, Stanford University Doerr School of Sustainability, Indiana University Business Economics and Public Policy, University of Georgia Economics, AERE Summer Conference  
 **2024** California Polytechnic University San Luis Obispo Economics, US Environmental Protection Agency National Center for Environmental Economics, US Environmental Protection Agency Office of Pesticide Programs, AERE Summer Conference, Social Cost of Water Pollution Workshop, University of Oregon Economics, Heartland Workshop, Federal Home Loan Mortgage Corporation, Macquarie University Economics  
 **2023** Federal Home Loan Mortgage Corporation, WEAI Annual Conference, Camp Resources XXIX, TWEEDS, AERE\@OSWEET  
@@ -80,7 +82,7 @@ First Year Fellowship, UO 2019-2020
 
 ## Professional Activities
 
-**Referee**: *Journal of Economic Behavior and Organization*, *Journal of Environmental Economics and Management* (x2), *Resource and Energy Economics*, *Journal of Political Economy Microeconomics*    
+**Referee**: *Journal of Economic Behavior and Organization*, *Journal of Environmental Economics and Management* (x2), *Resource and Energy Economics*, *Journal of Political Economy Microeconomics*, *Nature Communications*    
 **First Year Student Mentor, UO**: 2022, 2024  
 
 ## Miscellanea
@@ -90,7 +92,7 @@ First Year Fellowship, UO 2019-2020
 **Special Sworn Status**, US Census Bureau, 2025 -- *present*  
 
 ## Contact
-**Email:** emmettr@stanford.edu  
+**Email:** emmettr@uga.edu  
 **Website:** [https://www.emmettreynier.com](https://www.emmettreynier.com)  
 **Github:** [emmettreynier](https://github.com/emmettreynier)  
 **Previous name:** Emmett Saulnier (until 2024)  
