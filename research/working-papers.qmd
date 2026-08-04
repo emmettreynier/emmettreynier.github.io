@@ -1,17 +1,16 @@
 #### [**Means Tested Solar Subsidies**](papers/colas-reynier-income-solar.pdf)
 with [Mark Colas](https://sites.google.com/site/markyaucolas/home)
-*Revise and Resubmit, Journal of Political Economy Microeconomics.*
+*Revisions resubmitted, Journal of Political Economy Microeconomics.*
 
-We study the design of income-contingent subsidies for residential solar panels. Using remotely sensed data on solar panel installations across the US and a border-discontinuity design, we estimate that the responsiveness of installation rates to subsidies is strongly decreasing in income. Using these empirical elasticities, we estimate a model that embeds an  installation decision into a dynamic consumption/savings framework with borrowing constraints. Counterfactuals reveal that switching to production-maximizing income-contingent subsidies leads to a nearly three-fold increase in public funds received by low-income households and a 2.4% increase in national solar production. Means-tested subsidies are justified on equity and efficiency grounds.
+We study income-contingent subsidies for residential solar panels. We develop sufficient statistics for evaluating the cost-effectiveness of means-tested subsidies and estimate them using remotely sensed data on solar panel installations across the US and a border-discontinuity design. Our estimates show that the responsiveness of installation rates to subsidies is decreasing in income, with the largest differences in the first and fourth income quartiles. A structural model reveals that switching to production-maximizing income-contingent solar subsidies increases the share of public funds received by low-income households while increasing national solar production. Means-tested subsidies are justified on equity and efficiency grounds.
 
 [Current draft](papers/colas-reynier-income-solar.pdf), [CESifo Working Paper No. 11378](https://www.cesifo.org/node/83083).
 
 ```{r}
 #| label: pvincome
 #| echo: false
-#| layout-ncol: 2
-include_image("images/log_kwh_new_cap-int-just-spline.jpeg")
-include_image("images/Opt_Sub_BincLatentInc1Sc1_Compare.png")
+#| layout-ncol: 1
+include_image("images/nonadditionality-fixed-subsidy.jpeg")
 ```
 
 <br>
