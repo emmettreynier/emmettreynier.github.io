@@ -2,6 +2,8 @@
 title: "Emmett Reynier"
 ---
 
+I am an applied environmental economist who uses quasi-experimental and structural methods to identify the health, welfare, and distributional consequences of environmental, climate, and energy policy. I teach undergraduate environmental economics and applied causal inference classes.
+
 ## Appointments
 
 <span class="years">2026 -- *present* &nbsp;</span>  **Assistant Professor**, Department of Economics, University of Georgia  
@@ -93,6 +95,8 @@ First Year Fellowship, UO 2019-2020
 
 ## Contact
 **Email:** emmettr@uga.edu  
+**Office Phone**: (706) 542-1311  
+**Office**: B324 Amos Hall University of Georgia Athens, GA 30602  
 **Website:** [https://www.emmettreynier.com](https://www.emmettreynier.com)  
 **Github:** [emmettreynier](https://github.com/emmettreynier)  
 **Previous name:** Emmett Saulnier (until 2024)  
