@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Teaching | Emmett Reynier – Emmett Reynier</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -37,10 +43,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a6bfdbbdcc39199ec6efcde22924e779.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-e09fc0a73e43897762113d8c92aaa041.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -166,20 +172,24 @@ gtag('config', 'G-BJ5QB7G01T', { 'anonymize_ip': true});
 
 
 <p>Here are the classes I have taught or will be teaching. I am happy to share additional course material by request.</p>
-<section id="instructor-of-record" class="level2">
-<h2 class="anchored" data-anchor-id="instructor-of-record">Instructor of Record</h2>
+<section id="university-of-georgia" class="level2">
+<h2 class="anchored" data-anchor-id="university-of-georgia">University of Georgia</h2>
 <ul>
-<li><a href="papers/ec434-534-syllabus.pdf">EC 434/534: Environmental Economics</a> (Fall 2024, Winter 2023, Spring 2023)</li>
-<li><a href="https://github.com/emmettreynier/EC320s22">EC 320: Introduction to Econometrics</a> (Spring 2022)</li>
+<li><a href="papers/econ4150-syllabus.pdf">ECON 4150: Environmental Economics</a> (Fall 2026, Spring 2027)<br>
+</li>
+<li>BUSN 5000: Introduction to Data Science for Business and Economics (Spring 2027)</li>
 </ul>
 </section>
-<section id="teaching-assistant" class="level2">
-<h2 class="anchored" data-anchor-id="teaching-assistant">Teaching Assistant</h2>
+<section id="university-of-oregon" class="level2">
+<h2 class="anchored" data-anchor-id="university-of-oregon">University of Oregon</h2>
 <ul>
-<li><a href="https://github.com/emmettreynier/EC421-Lab-W22">EC 421: Introduction to Econometrics</a> (Winter 2022)</li>
-<li>EC 607: Core Microeconometrics III (Spring 2021)</li>
-<li>EC 607: Core Microeconometrics II (Winter 2021)</li>
-<li>EC 511: Microeconomic Theory (Fall 2020)</li>
+<li><a href="papers/ec434-534-syllabus.pdf">EC 434/534: Environmental Economics</a> (Fall 2024, Winter 2023, Spring 2023), instructor of record</li>
+<li><a href="https://github.com/emmettreynier/EC320s22">EC 320: Introduction to Econometrics</a> (Spring 2022), instructor of record<br>
+</li>
+<li><a href="https://github.com/emmettreynier/EC421-Lab-W22">EC 421: Introduction to Econometrics</a> (Winter 2022), teaching assistant</li>
+<li>EC 607: Core Microeconometrics III (Spring 2021), teaching assistant</li>
+<li>EC 607: Core Microeconometrics II (Winter 2021), teaching assistant</li>
+<li>EC 511: Microeconomic Theory (Fall 2020), teaching assistant</li>
 </ul>
 
 
@@ -237,13 +247,14 @@ gtag('config', 'G-BJ5QB7G01T', { 'anonymize_ip': true});
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

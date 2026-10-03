@@ -5,14 +5,17 @@ pagetitle: "Teaching | Emmett Reynier"
 
 Here are the classes I have taught or will be teaching. I am happy to share additional course material by request.
 
-## Instructor of Record
+## University of Georgia 
 
-- [EC 434/534: Environmental Economics](papers/ec434-534-syllabus.pdf) (Fall 2024, Winter 2023, Spring 2023)
-- [EC 320: Introduction to Econometrics](https://github.com/emmettreynier/EC320s22) (Spring 2022)
+- [ECON 4150: Environmental Economics](papers/econ4150-syllabus.pdf) (Fall 2026, Spring 2027)  
+- BUSN 5000: Introduction to Data Science for Business and Economics (Spring 2027)
 
-## Teaching Assistant
 
-- [EC 421: Introduction to Econometrics](https://github.com/emmettreynier/EC421-Lab-W22) (Winter 2022)
-- EC 607: Core Microeconometrics III (Spring 2021)
-- EC 607: Core Microeconometrics II  (Winter 2021)
-- EC 511: Microeconomic Theory (Fall 2020)
+## University of Oregon
+
+- [EC 434/534: Environmental Economics](papers/ec434-534-syllabus.pdf) (Fall 2024, Winter 2023, Spring 2023), instructor of record
+- [EC 320: Introduction to Econometrics](https://github.com/emmettreynier/EC320s22) (Spring 2022), instructor of record  
+- [EC 421: Introduction to Econometrics](https://github.com/emmettreynier/EC421-Lab-W22) (Winter 2022), teaching assistant
+- EC 607: Core Microeconometrics III (Spring 2021), teaching assistant
+- EC 607: Core Microeconometrics II  (Winter 2021), teaching assistant
+- EC 511: Microeconomic Theory (Fall 2020), teaching assistant

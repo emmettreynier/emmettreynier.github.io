@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>CV | Emmett Reynier – Emmett Reynier</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -37,10 +43,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a6bfdbbdcc39199ec6efcde22924e779.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-e09fc0a73e43897762113d8c92aaa041.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -202,7 +208,9 @@ Emmett Reynier and Xibo Wan. <a href="https://www.emmettreynier.com/scwp-2024/re
 </section>
 <section id="teaching" class="level2">
 <h2 class="anchored" data-anchor-id="teaching">Teaching</h2>
-<p><strong>EC 434/534: Environmental Economics</strong>, UO Fall 2024, Winter 2023, Spring 2023<br>
+<p><strong>ECON 4150: Environmental Economics</strong>, UGA Fall 2026<br>
+Instructor of record for upper level undergraduate environmental economics course<br>
+<strong>EC 434/534: Environmental Economics</strong>, UO Fall 2024, Winter 2023, Spring 2023<br>
 Instructor of record for upper level undergraduate/masters environmental economics course<br>
 <strong>EC 320: Introduction to Econometrics</strong>, UO Spring 2022<br>
 Instructor of record for first course in undergraduate econometrics sequence</p>
@@ -218,7 +226,7 @@ Worked on a multidisciplinary team of marketing strategists, software engineers,
 </section>
 <section id="presentations" class="level2">
 <h2 class="anchored" data-anchor-id="presentations">Presentations</h2>
-<p><strong>2026</strong>: University of Pennsylvania<br>
+<p><strong>2026</strong>: University of Pennsylvania, Georgia Tech, American Geophysical Union<br>
 <strong>2025</strong> University of New Hampshire Economics, Duke University Nicholas School of the Environment, ISO New England, North Carolina State University Agricultural and Resource Economics, Stanford University Doerr School of Sustainability, Indiana University Business Economics and Public Policy, University of Georgia Economics, AERE Summer Conference<br>
 <strong>2024</strong> California Polytechnic University San Luis Obispo Economics, US Environmental Protection Agency National Center for Environmental Economics, US Environmental Protection Agency Office of Pesticide Programs, AERE Summer Conference, Social Cost of Water Pollution Workshop, University of Oregon Economics, Heartland Workshop, Federal Home Loan Mortgage Corporation, Macquarie University Economics<br>
 <strong>2023</strong> Federal Home Loan Mortgage Corporation, WEAI Annual Conference, Camp Resources XXIX, TWEEDS, AERE@OSWEET<br>
@@ -234,7 +242,7 @@ First Year Fellowship, UO 2019-2020</p>
 </section>
 <section id="professional-activities" class="level2">
 <h2 class="anchored" data-anchor-id="professional-activities">Professional Activities</h2>
-<p><strong>Referee</strong>: <em>Journal of Economic Behavior and Organization</em>, <em>Journal of Environmental Economics and Management</em> (x2), <em>Resource and Energy Economics</em>, <em>Journal of Political Economy Microeconomics</em>, <em>Nature Communications</em>, <em>American Economic Journal: Applied Economics</em><br>
+<p><strong>Referee</strong>: <em>Journal of Economic Behavior and Organization</em>, <em>Journal of Environmental Economics and Management</em> (x3), <em>Resource and Energy Economics</em>, <em>Journal of Political Economy Microeconomics</em>, <em>Nature Communications</em>, <em>American Economic Journal: Applied Economics</em>, <em>Economics and Human Biology</em>, <em>Health Economics</em><br>
 <strong>First Year Student Mentor, UO</strong>: 2022, 2024</p>
 </section>
 <section id="miscellanea" class="level2">
@@ -325,13 +333,14 @@ University of Michigan
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
