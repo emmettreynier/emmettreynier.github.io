@@ -43,7 +43,7 @@ Emmett Reynier and John Morehouse. [[Paper]](https://www.emmettreynier.com/paper
 ## Research in Progress
 
 **Out-of-sight, Out-of-mind? Distance Decay in Use and Non-use Value of Water Quality**  
-Emmett Reynier and Xibo Wan. [[Slides]](https://www.emmettreynier.com/scwp-2024/reynier-scwp-2024.html)
+Emmett Reynier and Xibo Wan. [[Slides]](https://www.emmettreynier.com/papers/distance-decay.html)
 
 
 ## Teaching
